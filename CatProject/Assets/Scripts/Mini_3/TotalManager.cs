@@ -13,6 +13,8 @@ public class TotalManager : MonoBehaviour {
 
     public bool startcor;
 
+    GameObject MiniGame3_Manager;
+
 	// Use this for initialization
 	void Start () {
 
@@ -24,6 +26,8 @@ public class TotalManager : MonoBehaviour {
 
         FurText = GameObject.Find("FurText").GetComponent<Text>();
         GameOverText = GameObject.Find("GameOverTimer").GetComponent<Text>();
+
+        MiniGame3_Manager = GameObject.Find("MainCamera");
 
         FurText.text = "";
         GameOverText.text = "";
@@ -44,6 +48,7 @@ public class TotalManager : MonoBehaviour {
                 if (gameOverTime < 0)
                 {
                     GameOverText.text = "gameover!";
+                    MiniGame3_Manager.GetComponent<Minigame3_Mananger>().callGameover();
                 }
 
             }
