@@ -6,8 +6,11 @@ using UnityEngine.UI;
 public class TotalManager : MonoBehaviour {
 
     public int TotalFurNum;
+    public int secondsforScore;
+
     float gameOverTime;
     float setgameoverTimer;
+
     Text FurText;
     Text GameOverText;
 
@@ -19,8 +22,9 @@ public class TotalManager : MonoBehaviour {
 	void Start () {
 
         TotalFurNum = 0;
-        setgameoverTimer = 5;
+        secondsforScore = 0;
 
+        setgameoverTimer = 5;
         gameOverTime = setgameoverTimer;
         startcor = false;
 
@@ -33,6 +37,7 @@ public class TotalManager : MonoBehaviour {
         GameOverText.text = "";
 
         appearFurText();
+        StartCoroutine("countSeconds");
 	}
 	
 	// Update is called once per frame
@@ -66,6 +71,14 @@ public class TotalManager : MonoBehaviour {
     public void appearFurText()
     {
         FurText.text = TotalFurNum.ToString();
+    }
+
+    IEnumerator countSeconds()
+    {
+            yield return new WaitForSeconds(1);
+            secondsforScore++;
+
+        StartCoroutine("countSeconds");
     }
 
 }

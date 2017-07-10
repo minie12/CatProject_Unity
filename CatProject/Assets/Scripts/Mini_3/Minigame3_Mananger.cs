@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Minigame3_Mananger : MonoBehaviour {
+    int speacialscore;
+    int normalscore;
 
     GameObject Game;
     GameObject FeverTime;
@@ -10,6 +12,10 @@ public class Minigame3_Mananger : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+        speacialscore = 0;
+        normalscore = 0;
+
         Game = GameObject.Find("Game");
         FeverTime = GameObject.Find("FeverTime");
         GameOver = GameObject.Find("GameOver");
@@ -23,13 +29,18 @@ public class Minigame3_Mananger : MonoBehaviour {
 
     public void callFeverTime()
     {
+        normalscore += Game.transform.Find("GameManager").gameObject.GetComponent<TotalManager>().secondsforScore;
+        Game.transform.Find("GameManager").gameObject.GetComponent<TotalManager>().secondsforScore = 0;
         Game.SetActive(false);
         FeverTime.SetActive(true);
+        
     }
 
     public void backtoGame()
     {
         Game.SetActive(true);
+        speacialscore += FeverTime.GetComponent<FeverTimeScript>().touchnum;
+        FeverTime.GetComponent<FeverTimeScript>().touchnum = 0;
         FeverTime.SetActive(false);
     }
 
@@ -45,6 +56,7 @@ public class Minigame3_Mananger : MonoBehaviour {
         callFeverTime();
         yield return new WaitForSeconds(5);
         backtoGame();
+
         StartCoroutine("Fever");
     }
 }
