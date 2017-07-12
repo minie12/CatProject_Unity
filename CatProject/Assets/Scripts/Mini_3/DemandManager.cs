@@ -100,8 +100,9 @@ public class DemandManager : MonoBehaviour {
         }
     }
 
-    IEnumerator appearDemand()
+    public IEnumerator appearDemand()
     {
+        Debug.Log("appeardemand called");
         trysatisfy = false;
         yield return new WaitForSeconds(waitTime);
         indexnum = (int)Random.Range(0, 3);

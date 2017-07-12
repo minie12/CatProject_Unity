@@ -7,8 +7,9 @@ public class CatManager : MonoBehaviour
 
     int catsize = 7;
     float waitTime = 30;
-    int nowCat = 1;
-    List<GameObject> CatList;
+
+    public int nowCat = 1;
+    public List<GameObject> CatList;
 
     // Use this for initialization
     void Start()
@@ -30,14 +31,13 @@ public class CatManager : MonoBehaviour
         StartCoroutine(appearCat());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-    IEnumerator appearCat()
+    public IEnumerator appearCat()
     {
+        Debug.Log("appearcat called");
+        Debug.Log(CatList.Count);
+        if (nowCat == 8)
+            StopCoroutine("appearCat");
 
         yield return new WaitForSeconds(waitTime);
         if (nowCat != 8)

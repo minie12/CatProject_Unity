@@ -6,8 +6,8 @@ public class FurManager : MonoBehaviour
 {
 
     int fursize = 14;
-    public float waitTime = 5f;
-    
+    public float waitTime = 1;
+
 
     public Queue<GameObject> fur_q;
 
@@ -36,32 +36,27 @@ public class FurManager : MonoBehaviour
         Debug.Log(fur_q.Count);
     }
 
-    // Update is called once per frame
-    void Update()
+    public IEnumerator appearFur()
     {
-
-    }
-
-    IEnumerator appearFur()
-    {
-        while (true)
+        Debug.Log("appearfur called");
+        Debug.Log(fur_q.Count);
+        yield return new WaitForSeconds(waitTime);
+        if (fur_q.Count != 0)
         {
-            yield return new WaitForSeconds(waitTime);
-            if (fur_q.Count != 0)
+            GameObject fur = fur_q.Dequeue();
+            fur.SetActive(true);
+            GameManager.GetComponent<TotalManager>().TotalFurNum++;
+            GameManager.GetComponent<TotalManager>().appearFurText();
+
+            if (GameManager.GetComponent<TotalManager>().TotalFurNum >= 12 && GameManager.GetComponent<TotalManager>().startcor == false)
             {
-                GameObject fur = fur_q.Dequeue();
-                fur.SetActive(true);
-                GameManager.GetComponent<TotalManager>().TotalFurNum++;
-                GameManager.GetComponent<TotalManager>().appearFurText();
-
-                if (GameManager.GetComponent<TotalManager>().TotalFurNum >= 12 && GameManager.GetComponent<TotalManager>().startcor == false)
-                {
-                    Debug.Log("called!");
-                    GameManager.GetComponent<TotalManager>().startcor = true;
-                }
-
+                Debug.Log("called!");
+                GameManager.GetComponent<TotalManager>().startcor = true;
             }
+
         }
+        StartCoroutine("appearFur");
+
     }
 
     //랜덤으로 포지션을 정해주는 함수

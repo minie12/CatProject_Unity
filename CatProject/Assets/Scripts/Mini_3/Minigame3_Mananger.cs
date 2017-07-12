@@ -39,6 +39,7 @@ public class Minigame3_Mananger : MonoBehaviour {
     public void backtoGame()
     {
         Game.SetActive(true);
+        Game.GetComponent<InvokeCoroutine>().InvokingCoroutine();
         speacialscore += FeverTime.GetComponent<FeverTimeScript>().touchnum;
         FeverTime.GetComponent<FeverTimeScript>().touchnum = 0;
         FeverTime.SetActive(false);
@@ -52,7 +53,7 @@ public class Minigame3_Mananger : MonoBehaviour {
 
     IEnumerator Fever()
     {
-        yield return new WaitForSeconds(60);
+        yield return new WaitForSeconds(10);
         callFeverTime();
         yield return new WaitForSeconds(5);
         backtoGame();

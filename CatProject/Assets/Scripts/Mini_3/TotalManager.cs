@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TotalManager : MonoBehaviour {
+public class TotalManager : MonoBehaviour
+{
 
     public int TotalFurNum;
     public int secondsforScore;
@@ -18,8 +19,9 @@ public class TotalManager : MonoBehaviour {
 
     GameObject MiniGame3_Manager;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
 
         TotalFurNum = 0;
         secondsforScore = 0;
@@ -38,16 +40,17 @@ public class TotalManager : MonoBehaviour {
 
         appearFurText();
         StartCoroutine("countSeconds");
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
-		if(startcor == true)
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        if (startcor == true)
         {
             if (TotalFurNum >= 12)
             {
                 gameOverTime -= Time.deltaTime;
-                
+
                 GameOverText.text = gameOverTime.ToString();
 
                 if (gameOverTime < 0)
@@ -66,17 +69,18 @@ public class TotalManager : MonoBehaviour {
                 startcor = false;
             }
         }
-	}
+    }
 
     public void appearFurText()
     {
         FurText.text = TotalFurNum.ToString();
     }
 
-    IEnumerator countSeconds()
+    public IEnumerator countSeconds()
     {
-            yield return new WaitForSeconds(1);
-            secondsforScore++;
+        //Debug.Log("countseconds called");
+        yield return new WaitForSeconds(1);
+        secondsforScore++;
 
         StartCoroutine("countSeconds");
     }

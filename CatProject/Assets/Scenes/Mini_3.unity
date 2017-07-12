@@ -946,6 +946,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126dc88ba436215458a2d18ff229c7f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nowCat: 1
+  CatList: []
 --- !u!1 &1109631738
 GameObject:
   m_ObjectHideFlags: 0
@@ -1318,6 +1320,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1913388333}
   - component: {fileID: 1913388334}
+  - component: {fileID: 1913388335}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -1383,6 +1386,17 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
+--- !u!114 &1913388335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1913388332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 976dcd458e8edab48aecf9f64b67036a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1986648725 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4045069522548928, guid: 2df1acd062c4068479f21ec8b975ec4a,
