@@ -7,7 +7,6 @@ public class TotalManager : MonoBehaviour
 {
 
     public int TotalFurNum;
-    public int secondsforScore;
 
     float gameOverTime;
     float setgameoverTimer;
@@ -24,7 +23,6 @@ public class TotalManager : MonoBehaviour
     {
 
         TotalFurNum = 0;
-        secondsforScore = 0;
 
         setgameoverTimer = 5;
         gameOverTime = setgameoverTimer;
@@ -78,9 +76,9 @@ public class TotalManager : MonoBehaviour
 
     public IEnumerator countSeconds()
     {
-        //Debug.Log("countseconds called");
         yield return new WaitForSeconds(1);
-        secondsforScore++;
+        MiniGame3_Manager.GetComponent<Minigame3_Mananger>().normalscore++;
+        MiniGame3_Manager.GetComponent<Minigame3_Mananger>().showNormalscore();
 
         StartCoroutine("countSeconds");
     }

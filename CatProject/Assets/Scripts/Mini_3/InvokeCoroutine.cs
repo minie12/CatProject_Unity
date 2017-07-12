@@ -15,13 +15,17 @@ public class InvokeCoroutine : MonoBehaviour {
 
     public void InvokingCoroutine()
     {
+        Debug.Log("invokecoroutine called");
         StartCoroutine(GameManager.GetComponent<TotalManager>().countSeconds());
         StartCoroutine(CatManager.GetComponent<CatManager>().appearCat());
         for(int i=0;i< CatManager.GetComponent<CatManager>().nowCat; i++)
         {
             GameObject tempcat = CatManager.GetComponent<CatManager>().CatList[i];
-            StartCoroutine(tempcat.GetComponent<FurManager>().appearFur());
-            StartCoroutine(tempcat.GetComponent<DemandManager>().appearDemand());
+            if(tempcat.activeInHierarchy == true)
+            {
+                StartCoroutine(tempcat.GetComponent<FurManager>().appearFur());
+                StartCoroutine(tempcat.GetComponent<DemandManager>().appearDemand());
+            }
         }
     }
 }

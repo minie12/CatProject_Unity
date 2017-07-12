@@ -12,11 +12,11 @@ public class DemandManager : MonoBehaviour {
 
     bool trysatisfy = false;
 
-    Sprite[] demandSprite = new Sprite[3];
-    Sprite[] feelSprite = new Sprite[4];
+    public Sprite[] demandSprite = new Sprite[3];
+    public Sprite[] feelSprite = new Sprite[4];
 
-    GameObject demandObject;
-    GameObject feelObject;
+    public GameObject demandObject;
+    public GameObject feelObject;
     
     GameObject actManager;
 
@@ -42,11 +42,6 @@ public class DemandManager : MonoBehaviour {
 
         StartCoroutine(appearDemand());
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public void isRightAct()
     {
@@ -81,22 +76,22 @@ public class DemandManager : MonoBehaviour {
         if (feeling < 20 && feeling >= 0)
         {
             feelObject.GetComponent<SpriteRenderer>().sprite = feelSprite[0];
-            gameObject.GetComponent<FurManager>().waitTime = 2f;
+            gameObject.GetComponent<FurManager>().waitTime = 0.5f;
         }
         else if (feeling >= 20 && feeling < 65)
         {
             feelObject.GetComponent<SpriteRenderer>().sprite = feelSprite[1];
-            gameObject.GetComponent<FurManager>().waitTime = 4f;
+            gameObject.GetComponent<FurManager>().waitTime = 1f;
         }
         else if (feeling >= 65 && feeling < 90)
         {
             feelObject.GetComponent<SpriteRenderer>().sprite = feelSprite[2];
-            gameObject.GetComponent<FurManager>().waitTime = 6f;
+            gameObject.GetComponent<FurManager>().waitTime = 1.5f;
         }
         else if (feeling >= 90 && feeling <= 100)
         {
             feelObject.GetComponent<SpriteRenderer>().sprite = feelSprite[3];
-            gameObject.GetComponent<FurManager>().waitTime = 6f;
+            gameObject.GetComponent<FurManager>().waitTime = 3f;
         }
     }
 
@@ -105,7 +100,9 @@ public class DemandManager : MonoBehaviour {
         Debug.Log("appeardemand called");
         trysatisfy = false;
         yield return new WaitForSeconds(waitTime);
+        Debug.Log("appeardemand called-waitTime over");
         indexnum = (int)Random.Range(0, 3);
+        Debug.Log(indexnum);
         demandObject.GetComponent<SpriteRenderer>().sprite = demandSprite[indexnum];
         yield return new WaitForSeconds(demandTime);
         indexnum = -1;

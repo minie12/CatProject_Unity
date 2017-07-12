@@ -13,11 +13,6 @@ public class ActManager : MonoBehaviour {
         requestObj[1] = gameObject.transform.Find("Eat").gameObject;
         requestObj[2] = gameObject.transform.Find("Play").gameObject;
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public void JudgeAct(GameObject callobj)
     {

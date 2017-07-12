@@ -9,7 +9,7 @@ public class FurManager : MonoBehaviour
     public float waitTime = 1;
 
 
-    public Queue<GameObject> fur_q;
+    public Queue<GameObject> fur_q = new Queue<GameObject>();
 
     GameObject GameManager;
 
@@ -18,7 +18,6 @@ public class FurManager : MonoBehaviour
     {
         GameObject inst_fur = gameObject.transform.Find("Cat_furs").gameObject;
         GameManager = GameObject.Find("GameManager");
-        fur_q = new Queue<GameObject>();
 
         fur_q.Enqueue(inst_fur);
         inst_fur.SetActive(false);
@@ -39,8 +38,9 @@ public class FurManager : MonoBehaviour
     public IEnumerator appearFur()
     {
         Debug.Log("appearfur called");
-        Debug.Log(fur_q.Count);
+        Debug.Log("apoearfurcount is "+fur_q.Count);
         yield return new WaitForSeconds(waitTime);
+        Debug.Log("appearfur-waittime over");
         if (fur_q.Count != 0)
         {
             GameObject fur = fur_q.Dequeue();
