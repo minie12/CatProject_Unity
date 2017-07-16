@@ -15,10 +15,10 @@ public class InvokeCoroutine : MonoBehaviour {
 
     public void InvokingCoroutine()
     {
-        Debug.Log("invokecoroutine called");
         StartCoroutine(GameManager.GetComponent<TotalManager>().countSeconds());
         StartCoroutine(CatManager.GetComponent<CatManager>().appearCat());
-        for(int i=0;i< CatManager.GetComponent<CatManager>().nowCat; i++)
+
+        for (int i=0;i< CatManager.GetComponent<CatManager>().nowCat; i++)
         {
             GameObject tempcat = CatManager.GetComponent<CatManager>().CatList[i];
             if(tempcat.activeInHierarchy == true)

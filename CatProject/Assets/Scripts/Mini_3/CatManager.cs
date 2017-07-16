@@ -28,7 +28,7 @@ public class CatManager : MonoBehaviour
             GameObject spr_cat = obj_cat.transform.GetChild(0).gameObject;
             setPos(spr_cat);
             obj_cat.transform.parent = gameObject.transform;
-
+            CatList.Add(obj_cat);
             obj_cat.SetActive(false);
         }
 
@@ -47,8 +47,6 @@ public class CatManager : MonoBehaviour
 
     public IEnumerator appearCat()
     {
-        Debug.Log("appearcat called");
-        Debug.Log("appearcat waittime is "+waitTime);
         if (nowCat == 8)
             StopCoroutine("appearCat");
 

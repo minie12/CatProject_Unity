@@ -22,9 +22,9 @@ public class DemandManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        demandSprite[0] = Resources.Load<Sprite>("Pic_3/Cat_touch");
-        demandSprite[1] = Resources.Load<Sprite>("Pic_3/Cat_eating");
-        demandSprite[2] = Resources.Load<Sprite>("Pic_3/Cat_playing");
+        demandSprite[0] = Resources.Load<Sprite>("Pic_3/want_brush");
+        demandSprite[1] = Resources.Load<Sprite>("Pic_3/want_can");
+        demandSprite[2] = Resources.Load<Sprite>("Pic_3/want_toy");
 
         feelSprite[0] = Resources.Load<Sprite>("Pic_3/Bad");
         feelSprite[1] = Resources.Load<Sprite>("Pic_3/SoSo");
@@ -97,12 +97,9 @@ public class DemandManager : MonoBehaviour {
 
     public IEnumerator appearDemand()
     {
-        Debug.Log("appeardemand called");
         trysatisfy = false;
         yield return new WaitForSeconds(waitTime);
-        Debug.Log("appeardemand called-waitTime over");
         indexnum = (int)Random.Range(0, 3);
-        Debug.Log(indexnum);
         demandObject.GetComponent<SpriteRenderer>().sprite = demandSprite[indexnum];
         yield return new WaitForSeconds(demandTime);
         indexnum = -1;

@@ -24,9 +24,6 @@ public class ShowingIntro : MonoBehaviour {
                 introSprite[i][j] = Resources.Load<Sprite>(spritedir);
             }
         }
-
-        callingIntro(2);
-            
     }
 
     void callingIntro(int i)
@@ -39,7 +36,6 @@ public class ShowingIntro : MonoBehaviour {
     {
         for(int i = 0; i < introSprite[stagenum].Length; i++)
         {
-            Debug.Log(i);
             gameObject.GetComponent<SpriteRenderer>().sprite = introSprite[stagenum][i];
             yield return new WaitForSeconds(2.0f);
         }

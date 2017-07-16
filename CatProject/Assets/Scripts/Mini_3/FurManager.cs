@@ -32,15 +32,11 @@ public class FurManager : MonoBehaviour
         }
 
         StartCoroutine(appearFur());
-        Debug.Log(fur_q.Count);
     }
 
     public IEnumerator appearFur()
     {
-        Debug.Log("appearfur called");
-        Debug.Log("apoearfurcount is "+fur_q.Count);
         yield return new WaitForSeconds(waitTime);
-        Debug.Log("appearfur-waittime over");
         if (fur_q.Count != 0)
         {
             GameObject fur = fur_q.Dequeue();
@@ -50,7 +46,6 @@ public class FurManager : MonoBehaviour
 
             if (GameManager.GetComponent<TotalManager>().TotalFurNum >= 12 && GameManager.GetComponent<TotalManager>().startcor == false)
             {
-                Debug.Log("called!");
                 GameManager.GetComponent<TotalManager>().startcor = true;
             }
 

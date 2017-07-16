@@ -60,12 +60,14 @@ public class Minigame3_Mananger : MonoBehaviour {
 
     public void backtoGame()
     {
-        Game.SetActive(true);
-        Game.GetComponent<InvokeCoroutine>().InvokingCoroutine();
         speacialscore += speacialScoreObj.GetComponent<FeverTimeScript>().touchnum;
         speacialScoreObj.GetComponent<FeverTimeScript>().touchnum = 0;
         showSpeacialscore();
         FeverTime.SetActive(false);
+
+        Game.SetActive(true);
+        Debug.Log("invokecoroutine calling");
+        Game.GetComponent<InvokeCoroutine>().InvokingCoroutine();
     }
 
     public void callGameover()

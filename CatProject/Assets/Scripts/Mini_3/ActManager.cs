@@ -16,7 +16,6 @@ public class ActManager : MonoBehaviour {
 
     public void JudgeAct(GameObject callobj)
     {
-        Debug.Log(callobj.name);
         if (callobj.transform.name == "Touch")
             setting(0);
         
@@ -32,15 +31,9 @@ public class ActManager : MonoBehaviour {
         for(int i = 0; i < 3; i++)
         {
             if (i == num)
-            {
-                requestObj[i].GetComponent<SpriteRenderer>().color = Color.yellow;
                 requestSelected[i] = true;
-            }
             else
-            {
-                requestObj[i].GetComponent<SpriteRenderer>().color = Color.white;
                 requestSelected[i] = false;
-            }
         }
     }
 }
