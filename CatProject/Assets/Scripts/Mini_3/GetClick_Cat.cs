@@ -9,11 +9,6 @@ public class GetClick_Cat : MonoBehaviour {
 	void Start () {
         cat = gameObject.transform.parent.gameObject;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     private void OnMouseDown()
     {

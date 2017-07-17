@@ -24,7 +24,10 @@ public class InvokeCoroutine : MonoBehaviour {
             if(tempcat.activeInHierarchy == true)
             {
                 StartCoroutine(tempcat.GetComponent<FurManager>().appearFur());
+                //고양이들이 모두 동시에 요구사항을 뱉지 않도록 하기 위해 waittime에 변경을 준다.
+                tempcat.GetComponent<DemandManager>().waitTime = Random.Range(5, 7);
                 StartCoroutine(tempcat.GetComponent<DemandManager>().appearDemand());
+                StartCoroutine(tempcat.GetComponent<DemandManager>().shakingTail());
             }
         }
     }

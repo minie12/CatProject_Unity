@@ -6,9 +6,8 @@ public class GetClick_Act : MonoBehaviour {
 
     GameObject ActParent;
 
-    Sprite[] myActspr = new Sprite[2];
+    public Sprite[] myActspr = new Sprite[2];
     string filedir = "";
-    int index = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -35,7 +34,6 @@ public class GetClick_Act : MonoBehaviour {
     private void OnMouseDown()
     {
         ActParent.GetComponent<ActManager>().JudgeAct(gameObject);
-        index = (index + 1) % 2;
-        gameObject.GetComponent<SpriteRenderer>().sprite = myActspr[index];
+        
     }
 }

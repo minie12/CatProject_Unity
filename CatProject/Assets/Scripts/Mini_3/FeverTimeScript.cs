@@ -7,7 +7,7 @@ public class FeverTimeScript : MonoBehaviour
     public int touchnum;
     GameObject toy;
 
-    private void Start()
+    void Start()
     {
         toy = GameObject.Find("FeverTime").transform.Find("Item").gameObject;
     }

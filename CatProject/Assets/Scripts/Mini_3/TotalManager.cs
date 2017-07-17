@@ -21,7 +21,6 @@ public class TotalManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         TotalFurNum = 0;
 
         setgameoverTimer = 5;

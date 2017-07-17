@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectChoice : MonoBehaviour {
+public class SelectMiniGame : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
