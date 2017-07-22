@@ -43,8 +43,6 @@ public class SelectMenu : MonoBehaviour
 
             furnitureSpr[i][0] = Resources.Load<Sprite>(tempdir);
             furnitureSpr[i][1] = Resources.Load<Sprite>(tempdir+"_selected");
-
-            Debug.Log(furnitureSpr[i][0]);
         }
     }
 
@@ -84,13 +82,11 @@ public class SelectMenu : MonoBehaviour
             {
                 if(i == beforeselected) // 선택한 것의 경우
                 {
-                    Debug.Log("true! i is " + i + " and spr name is " + furnitureSpr[i][1]);
                     selectedBool[i] = true;
                     furnitureObj[i].GetComponent<SpriteRenderer>().sprite = furnitureSpr[i][1];
                 }
                 else
                 {
-                    Debug.Log("false! i is " +i+" and spr name is "+ furnitureSpr[i][0]);
                     selectedBool[i] = false;
                     furnitureObj[i].GetComponent<SpriteRenderer>().sprite = furnitureSpr[i][0];
                 }

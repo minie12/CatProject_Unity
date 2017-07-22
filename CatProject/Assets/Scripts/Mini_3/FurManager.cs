@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//오브젝트 풀링을 사용해 털들이 들어오고 + 나가는 코드를 수행
 public class FurManager : MonoBehaviour
 {
 
@@ -41,6 +42,7 @@ public class FurManager : MonoBehaviour
         {
             GameObject fur = fur_q.Dequeue();
             fur.SetActive(true);
+            fur.GetComponent<GetClick_fur>().settingPos();
             GameManager.GetComponent<TotalManager>().TotalFurNum++;
             GameManager.GetComponent<TotalManager>().appearFurText();
 
