@@ -28,8 +28,6 @@ public class ShowingIntro : MonoBehaviour {
                 introSprite[i][j] = Resources.Load<Sprite>(spritedir);
             }
         }
-
-        callingIntro(0);
     }
 
     void callingIntro(int i)

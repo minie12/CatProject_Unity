@@ -7,7 +7,7 @@ public class SelectMenu : MonoBehaviour
     GameObject[] furnitureObj = new GameObject[4];
     Sprite[][] furnitureSpr = new Sprite[4][];
     bool[] selectedBool = new bool[4];
-    
+
     int selectedIndex;
     int beforeselected;
 
@@ -17,6 +17,9 @@ public class SelectMenu : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        selectedIndex = -1;
+        beforeselected = -1;
+
         for (int i = 0; i < 4; i++)
         {
             furnitureSpr[i] = new Sprite[2];
@@ -42,7 +45,7 @@ public class SelectMenu : MonoBehaviour
             }
 
             furnitureSpr[i][0] = Resources.Load<Sprite>(tempdir);
-            furnitureSpr[i][1] = Resources.Load<Sprite>(tempdir+"_selected");
+            furnitureSpr[i][1] = Resources.Load<Sprite>(tempdir + "_selected");
         }
     }
 
@@ -70,17 +73,18 @@ public class SelectMenu : MonoBehaviour
 
 
         //선택한 걸 다시 한 번 선택한 경우
-        if(beforeselected == selectedIndex)
+        if (beforeselected == selectedIndex && beforeselected != -1)
         {
-            
+            Debug.Log("selected again!"+beforeselected+"beforeselected is ");
+            //furnitureObj[beforeselected].GetComponent<CommonJob>().doyourJob();
         }
         else // 아니라면
         {
             //이전 선택을 업그레이드시켜줌
             beforeselected = selectedIndex;
-            for(int i = 0; i < 4; i++)
+            for (int i = 0; i < 4; i++)
             {
-                if(i == beforeselected) // 선택한 것의 경우
+                if (i == beforeselected) // 선택한 것의 경우
                 {
                     selectedBool[i] = true;
                     furnitureObj[i].GetComponent<SpriteRenderer>().sprite = furnitureSpr[i][1];
