@@ -6,7 +6,7 @@ public class ControlGameData : MonoBehaviour {
 
     int[] playnum = new int[3]; // 각 미니게임의 플레이 횟수 계산
     int buycat;//이진수로 저장. 총 8개의 고양이
-    int[] furniture = new int[8]; // 각 가구의 구매여부 및 디벨롭 여부 판가름 --> 1, 246
+    int[] furniture = new int[8]; // 각 가구의 구매여부 및 디벨롭 여부 판가름 --> -1/012 345
     int[] puzzle = new int[3]; //퍼즐 및 퍼즐의 모은 퍼즐조각 여부 저장하는 배열(012, 8가지에 대해서 이진수 저장)
     int money;
     int[] volumn = new int[4];// a/10 --> 브금, a%10 --> 효과음
@@ -81,6 +81,9 @@ public class ControlGameData : MonoBehaviour {
             volumn[i] = int.Parse(f_volumn[i]);
             //Debug.Log("ith volumn is " + volumn[i]);
         }
+
+        buycat = f_buycat;
+        money = f_money;
     }
 
     string makeString(int[] arr)
@@ -127,5 +130,35 @@ public class ControlGameData : MonoBehaviour {
     public void setVolumn(int[] arr)
     {
         volumn = arr;
+    }
+
+    public int[] getPlaynum()
+    {
+        return playnum;
+    }
+
+    public int getBuycat()
+    {
+        return buycat;
+    }
+
+    public int[] getFurniture()
+    {
+        return furniture;
+    }
+
+    public int[] getPuzzle()
+    {
+        return puzzle;
+    }
+
+    public int getMoney()
+    {
+        return money;
+    }
+
+    public int[] getVolumn()
+    {
+        return volumn;
     }
 }
