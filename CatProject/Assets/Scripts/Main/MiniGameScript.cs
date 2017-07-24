@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectMiniGame : MonoBehaviour {
+public class MiniGameScript : CommonJob {
+
+    int[] playnum = new int[3];;
 
 	// Use this for initialization
 	void Start () {
@@ -13,4 +15,9 @@ public class SelectMiniGame : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public override void initial()
+    {
+        Debug.Log("initial function from minigamescript");
+    }
 }

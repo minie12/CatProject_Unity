@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SelectMenu : MonoBehaviour
 {
+
+    GameObject mainManager;
+
     GameObject[] furnitureObj = new GameObject[4];
     Sprite[][] furnitureSpr = new Sprite[4][];
     bool[] selectedBool = new bool[4];
@@ -17,6 +20,8 @@ public class SelectMenu : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        mainManager = GameObject.Find("MainManager");
+
         selectedIndex = -1;
         beforeselected = -1;
 
@@ -75,8 +80,11 @@ public class SelectMenu : MonoBehaviour
         //선택한 걸 다시 한 번 선택한 경우
         if (beforeselected == selectedIndex && beforeselected != -1)
         {
-            Debug.Log("selected again!"+beforeselected+"beforeselected is ");
-            //furnitureObj[beforeselected].GetComponent<CommonJob>().doyourJob();
+            Debug.Log("selected again!" + beforeselected + "beforeselected is ");
+            mainManager.GetComponent<Main_Manager>().doyourJob(selectedIndex);
+
+            selectedIndex = -1;
+            beforeselected = -1;
         }
         else // 아니라면
         {

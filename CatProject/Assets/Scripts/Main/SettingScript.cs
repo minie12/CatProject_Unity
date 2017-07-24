@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SettingScript : MonoBehaviour {
+public class SettingScript : CommonJob {
 
 	// Use this for initialization
 	void Start () {
@@ -13,4 +13,9 @@ public class SettingScript : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public override void  initial()
+    {
+        Debug.Log("initial script from setting script");
+    }
 }
