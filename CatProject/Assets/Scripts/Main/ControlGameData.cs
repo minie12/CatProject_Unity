@@ -16,9 +16,11 @@ public class ControlGameData : MonoBehaviour {
 	
     //파일에서 받아와서 수행한다.
 	void Start () {
+        //Debug.Log("controlgamedata !");
         Load();
     }
 
+    //어플리케이션을 끌 때
     void saveforFinish()
     {
         PlayerPrefs.SetString("Playnum", makeString(playnum));
@@ -29,7 +31,7 @@ public class ControlGameData : MonoBehaviour {
         PlayerPrefs.SetString("Volumn", makeString(volumn));
     } 
 
-    void Save(string savingsection)
+    public void Save(string savingsection)
     {
         switch (savingsection)
         {

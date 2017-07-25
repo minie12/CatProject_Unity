@@ -80,7 +80,7 @@ public class SelectMenu : MonoBehaviour
         //선택한 걸 다시 한 번 선택한 경우
         if (beforeselected == selectedIndex && beforeselected != -1)
         {
-            Debug.Log("selected again!" + beforeselected + "beforeselected is ");
+            //Debug.Log("selected again!" + beforeselected + "beforeselected is ");
             mainManager.GetComponent<Main_Manager>().doyourJob(selectedIndex);
 
             selectedIndex = -1;

@@ -13,6 +13,7 @@ public class Main_Manager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        //Debug.Log("start at mainMainManager called");
         //오브젝트 찾아서 넣어주기
         fursprObj[0] = GameObject.Find("Shop_Sprite");
         fursprObj[1] = GameObject.Find("Collection_Sprite");
@@ -24,7 +25,7 @@ public class Main_Manager : MonoBehaviour
         realFurObj[2] = GameObject.Find("Real_MiniGame");
         realFurObj[3] = GameObject.Find("Real_Setting");
 
-        objsetactiveFalse(realFurObj);
+        //objsetactiveFalse(realFurObj);
 
         nowactiveIndex = -1;
     }
@@ -35,15 +36,18 @@ public class Main_Manager : MonoBehaviour
     public void doyourJob(int objindex)
     {
         turnOffCollider();
+        nowactiveIndex = objindex;
+        Debug.Log("nowactiveindex is "+nowactiveIndex);
         realFurObj[objindex].SetActive(true);
         realFurObj[objindex].GetComponent<CommonJob>().initial();
-        nowactiveIndex = objindex;
+        
     }
 
     //켜져있던 오브젝트를 끄고, 콜라이더를 다 켜준다.
     public void backtoMain()
     {
         turnOnCollider();
+        Debug.Log("nowactiveindex is " + nowactiveIndex);
         realFurObj[nowactiveIndex].SetActive(false);
         nowactiveIndex = -1;
     }

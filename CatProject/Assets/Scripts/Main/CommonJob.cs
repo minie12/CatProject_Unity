@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class CommonJob : MonoBehaviour {
     
-    public GameObject MainManager;
-
-    public virtual void Start()
-    {
-        MainManager = GameObject.Find("MainManager");
-    }
 
     public virtual void initial()
     {
         //데이터를 읽어오고 초기화시키기
-        Debug.Log("virtual function");
+        //Debug.Log("virtual function");
     }
 
     public virtual void finish()

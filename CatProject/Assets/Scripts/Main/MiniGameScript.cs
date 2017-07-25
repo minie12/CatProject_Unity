@@ -6,32 +6,37 @@ using UnityEngine.SceneManagement;
 public class MiniGameScript : CommonJob {
 
     GameObject IntroObj;
+    GameObject selectObj;
+    GameObject MainManager;
 
     string[] scene = new string[3];
     int[] playnum = new int[3];
 
     // Use this for initialization
-    public override void Start()
+    void Start()
     {
-        base.Start();
+        //Debug.Log("minigamescript start method");
+
         IntroObj = GameObject.Find("Intro_Story");
+        selectObj = GameObject.Find("MiniGame_Select");
+        MainManager = GameObject.Find("MainManager");
+
+        //Debug.Log("start method_mainmanager name is " + MainManager.name);
 
         scene[0] = "Mini_1";
         scene[1] = "Mini_2";
         scene[2] = "Mini_3";
 
+        selectObj.SetActive(false);
         IntroObj.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update () {
-		
-	}
-
     public override void initial()
     {
-        Debug.Log("initial function from minigamescript");
+        //Debug.Log("initial function from minigamescript");
         //각 미니게임별 플레이 횟수를 읽어오기
+        Debug.Log(MainManager.name);
+        selectObj.SetActive(true);
         playnum = MainManager.GetComponent<ControlGameData>().getPlaynum();
 
     }
@@ -40,23 +45,28 @@ public class MiniGameScript : CommonJob {
     {
         if (playnum[clickindex]==0)
         {
+            selectObj.SetActive(false);
             playnum[clickindex]++;
+            save();
             IntroObj.SetActive(true);
             IntroObj.GetComponent<ShowingIntro>().callingIntro(gameObject, clickindex);
         }
         else
         {
+            selectObj.SetActive(false);
             playnum[clickindex]++;
+            //플레이횟수 저장하고 게임으로 가기
+            save();
+            //게임으로 가기!
+            SceneManager.LoadScene(scene[clickindex]);
         }
-        //플레이횟수 저장하고 게임으로 가기
-        save();
-        //게임으로 가기!
-        SceneManager.LoadScene(scene[clickindex]);
+        
     }
 
     //x표 클릭한 경우 --> goout
-    void goout()
+    public void goout()
     {
+        selectObj.SetActive(false);
         save();
         finish();
     }
@@ -70,6 +80,7 @@ public class MiniGameScript : CommonJob {
     {
         //플레이 횟수를 저장
         MainManager.GetComponent<ControlGameData>().setPlaynum(playnum);
+        MainManager.GetComponent<ControlGameData>().Save("playnum");
     }
 }
 

@@ -16,6 +16,17 @@ public class CollectionScript : CommonJob {
 
     public override void initial()
     {
-        Debug.Log("initial script from collection script");
+        //데이터를 읽어오고 초기화시키기
+        //Debug.Log("virtual function");
+    }
+
+    public override void finish()
+    {
+        //해당 작업을 끝내기.
+    }
+
+    public override void save()
+    {
+        //데이터값 저장
     }
 }
