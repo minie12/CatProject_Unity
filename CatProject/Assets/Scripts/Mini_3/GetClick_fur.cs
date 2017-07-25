@@ -43,7 +43,6 @@ public class GetClick_fur : MonoBehaviour {
         toxPos = Random.Range(-8, 8);
         toyPos = Random.Range(-5, 5);
         targetPos = new Vector2(toxPos,toyPos);
-        print("mypos is " + myPos + " and targetpos is " + targetPos);
         canMoving = true;
     }
 }

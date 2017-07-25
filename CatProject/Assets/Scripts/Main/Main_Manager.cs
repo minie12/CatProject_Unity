@@ -8,7 +8,7 @@ public class Main_Manager : MonoBehaviour
     GameObject[] realFurObj = new GameObject[4];
 
     int i;
-    int nowactiveIndex = -1;
+    int nowactiveIndex;
 
     // Use this for initialization
     void Start()
@@ -25,6 +25,8 @@ public class Main_Manager : MonoBehaviour
         realFurObj[3] = GameObject.Find("Real_Setting");
 
         objsetactiveFalse(realFurObj);
+
+        nowactiveIndex = -1;
     }
 
     //콜라이더가 붙어있는 기존 오브젝트들의 콜라이더를 꺼 주고
@@ -39,7 +41,7 @@ public class Main_Manager : MonoBehaviour
     }
 
     //켜져있던 오브젝트를 끄고, 콜라이더를 다 켜준다.
-    void backtoMain()
+    public void backtoMain()
     {
         turnOnCollider();
         realFurObj[nowactiveIndex].SetActive(false);
