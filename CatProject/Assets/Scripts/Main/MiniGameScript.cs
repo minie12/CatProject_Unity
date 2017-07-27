@@ -7,19 +7,18 @@ public class MiniGameScript : CommonJob {
 
     GameObject IntroObj;
     GameObject selectObj;
-    GameObject MainManager;
 
     string[] scene = new string[3];
     int[] playnum = new int[3];
 
     // Use this for initialization
-    void Start()
+    public override void Start()
     {
+        base.Start();
         //Debug.Log("minigamescript start method");
 
         IntroObj = GameObject.Find("Intro_Story");
         selectObj = GameObject.Find("MiniGame_Select");
-        MainManager = GameObject.Find("MainManager");
 
         //Debug.Log("start method_mainmanager name is " + MainManager.name);
 
@@ -29,7 +28,8 @@ public class MiniGameScript : CommonJob {
 
         selectObj.SetActive(false);
         IntroObj.SetActive(false);
-    }
+    
+}
 
     public override void initial()
     {
