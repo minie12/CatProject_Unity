@@ -53,8 +53,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4512434602478712}
   - component: {fileID: 212614133998417986}
-  - component: {fileID: 61103037432881328}
   - component: {fileID: 114996809663228252}
+  - component: {fileID: 61339852146251514}
   m_Layer: 0
   m_Name: CatSprite
   m_TagString: Untagged
@@ -87,8 +87,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4281935082359576}
   - component: {fileID: 212542446575815588}
-  - component: {fileID: 61840998889728728}
   - component: {fileID: 114417379988834180}
+  - component: {fileID: 61874287606673876}
   m_Layer: 0
   m_Name: Cat_furs
   m_TagString: Untagged
@@ -118,7 +118,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1968541865280718}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 6, z: -1}
+  m_LocalPosition: {x: -0.38, y: 2.16, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4512434602478712}
@@ -131,8 +131,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1989916990170134}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4045069522548928}
   m_RootOrder: 1
@@ -145,7 +145,7 @@ Transform:
   m_GameObject: {fileID: 1797028313422186}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -6.46, y: -2.58, z: 1}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4266971334247692}
   - {fileID: 4843887416002690}
@@ -159,13 +159,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1168311154601074}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.92, y: 5.16, z: -1}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalPosition: {x: 0.47, y: 0.98, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4512434602478712}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61103037432881328
+--- !u!61 &61339852146251514
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -177,20 +177,20 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.4391303, y: 0.07841635}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 7.36, y: 8.49}
-    newSize: {x: 7.36, y: 8.49}
+    oldSize: {x: 2.7, y: 2.8}
+    newSize: {x: 2.7, y: 2.8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.6587572, y: 7.580373}
+  m_Size: {x: 2.7, y: 2.8}
   m_EdgeRadius: 0
---- !u!61 &61840998889728728
+--- !u!61 &61874287606673876
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -206,14 +206,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.32, y: 5.32}
-    newSize: {x: 5.32, y: 5.32}
+    oldSize: {x: 0.82, y: 0.79}
+    newSize: {x: 0.82, y: 0.79}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.32, y: 5.32}
+  m_Size: {x: 0.82, y: 0.79}
   m_EdgeRadius: 0
 --- !u!114 &114294137390826482
 MonoBehaviour:
@@ -249,6 +249,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e30fcbfea6aaf6e40a401eb0ab0f74e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waitTime: 7
+  demandSprite:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  feelSprite:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  demandObject: {fileID: 0}
+  catsprObject: {fileID: 0}
+  feelObject: {fileID: 0}
 --- !u!114 &114996809663228252
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -292,15 +305,16 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2d0cfbbf2fc4a01458ec90b6a2a45eaa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 700e2edf8ef20f643815d604a9cd2d30, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3, y: 3}
+  m_Size: {x: 1.79, y: 1.81}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!212 &212442835526650050
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -333,15 +347,16 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 73041662ee16ce6498ba574748b7ac7c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 24, y: 23.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!212 &212542446575815588
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -374,15 +389,16 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 70173f44a3971df4fbfcb0c0cb659412, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a9d299e4508d39447ba1bcb2810c8326, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.32, y: 5.32}
+  m_Size: {x: 0.82, y: 0.79}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!212 &212614133998417986
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -415,12 +431,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2bbf38a5a40fdb143ab649ccb312f398, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3f387853f5249904d895e32c60879b1d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 7.36, y: 8.49}
+  m_Size: {x: 2.7, y: 2.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0

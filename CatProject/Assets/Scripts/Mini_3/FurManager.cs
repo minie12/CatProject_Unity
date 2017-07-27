@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//오브젝트 풀링을 사용해 털들이 들어오고 + 나가는 코드를 수행
 public class FurManager : MonoBehaviour
 {
 
     int fursize = 14;
-    public float waitTime = 5f;
-    
+    public float waitTime = 1;
 
-    public Queue<GameObject> fur_q;
+
+    public Queue<GameObject> fur_q = new Queue<GameObject>();
 
     GameObject GameManager;
 
@@ -18,7 +19,6 @@ public class FurManager : MonoBehaviour
     {
         GameObject inst_fur = gameObject.transform.Find("Cat_furs").gameObject;
         GameManager = GameObject.Find("GameManager");
-        fur_q = new Queue<GameObject>();
 
         fur_q.Enqueue(inst_fur);
         inst_fur.SetActive(false);
@@ -33,35 +33,27 @@ public class FurManager : MonoBehaviour
         }
 
         StartCoroutine(appearFur());
-        Debug.Log(fur_q.Count);
     }
 
-    // Update is called once per frame
-    void Update()
+    public IEnumerator appearFur()
     {
-
-    }
-
-    IEnumerator appearFur()
-    {
-        while (true)
+        yield return new WaitForSeconds(waitTime);
+        if (fur_q.Count != 0)
         {
-            yield return new WaitForSeconds(waitTime);
-            if (fur_q.Count != 0)
+            GameObject fur = fur_q.Dequeue();
+            fur.SetActive(true);
+            fur.GetComponent<GetClick_fur>().settingPos();
+            GameManager.GetComponent<TotalManager>().TotalFurNum++;
+            GameManager.GetComponent<TotalManager>().appearFurText();
+
+            if (GameManager.GetComponent<TotalManager>().TotalFurNum >= 12 && GameManager.GetComponent<TotalManager>().startcor == false)
             {
-                GameObject fur = fur_q.Dequeue();
-                fur.SetActive(true);
-                GameManager.GetComponent<TotalManager>().TotalFurNum++;
-                GameManager.GetComponent<TotalManager>().appearFurText();
-
-                if (GameManager.GetComponent<TotalManager>().TotalFurNum >= 12 && GameManager.GetComponent<TotalManager>().startcor == false)
-                {
-                    Debug.Log("called!");
-                    GameManager.GetComponent<TotalManager>().startcor = true;
-                }
-
+                GameManager.GetComponent<TotalManager>().startcor = true;
             }
+
         }
+        StartCoroutine("appearFur");
+
     }
 
     //랜덤으로 포지션을 정해주는 함수
