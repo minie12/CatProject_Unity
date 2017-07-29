@@ -6,7 +6,7 @@ public class ControlGameData : MonoBehaviour {
 
     int[] playnum = new int[3]; // 각 미니게임의 플레이 횟수 계산
     int buycat;//이진수로 저장. 총 8개의 고양이
-    int[] furniture = new int[8]; // 각 가구의 구매여부 및 디벨롭 여부 판가름 --> -1/012 345
+    int[] furniture = new int[8]; // 각 가구의 구매여부 및 디벨롭 여부 판가름 --> -1/012
     int[] puzzle = new int[3]; //퍼즐 및 퍼즐의 모은 퍼즐조각 여부 저장하는 배열(012, 8가지에 대해서 이진수 저장)
     int money;
     int[] volumn = new int[4];// a/10 --> 브금, a%10 --> 효과음
@@ -60,7 +60,7 @@ public class ControlGameData : MonoBehaviour {
     {
         string[] f_playnum = PlayerPrefs.GetString("Playnum", "0/0/0").Split('/');
         int f_buycat = PlayerPrefs.GetInt("Buycat", 0);
-        string[] f_furniture = PlayerPrefs.GetString("Furniture", "1/1/1/1/1/1/1/1").Split('/');
+        string[] f_furniture = PlayerPrefs.GetString("Furniture", "-1/-1/-1/-1/-1/-1/-1/-1").Split('/');
         string[] f_puzzle = PlayerPrefs.GetString("Puzzle", "0/0/0").Split('/');
         int f_money = PlayerPrefs.GetInt("Money", 0);
         string[] f_volumn = PlayerPrefs.GetString("Volumn", "0/0/0/0").Split('/');
