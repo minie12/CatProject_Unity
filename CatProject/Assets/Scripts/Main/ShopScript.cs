@@ -19,7 +19,7 @@ public class ShopScript : CommonJob
     Sprite[] catInfoSpr = new Sprite[8];
     Sprite[] furnitureInfoSpr = new Sprite[8];
 
-    string sprdir = "Main/ShopSprite/";
+    string sprdir = "Main/ShopAndCollection/";
 
     int i;
 
@@ -32,7 +32,7 @@ public class ShopScript : CommonJob
       소유한 금액
      */
     int[] buycat = new int[8]; //정수를 읽어와서 이진수로 나누면서 판단해야 함 --> 128 : 8번째만 구매함
-    int[] furniture = new int[8]; //구매여부 및 디벨롭 여부 판가름할것. -1(구매안함)/012(구매&레벨업에 따라 1/2/3)
+    int[] furniture = new int[8]; //구매여부 및 디벨롭 여부 판가름할것. -1(구매안함)/012(구매&레벨업에 따라 1/2/3), 설치한 것은 레벨따라 345
     int money;
 
     /* 정의해줘야 하는 부분 
@@ -84,23 +84,14 @@ public class ShopScript : CommonJob
         InfoObj.SetActive(false);
         SelectObj.SetActive(false);
         Shop_Background.SetActive(false);
-        Debug.Log("hi");
+        //Debug.Log("hi");
     }
 
     //데이터를 읽어오고 초기화시키기
     public override void initial()
     {
         money = MainManager.GetComponent<ControlGameData>().getMoney();
-        int temp_buycat = MainManager.GetComponent<ControlGameData>().getBuycat();
-
-        //고양이가 구매되어 있는 상태라면 1, 아니라면 0이 될 것임.
-        for (i = 0; i < 8; i++)
-        {
-            buycat[i] = temp_buycat % 2;
-            temp_buycat /= 2;
-            //Debug.Log("i is" + i + "and buycat[i] is " + buycat[i]);
-        }
-
+        buycat= MainManager.GetComponent<ControlGameData>().getBuycat();
         furniture = MainManager.GetComponent<ControlGameData>().getFurniture();
 
         Shop_Background.SetActive(true);
@@ -125,19 +116,9 @@ public class ShopScript : CommonJob
 
     public override void save()
     {
-        //데이터값 저장
-        int transbinary = 1;
-        int save_buycat = 0;
-
-        for (i = 0; i < buycat.Length; i++)
-        {
-            save_buycat = transbinary * buycat[i];
-            transbinary *= 2;
-        }
-
         MainManager.GetComponent<ControlGameData>().setMoney(money);
         MainManager.GetComponent<ControlGameData>().setFurniture(furniture);
-        MainManager.GetComponent<ControlGameData>().setBuycat(save_buycat);
+        MainManager.GetComponent<ControlGameData>().setBuycat(buycat);
     }
 
     //furniture / cat 중 뭘 눌렀는지 확인해서 로딩
@@ -207,7 +188,7 @@ public class ShopScript : CommonJob
             InfoObj.GetComponent<SpriteRenderer>().sprite = catInfoSpr[sprindex];
             turnOffCollider();
         }
-        else if(want_furniture == true && furniture[sprindex] != 2)
+        else if(want_furniture == true && furniture[sprindex]%3 != 2)
         {
             InfoObj.SetActive(true);
             InfoObj.GetComponent<SpriteRenderer>().sprite = furnitureInfoSpr[sprindex];
@@ -232,13 +213,13 @@ public class ShopScript : CommonJob
 
         int sprindex = int.Parse(clickedSpr.Substring(clickedSpr.Length - 1));
 
-        if (want_cat == true)
+        if (want_cat == true && buycat[sprindex] == -1)
         {
             if (money >= catCost[sprindex])
             {
                 money -= catCost[sprindex];
-                buycat[sprindex] = 1;
-                //여기에 나중에 구매완료 표시 시켜주기
+                buycat[sprindex] = 0;
+                //*******여기에 나중에 구매완료 표시 시켜주기
             }
         }
         else if (want_furniture == true)

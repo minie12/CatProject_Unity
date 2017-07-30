@@ -109,7 +109,7 @@ MonoBehaviour:
   m_MinSize: {x: 709, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
-  controlID: 610
+  controlID: 79
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_MinSize: {x: 434, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 1
-  controlID: 588
+  controlID: 80
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_MinSize: {x: 306, y: 221}
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
-  controlID: 694
+  controlID: 58
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -232,7 +232,7 @@ MonoBehaviour:
   m_MinSize: {x: 434, y: 271}
   m_MaxSize: {x: 14004, y: 10021}
   vertical: 0
-  controlID: 589
+  controlID: 81
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -249,7 +249,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 896
+    width: 904
     height: 545
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
@@ -272,9 +272,9 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 896
+    x: 904
     y: 0
-    width: 469
+    width: 461
     height: 545
   m_MinSize: {x: 234, y: 271}
   m_MaxSize: {x: 10004, y: 10021}
@@ -333,7 +333,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 494
-    width: 894
+    width: 902
     height: 524
   m_MaximizeOnPlay: 0
   m_Gizmos: 0
@@ -363,25 +363,25 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 17
-      width: 894
+      width: 902
       height: 507
     m_Scale: {x: 0.4225, y: 0.4225}
-    m_Translation: {x: 447, y: 253.50002}
+    m_Translation: {x: 451, y: 253.50002}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -1057.9882
+      x: -1067.4556
       y: -600
-      width: 2115.9763
+      width: 2134.9111
       height: 1200
     m_MinimalGUI: 1
   m_defaultScale: 0.4225
   m_TargetTexture: {fileID: 0}
   m_CurrentColorSpace: 0
-  m_LastWindowPixelSize: {x: 894, y: 524}
+  m_LastWindowPixelSize: {x: 902, y: 524}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000100000100
@@ -407,10 +407,10 @@ MonoBehaviour:
   m_DepthBufferBits: 32
   m_Pos:
     serializedVersion: 2
-    x: 0
-    y: 92
-    width: 900
-    height: 381
+    x: 1
+    y: 100
+    width: 448
+    height: 360
   m_SceneLighting: 1
   lastFramingTime: 427.30144028104417
   m_2DMode: 1
@@ -446,9 +446,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 17.24502
+    m_Target: 17.984554
     speed: 2
-    m_Value: 17.24502
+    m_Value: 17.984554
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -512,24 +512,24 @@ MonoBehaviour:
     width: 459
     height: 381
   m_TreeViewState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 7a280000
-    m_LastClickedID: 10362
-    m_ExpandedIDs: dc0efdff20d4feff1afcffff00000000c827000014280000282800007a28000092280000
+    scrollPos: {x: 0, y: 260}
+    m_SelectedIDs: 7096fcff
+    m_LastClickedID: -223632
+    m_ExpandedIDs: c690faff52a0faff7096fcff00f4feffd00cffffa097ffff2ac5ffff34ccffff1afcffff00000000b62800002c2900003a29000042290000462900004c290000a62c00005a300000a8300000983900009e390000c8390000de390000e8390000ee390000303a0000383a0000423a0000483a00005c3a0000723a0000803a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: C_Goods_0
+      m_OriginalName: C_Goods_0
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: -123924
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 9}
     m_SearchString: 
@@ -560,9 +560,9 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
-    x: 898
+    x: 906
     y: 494
-    width: 465
+    width: 457
     height: 524
   m_SearchFilter:
     m_NameFilter: 
@@ -576,19 +576,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Scripts/Main
+    - Assets/Scripts/Main/Collection
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Main
+  - Assets/Scripts/Main/Collection
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\ewha_\Desktop\LSH\CatProject\CatProject
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: b4260000
-    m_LastClickedID: 9908
-    m_ExpandedIDs: 0000000038260000b4260000de260000162700008627000000ca9a3bffffff7f
+    m_SelectedIDs: e0590000
+    m_LastClickedID: 23008
+    m_ExpandedIDs: 0000000040260000d426000044270000c427000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -616,7 +616,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000038260000de260000162700008627000000ca9a3bffffff7f
+    m_ExpandedIDs: 0000000040260000d42600000a27000044270000c4270000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -644,21 +644,21 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000c6250000f42600000000000064260000662600005c270000
+    m_ExpandedInstanceIDs: c6230000c6250000f426000064260000662600005c27000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Shop_returnTouch_infoBuy
-      m_OriginalName: Shop_returnTouch_infoBuy
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 17934
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 12}
     m_CreateAssetUtility:

@@ -27,7 +27,7 @@ public class MiniGameScript : CommonJob {
         scene[2] = "Mini_3";
 
         selectObj.SetActive(false);
-        IntroObj.SetActive(false);
+        //IntroObj.SetActive(false);
     
 }
 
