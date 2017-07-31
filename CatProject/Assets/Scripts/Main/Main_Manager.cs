@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Main_Manager : MonoBehaviour
 {
@@ -59,6 +60,14 @@ public class Main_Manager : MonoBehaviour
         {
             fursprObj[i].GetComponent<BoxCollider2D>().enabled = true;
         }
+    }
+
+    //
+    public void BacktoHome()
+    {
+        gameObject.GetComponent<ControlGameData>().Save("money");
+        gameObject.GetComponent<ControlGameData>().Save("puzzle"); 
+        SceneManager.LoadScene("Main");
     }
 
     //각각의 오브젝트의 콜라이더를 꺼 준다

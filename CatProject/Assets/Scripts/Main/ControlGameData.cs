@@ -13,9 +13,19 @@ public class ControlGameData : MonoBehaviour {
 
     int i;
     string str;
-	
+
+    public void Awake()
+    {
+        DontDestroyOnLoad(this);
+
+        if (FindObjectsOfType(GetType()).Length > 1)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     //파일에서 받아와서 수행한다.
-	void Start () {
+    void Start () {
         //Debug.Log("controlgamedata !");
         Load();
     }

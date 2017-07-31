@@ -20,13 +20,15 @@ public class Minigame3_Mananger : MonoBehaviour {
     GameObject catmanagerObj;
     GameObject speacialScoreObj;
 
+    GameObject[] FeverCat = new GameObject[3];
+
 	// Use this for initialization
 	void Start () {
 
         speacialscore = 0;
         normalscore = 0;
 
-        playTime = 60;
+        playTime = 30;
         feverTime = 5;
 
         NormalScoreText = GameObject.Find("NormalScore").GetComponent<Text>();
@@ -35,6 +37,10 @@ public class Minigame3_Mananger : MonoBehaviour {
         Game = GameObject.Find("Game");
         FeverTime = GameObject.Find("FeverTime");
         GameOver = GameObject.Find("GameOver");
+
+        FeverCat[0] = FeverTime.transform.Find("Cat").transform.Find("fevercat1").gameObject;
+        FeverCat[1] = FeverTime.transform.Find("Cat").transform.Find("fevercat2").gameObject;
+        FeverCat[2] = FeverTime.transform.Find("Cat").transform.Find("fevercat3").gameObject;
 
         catmanagerObj = Game.transform.Find("CatManager").gameObject;
         speacialScoreObj = FeverTime.transform.Find("Background").gameObject;
@@ -52,9 +58,12 @@ public class Minigame3_Mananger : MonoBehaviour {
             catmanagerObj.GetComponent<CatManager>().waitTime = catmanagerObj.GetComponent<CatManager>().realWaitTime;
         catmanagerObj.GetComponent<CatManager>().nowWait = false;
 
-        
         Game.SetActive(false);
         FeverTime.SetActive(true);
+        for(int i = 0; i < 3; i++)
+        {
+            FeverCat[i].GetComponent<Fever_ShakingTail>().fever_tail();
+        }
         
     }
 
@@ -78,12 +87,12 @@ public class Minigame3_Mananger : MonoBehaviour {
 
     public void showNormalscore()
     {
-        NormalScoreText.text = "Score : "+normalscore.ToString();
+        NormalScoreText.text = normalscore.ToString();
     }
 
     public void showSpeacialscore()
     {
-        SpecialScoreText.text = "Special : " + speacialscore.ToString();
+        SpecialScoreText.text = speacialscore.ToString();
     }
 
     IEnumerator Fever()

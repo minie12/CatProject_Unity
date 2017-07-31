@@ -26,6 +26,8 @@ public class CollectionScript : CommonJob
     Sprite[] furnitureInfoSpr = new Sprite[8];
     Sprite[] placementSpr = new Sprite[2];
 
+    Sprite nothinggoodsSpr;
+
     /* 콜렉션에 필요한, 데이터에서 읽어와야 하는 정보들
       고양이의 구매 여부
       가구의 구매 여부 및 디벨롭 수준, 설치 정보
@@ -80,8 +82,10 @@ public class CollectionScript : CommonJob
         InfoButton_Exit = GameObject.Find("Exit_Button");
         InfoButton_Placement = GameObject.Find("Placement_Button");
 
-        placementSpr[0] = Resources.Load<Sprite>("Main/Collection/Collection_info_placement");
-        placementSpr[0] = Resources.Load<Sprite>("Main/Collection/Collection_info_disposition");
+        placementSpr[0] = Resources.Load<Sprite>("Main/CollectionSprite/Collection_info_placement");
+        placementSpr[1] = Resources.Load<Sprite>("Main/CollectionSprite/Collection_info_disposition");
+
+        nothinggoodsSpr = Resources.Load<Sprite>("Main/CollectionSprite/Collection_Goods_Nothing");
 
         for (i = 0; i < activecategory.Length; i++)
             activecategory[i] = false;
@@ -94,6 +98,7 @@ public class CollectionScript : CommonJob
 
     public override void initial()
     {
+        Debug.Log("initial called");
         //데이터를 읽어오고 초기화시키기
         furniture = MainManager.GetComponent<ControlGameData>().getFurniture();
         playnum = MainManager.GetComponent<ControlGameData>().getPlaynum();
@@ -125,7 +130,7 @@ public class CollectionScript : CommonJob
     //카테고리 버튼 누를 때 생기는 변화 --> cat, 가구의 경우에는 sprite 세팅도 함께.
     public void SettingCategory(int index)
     {
-        int goodsindex;
+        int goodsindex = 0;
 
         for (i = 0; i < 3; i++)
         {
@@ -158,8 +163,9 @@ public class CollectionScript : CommonJob
                         Goods[goodsindex].GetComponent<SpriteRenderer>().sprite = catSpr[i];
                         goodsindex++;
                     }
+                    
                 }
-                break;
+                    break;
             case 1:
                 for (i = 0, goodsindex = 0; i < Goods.Length; i++)
                 {
@@ -169,11 +175,19 @@ public class CollectionScript : CommonJob
                         goodsindex++;
                     }
                 }
+               
                 break;
             default:
                 break;
 
         }
+
+        
+        for (int j = goodsindex; j < Goods.Length; j++)
+        {
+            Goods[j].GetComponent<SpriteRenderer>().sprite = nothinggoodsSpr;
+        }
+        
     }
 
     public void showInfo(int num)//해당 오브젝트에서 자신의 spritenum 잘라서 보내기{

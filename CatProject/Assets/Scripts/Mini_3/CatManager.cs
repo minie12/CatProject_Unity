@@ -8,7 +8,7 @@ public class CatManager : MonoBehaviour
     int catsize = 7;
 
     float assignedTime = 30;
-    public float waitTime = 10;
+    public float waitTime = 15;
     public float realWaitTime;
 
     public bool nowWait;
@@ -67,7 +67,7 @@ public class CatManager : MonoBehaviour
             //waitTime = 30;
             //assignedTime += 30 + (nowCat - 1) * 10;
             nowCat++;
-            assignedTime = 10 + (nowCat - 1) * 10;
+            assignedTime = 10 + (nowCat - 1) * 15;
             waitTime = assignedTime;
             realWaitTime = waitTime;
             //Debug.Log(waitTime);

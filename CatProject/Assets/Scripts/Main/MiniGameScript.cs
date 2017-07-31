@@ -66,6 +66,7 @@ public class MiniGameScript : CommonJob {
     //x표 클릭한 경우 --> goout
     public void goout()
     {
+        Debug.Log(selectObj.name);
         selectObj.SetActive(false);
         save();
         finish();
