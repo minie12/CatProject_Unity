@@ -5,10 +5,12 @@ using UnityEngine;
 public class CommonJob : MonoBehaviour {
 
     //데이터와 메인매니저코드를 가지고 있는 오브젝트인 MainManager
+    public GameObject DataManager;
     public GameObject MainManager;
 
     public virtual void Start()
     {
+        DataManager = GameObject.Find("DataManager");
         MainManager = GameObject.Find("MainManager");
     }
 

@@ -17,7 +17,8 @@ public class Collec_returnTouch_Goods : MonoBehaviour {
     private void OnMouseDown()
     {
         sprname = gameObject.GetComponent<SpriteRenderer>().sprite.name;
-        index = int.Parse(name.Substring(sprname.Length - 1));
+        index = int.Parse(sprname.Substring(sprname.Length - 1));
+        Debug.Log(index);
         CollecManager.GetComponent<CollectionScript>().showInfo(index);
     }
 }

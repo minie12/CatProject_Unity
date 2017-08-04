@@ -16,15 +16,17 @@ public class Collec_returnTouch_Category : MonoBehaviour {
 
     private void OnMouseDown()
     {
-        Debug.Log("checked");
+        //Debug.Log("checked");
         sprname = gameObject.GetComponent<SpriteRenderer>().sprite.name;
         sprname = sprname.Substring(sprname.Length - 1);
         if (sprname == "C")
             index = 0;
         else if (sprname == "F")
             index = 1;
-        else
+        else if (sprname == "S")
             index = 2;
+        else if (sprname == "P")
+            index = 3;
 
         CollecManager.GetComponent<CollectionScript>().SettingCategory(index);
     }

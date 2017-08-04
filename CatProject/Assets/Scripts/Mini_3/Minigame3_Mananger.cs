@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Minigame3_Mananger : MonoBehaviour {
+
+    GameObject AudioManager;
+
     int speacialscore;
     public int normalscore;
 
@@ -31,6 +34,8 @@ public class Minigame3_Mananger : MonoBehaviour {
         playTime = 30;
         feverTime = 5;
 
+        AudioManager = GameObject.Find("AudioManager");
+
         NormalScoreText = GameObject.Find("NormalScore").GetComponent<Text>();
         SpecialScoreText = GameObject.Find("SpecialScore").GetComponent<Text>();
 
@@ -50,6 +55,7 @@ public class Minigame3_Mananger : MonoBehaviour {
         GameOver.SetActive(false);
 
         StartCoroutine("Fever");
+        AudioManager.GetComponent<Main_AudioManager>().setting();
 	}
 
     public void callFeverTime()

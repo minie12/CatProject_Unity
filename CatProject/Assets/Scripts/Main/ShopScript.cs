@@ -90,9 +90,9 @@ public class ShopScript : CommonJob
     //데이터를 읽어오고 초기화시키기
     public override void initial()
     {
-        money = MainManager.GetComponent<ControlGameData>().getMoney();
-        buycat= MainManager.GetComponent<ControlGameData>().getBuycat();
-        furniture = MainManager.GetComponent<ControlGameData>().getFurniture();
+        money = DataManager.GetComponent<ControlGameData>().getMoney();
+        buycat= DataManager.GetComponent<ControlGameData>().getBuycat();
+        furniture = DataManager.GetComponent<ControlGameData>().getFurniture();
 
         Shop_Background.SetActive(true);
         Button[0].SetActive(true);
@@ -116,9 +116,12 @@ public class ShopScript : CommonJob
 
     public override void save()
     {
-        MainManager.GetComponent<ControlGameData>().setMoney(money);
-        MainManager.GetComponent<ControlGameData>().setFurniture(furniture);
-        MainManager.GetComponent<ControlGameData>().setBuycat(buycat);
+        DataManager.GetComponent<ControlGameData>().setMoney(money);
+        DataManager.GetComponent<ControlGameData>().setFurniture(furniture);
+        DataManager.GetComponent<ControlGameData>().setBuycat(buycat);
+        DataManager.GetComponent<ControlGameData>().Save("cat");
+        DataManager.GetComponent<ControlGameData>().Save("furniture");
+        DataManager.GetComponent<ControlGameData>().Save("money");
     }
 
     //furniture / cat 중 뭘 눌렀는지 확인해서 로딩
