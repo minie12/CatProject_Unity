@@ -82,9 +82,6 @@ public class Main_AudioManager : MonoBehaviour
         // setting();
         for (int i = 0; i < 4; i++)
             volumn[i] = new int[2];
-
-        
-        
         //setting();
     }
 
@@ -133,10 +130,17 @@ public class Main_AudioManager : MonoBehaviour
             Debug.Log(tempvolumn[i] + " " + volumn[i][0]);
         }
 
-        bgmVol = volumn[nowScene][0];
+        bgmVol = volumn[nowScene][0]; // --> 5,6,7,8,9 vol%5+1
         effectVol = volumn[nowScene][1];
-        Debug.Log(bgmVol);
-        Debug.Log(bgmVol / 8);
-        audioPlay.volume = (bgmVol / 8);
+
+        if (bgmVol !=0)
+            bgmVol = ((bgmVol % 5) + 1) / 5;
+
+        if (effectVol != 0)
+            effectVol = ((effectVol % 5) + 1) / 5;
+
+        audioPlay.volume = bgmVol;
+
+        Debug.Log(bgmVol+" is bgmVol and effectVol is "+effectVol);
     }
 }
