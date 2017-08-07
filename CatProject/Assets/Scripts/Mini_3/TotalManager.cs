@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class TotalManager : MonoBehaviour
 {
-
     public int TotalFurNum;
 
     float gameOverTime;
@@ -73,7 +72,7 @@ public class TotalManager : MonoBehaviour
 
     public IEnumerator countSeconds()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.1f);
         MiniGame3_Manager.GetComponent<Minigame3_Mananger>().normalscore++;
         MiniGame3_Manager.GetComponent<Minigame3_Mananger>().showNormalscore();
 

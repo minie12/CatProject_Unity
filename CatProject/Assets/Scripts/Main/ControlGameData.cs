@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControlGameData : MonoBehaviour {
+public class ControlGameData : MonoBehaviour
+{
 
     int[] playnum = new int[3]; // 각 미니게임의 플레이 횟수 계산
     int[] buycat = new int[8];//총 8개의 고양이. 각 가구의 구매여부 및 배치 여부 판가름 --> -1/0/1
     int[] furniture = new int[8]; // 각 가구의 구매여부 및 디벨롭 여부 판가름 --> -1/012/345
     int[] puzzle = new int[6]; //퍼즐 및 퍼즐의 모은 퍼즐조각 여부 저장하는 배열(012, 8가지에 대해서 이진수 저장)
     int money;
-    int[] volumn = new int[4];// a/10 --> 브금, a%10 --> 효과음, 메인/1/2/3
+    int[] volumn = new int[4];// a/10 --> 브금, a%10 --> 효과음, 메인/1/2/3, 0 56789 !!!!
 
     int i;
     string str;
@@ -25,8 +26,9 @@ public class ControlGameData : MonoBehaviour {
     }
 
     //파일에서 받아와서 수행한다.
-    void Start () {
-       // PlayerPrefs.DeleteAll();
+    void Start()
+    {
+        //PlayerPrefs.DeleteAll();
         //Debug.Log("controlgamedata !");
         Load();
     }
@@ -40,7 +42,7 @@ public class ControlGameData : MonoBehaviour {
         PlayerPrefs.SetString("Puzzle", makeString(puzzle));
         PlayerPrefs.SetInt("Money", money);
         PlayerPrefs.SetString("Volumn", makeString(volumn));
-    } 
+    }
 
     public void Save(string savingsection)
     {
@@ -74,12 +76,12 @@ public class ControlGameData : MonoBehaviour {
         string[] f_furniture = PlayerPrefs.GetString("Furniture", "-1/-1/-1/-1/-1/-1/-1/-1").Split('/');
         string[] f_puzzle = PlayerPrefs.GetString("Puzzle", "0/0/0/0/0/0").Split('/');
         int f_money = PlayerPrefs.GetInt("Money", 0);
-        string[] f_volumn = PlayerPrefs.GetString("Volumn", "88/88/88/88").Split('/');
+        string[] f_volumn = PlayerPrefs.GetString("Volumn", "99/99/99/99").Split('/');
 
         for (i = 0; i < playnum.Length; i++)
         {
             playnum[i] = int.Parse(f_playnum[i]);
-            
+
             //Debug.Log(i+"th playnum is " + playnum[i] + " and puzzle is " + puzzle[i]);
         }
 
@@ -89,7 +91,7 @@ public class ControlGameData : MonoBehaviour {
             puzzle[i] = int.Parse(f_puzzle[i]);
         }
 
-        
+
         for (i = 0; i < furniture.Length; i++)
         {
             buycat[i] = int.Parse(f_buycat[i]);

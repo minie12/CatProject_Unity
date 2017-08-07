@@ -36,7 +36,7 @@ public class SettingScript : CommonJob
         for (i = 0; i < 5; i++)
             VolumnSize[i] = GameObject.Find("S_Volumn" + i);
 
-        for(i = 0; i < 4; i++)
+        for (i = 0; i < 4; i++)
             volumn[i] = new int[2];
 
         for (i = 0; i < 2; i++)
@@ -44,14 +44,14 @@ public class SettingScript : CommonJob
             volumnSpr[i] = Resources.Load<Sprite>("Main/SettingSprite/volumn_" + i);
             categorySpr[i] = Resources.Load<Sprite>("Main/SettingSprite/Category_" + i);
         }
-           
+
 
         for (i = 0; i < 4; i++)
         {
-            if(i==0)
+            if (i == 0)
                 stageSpr[i] = Resources.Load<Sprite>("Main/SettingSprite/S_C_Main");
             else
-                stageSpr[i] = Resources.Load<Sprite>("Main/SettingSprite/S_C_Mini"+i);
+                stageSpr[i] = Resources.Load<Sprite>("Main/SettingSprite/S_C_Mini" + i);
         }
 
         stageIndex = 0;
@@ -72,13 +72,13 @@ public class SettingScript : CommonJob
         for (i = 0; i < 4; i++)
         {
             volumn[i][0] = tempvolumn[i] / 10; // 배경음악 볼륨
-            volumn[i][1] = tempvolumn[i]%10; // 효과음 볼륨
+            volumn[i][1] = tempvolumn[i] % 10; // 효과음 볼륨
         }
 
         settingBase.SetActive(true);
         stageIndex = 0;
         categoryIndex = 0;
-        
+        appearVolumn();
 
     }
 
@@ -98,7 +98,7 @@ public class SettingScript : CommonJob
     //스테이지는 뭔지
     public void changeStage(string dir)
     {
-         if(dir == "Up" && stageIndex != 3)
+        if (dir == "Up" && stageIndex != 3)
             stageIndex++;
         else if (dir == "Down" && stageIndex != 0)
             stageIndex--;
@@ -109,11 +109,25 @@ public class SettingScript : CommonJob
 
     public void changeVolumn(string dir)
     {
-        if (dir == "Up" && volumn[stageIndex][categoryIndex] != 8)
-            volumn[stageIndex][categoryIndex] += 2;
-        else if (dir == "Down" && volumn[stageIndex][categoryIndex] != 0)
-            volumn[stageIndex][categoryIndex] -= 2;
+        Debug.Log("This is before changed val and it is " + volumn[stageIndex][categoryIndex]);
+        if (dir == "Up" && volumn[stageIndex][categoryIndex] != 9)
+        {
+            if (volumn[stageIndex][categoryIndex] == 0)
+            {
+                volumn[stageIndex][categoryIndex] = 5;
+            }
+            else
+                volumn[stageIndex][categoryIndex]++;
+        }
 
+
+        else if (dir == "Down" && volumn[stageIndex][categoryIndex] != 0)
+        {
+            volumn[stageIndex][categoryIndex]--;
+            if (volumn[stageIndex][categoryIndex] == 4)
+                volumn[stageIndex][categoryIndex] = 0;
+        }
+        Debug.Log("I'm changed and changed val is " + volumn[stageIndex][categoryIndex]);
         appearVolumn();
     }
 
@@ -121,10 +135,10 @@ public class SettingScript : CommonJob
     {
         //Debug.Log(stageIndex + " " + categoryIndex);
         //Debug.Log(volumn[stageIndex][categoryIndex]);
-        int nowvolumn = volumn[stageIndex][categoryIndex] / 2;
+        int nowvolumn = volumn[stageIndex][categoryIndex] % 5; //--> 0/0,1,2,3,4
         for (i = 0; i < 5; i++)
         {
-            if (i <= nowvolumn)
+            if (i <= nowvolumn && volumn[stageIndex][categoryIndex] != 0)
                 VolumnSize[i].GetComponent<SpriteRenderer>().sprite = volumnSpr[1];
             else
                 VolumnSize[i].GetComponent<SpriteRenderer>().sprite = volumnSpr[0];
