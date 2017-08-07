@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Main_Manager : MonoBehaviour
 {
+
+    GameObject AudioManager;
     GameObject[] fursprObj = new GameObject[4];
     GameObject[] realFurObj = new GameObject[4];
 
@@ -13,6 +16,8 @@ public class Main_Manager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
+        AudioManager = GameObject.Find("AudioManager");
         //Debug.Log("start at mainMainManager called");
         //오브젝트 찾아서 넣어주기
         fursprObj[0] = GameObject.Find("Shop_Sprite");
@@ -26,6 +31,8 @@ public class Main_Manager : MonoBehaviour
         realFurObj[3] = GameObject.Find("Real_Setting");
 
         //objsetactiveFalse(realFurObj);
+
+        AudioManager.GetComponent<Main_AudioManager>().setting();
 
         nowactiveIndex = -1;
     }
@@ -60,6 +67,9 @@ public class Main_Manager : MonoBehaviour
             fursprObj[i].GetComponent<BoxCollider2D>().enabled = true;
         }
     }
+
+    //
+    
 
     //각각의 오브젝트의 콜라이더를 꺼 준다
     void turnOffCollider()

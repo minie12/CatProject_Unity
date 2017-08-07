@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class TotalManager : MonoBehaviour
 {
-
     public int TotalFurNum;
 
     float gameOverTime;
@@ -47,15 +46,13 @@ public class TotalManager : MonoBehaviour
             if (TotalFurNum >= 12)
             {
                 gameOverTime -= Time.deltaTime;
-
-                GameOverText.text = gameOverTime.ToString();
+                GameOverText.text = System.Math.Round(gameOverTime, 2).ToString();
 
                 if (gameOverTime < 0)
                 {
                     GameOverText.text = "gameover!";
                     MiniGame3_Manager.GetComponent<Minigame3_Mananger>().callGameover();
                 }
-
             }
 
             if (TotalFurNum < 12)
@@ -75,7 +72,7 @@ public class TotalManager : MonoBehaviour
 
     public IEnumerator countSeconds()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.1f);
         MiniGame3_Manager.GetComponent<Minigame3_Mananger>().normalscore++;
         MiniGame3_Manager.GetComponent<Minigame3_Mananger>().showNormalscore();
 

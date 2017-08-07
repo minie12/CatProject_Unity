@@ -8,6 +8,7 @@ public class SelectMenu : MonoBehaviour
     GameObject mainManager;
 
     GameObject[] furnitureObj = new GameObject[4];
+    GameObject[] furnitureText = new GameObject[4];
     Sprite[][] furnitureSpr = new Sprite[4][];
     bool[] selectedBool = new bool[4];
 
@@ -33,21 +34,26 @@ public class SelectMenu : MonoBehaviour
             {
                 case 0:
                     furnitureObj[0] = GameObject.Find("Shop_Sprite");
+                    furnitureText[0] = GameObject.Find("Shop_text");
                     tempdir = sprdir + "door";
                     break;
                 case 1:
                     tempdir = sprdir + "food";
                     furnitureObj[1] = GameObject.Find("Collection_Sprite");
+                    furnitureText[1] = GameObject.Find("Collection_text");
                     break;
                 case 2:
                     tempdir = sprdir + "toy";
                     furnitureObj[2] = GameObject.Find("MiniGame_Sprite");
+                    furnitureText[2] = GameObject.Find("MiniGame_text");
                     break;
                 case 3:
                     furnitureObj[3] = GameObject.Find("Setting_Sprite");
+                    furnitureText[3] = GameObject.Find("Setting_text");
                     tempdir = sprdir + "window";
                     break;
             }
+            furnitureText[i].SetActive(false);
 
             furnitureSpr[i][0] = Resources.Load<Sprite>(tempdir);
             furnitureSpr[i][1] = Resources.Load<Sprite>(tempdir + "_selected");
@@ -96,11 +102,13 @@ public class SelectMenu : MonoBehaviour
                 {
                     selectedBool[i] = true;
                     furnitureObj[i].GetComponent<SpriteRenderer>().sprite = furnitureSpr[i][1];
+                    furnitureText[i].SetActive(true);
                 }
                 else
                 {
                     selectedBool[i] = false;
                     furnitureObj[i].GetComponent<SpriteRenderer>().sprite = furnitureSpr[i][0];
+                    furnitureText[i].SetActive(false);
                 }
             }
         }
