@@ -20,7 +20,6 @@ public class CollectionScript : CommonJob
     GameObject[] Puzzle = new GameObject[8];
     GameObject[] PuzzleArrow = new GameObject[2];
 
-
     GameObject InfoObj;
     GameObject InfoButton_Exit;
     GameObject InfoButton_Placement;

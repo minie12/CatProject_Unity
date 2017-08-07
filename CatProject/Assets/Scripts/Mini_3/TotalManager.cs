@@ -50,7 +50,6 @@ public class TotalManager : MonoBehaviour
 
                 if (gameOverTime < 0)
                 {
-                    GameOverText.text = "gameover!";
                     MiniGame3_Manager.GetComponent<Minigame3_Mananger>().callGameover();
                 }
             }

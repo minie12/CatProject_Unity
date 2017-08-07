@@ -110,6 +110,8 @@ public class Minigame3_Mananger : MonoBehaviour {
         GameOver.SetActive(true);
         GameOverScore.GetComponent<AppearScore>().setFinalScore();
         Game.SetActive(false);
+        FeverTime.SetActive(false);
+        StopCoroutine("Fever");
     }
 
     public void showNormalscore()
