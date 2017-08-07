@@ -8,7 +8,7 @@ public class CatManager : MonoBehaviour
     int catsize = 7;
 
     float assignedTime = 30;
-    public float waitTime = 30;
+    public float waitTime = 15;
     public float realWaitTime;
 
     public bool nowWait;
@@ -19,6 +19,10 @@ public class CatManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
+        assignedTime = 30;
+        waitTime = 10;
+
         GameObject inst_cat = GameObject.Find("Cat");
         CatList.Add(inst_cat);
 
@@ -35,7 +39,7 @@ public class CatManager : MonoBehaviour
         realWaitTime = waitTime;
         nowWait = false;
 
-        StartCoroutine(appearCat());
+        StartCoroutine("appearCat");
     }
 
     private void Update()
@@ -47,24 +51,27 @@ public class CatManager : MonoBehaviour
 
     public IEnumerator appearCat()
     {
+        Debug.Log("appearcat started"+waitTime);
         if (nowCat == 8)
             StopCoroutine("appearCat");
 
         nowWait = true;
         yield return new WaitForSeconds(waitTime);
         nowWait = false;
-
+        Debug.Log("nowcat is "+nowCat);
         if (nowCat != 8)
         {
-            GameObject cat = CatList[nowCat - 1];
+            Debug.Log("nowcat is ");
+            GameObject cat = CatList[nowCat];
             cat.SetActive(true);
             //waitTime = 30;
-            assignedTime += 30 + (nowCat - 1) * 10;
+            //assignedTime += 30 + (nowCat - 1) * 10;
+            nowCat++;
+            assignedTime = 10 + (nowCat - 1) * 15;
             waitTime = assignedTime;
             realWaitTime = waitTime;
-            nowCat++;
             //Debug.Log(waitTime);
-            StartCoroutine(appearCat());
+            StartCoroutine("appearCat");
         }
 
     }

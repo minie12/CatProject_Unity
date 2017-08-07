@@ -107,7 +107,7 @@ public class DemandManager : MonoBehaviour
             feeling = 100;
 
         setfeeling();
-        
+
     }
 
     void setfeeling()
@@ -140,13 +140,11 @@ public class DemandManager : MonoBehaviour
 
     public IEnumerator shakingTail()
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(0.45f);
-            feelindex = (feelindex + 1) % 2;
-            catsprObject.GetComponent<SpriteRenderer>().sprite = catfeeling[nowFeel][feelindex];
-            //StartCoroutine("shakingTail");
-        }
+        yield return new WaitForSeconds(0.45f);
+        feelindex = (feelindex + 1) % 2;
+        catsprObject.GetComponent<SpriteRenderer>().sprite = catfeeling[nowFeel][feelindex];
+        StartCoroutine("shakingTail");
+
     }
 
     public IEnumerator appearDemand()

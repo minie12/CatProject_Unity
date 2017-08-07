@@ -47,15 +47,13 @@ public class TotalManager : MonoBehaviour
             if (TotalFurNum >= 12)
             {
                 gameOverTime -= Time.deltaTime;
-
-                GameOverText.text = gameOverTime.ToString();
+                GameOverText.text = System.Math.Round(gameOverTime, 2).ToString();
 
                 if (gameOverTime < 0)
                 {
                     GameOverText.text = "gameover!";
                     MiniGame3_Manager.GetComponent<Minigame3_Mananger>().callGameover();
                 }
-
             }
 
             if (TotalFurNum < 12)

@@ -8,12 +8,15 @@ public class ShowingIntro : MonoBehaviour {
     public Sprite[][] introSprite = new Sprite[3][];
     string spritedir;
 
+    GameObject Background;
+
     public bool finishIntro;
 
 	// Use this for initialization
 	void Start () {
         int i,j;
-        
+
+        Background = GameObject.Find("Story_Background");
 
         introSprite[0] = new Sprite[7];
         introSprite[1] = new Sprite[7];
@@ -28,6 +31,7 @@ public class ShowingIntro : MonoBehaviour {
             }
         }
 
+        Background.SetActive(false);
         finishIntro = false;
 
        // callingIntro(2);
@@ -41,17 +45,24 @@ public class ShowingIntro : MonoBehaviour {
     //스테이지 선택할 때 얘로 코루틴 바로 돌려버리면 됨 
     IEnumerator callIntro(GameObject callobj, int stagenum)
     {
-        
-        for(int i = 0; i < introSprite[stagenum].Length; i++)
+        Background.SetActive(true);
+        for (int i = 0; i < introSprite[stagenum].Length; i++)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = introSprite[stagenum][i];
             yield return new WaitForSeconds(2.0f);
         }
+        Background.SetActive(false);
 
         //미니게임에서 부른거면 게임 플레이로 돌아가고
-        if(callobj.name == "Real_MiniGame")
+        if (callobj.name == "Real_MiniGame")
             callobj.GetComponent<MiniGameScript>().playGame(stagenum);
         //콜렉션에서 부른거면 콜렉션 화면으로 다시 돌아감
+        if(callobj.name == "Real_Collection")
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = null;
+            callobj.GetComponent<CollectionScript>().finishStory();
+        }
+
     }
 
 
