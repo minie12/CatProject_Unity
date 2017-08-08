@@ -30,11 +30,23 @@ public class DemandManager : MonoBehaviour
     public GameObject catsprObject;
     public GameObject feelObject;
 
+    GameObject AudioManager;
+    AudioClip feelingGood;
+    AudioClip feelingBad;
+    Vector3 effectVector;
+    float effectvolume;
+
     GameObject actManager;
 
     // Use this for initialization
     void Start()
     {
+        AudioManager = GameObject.Find("AudioManager");
+        feelingGood = AudioManager.GetComponent<Main_AudioManager>().cat_feelingGood;
+        feelingBad = AudioManager.GetComponent<Main_AudioManager>().cat_feelingBad;
+        effectVector = AudioManager.GetComponent<Main_AudioManager>().effectVector;
+        effectvolume = AudioManager.GetComponent<Main_AudioManager>().effectVol;
+
         demandSprite[0] = Resources.Load<Sprite>("Pic_3/want_brush");
         demandSprite[1] = Resources.Load<Sprite>("Pic_3/want_can");
         demandSprite[2] = Resources.Load<Sprite>("Pic_3/want_toy");
@@ -89,17 +101,30 @@ public class DemandManager : MonoBehaviour
         {
             //요구사항 제대로 충족
             if (actManager.GetComponent<ActManager>().requestSelected[indexnum] == true)
+            {
                 feeling += 10;
+                if (effectvolume != 0)
+                    AudioSource.PlayClipAtPoint(feelingGood, effectVector);
+            }
             else // 잘못된 요구 충족
+            {
                 feeling -= 10;
+                if (effectvolume != 0)
+                    AudioSource.PlayClipAtPoint(feelingBad, effectVector);
+            }
 
             trysatisfy = true;
             indexnum = -1;
             demandObject.GetComponent<SpriteRenderer>().sprite = null;
 
         }
-        else //요구사항이 없을 때
+        else
+        {
+            //요구사항이 없을 때
             feeling -= 5;
+            if (effectvolume != 0)
+                AudioSource.PlayClipAtPoint(feelingBad, effectVector);
+        }
 
         if (feeling < 0)
             feeling = 0;

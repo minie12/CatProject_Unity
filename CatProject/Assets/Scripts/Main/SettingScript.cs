@@ -36,7 +36,7 @@ public class SettingScript : CommonJob
         for (i = 0; i < 5; i++)
             VolumnSize[i] = GameObject.Find("S_Volumn" + i);
 
-        for(i = 0; i < 4; i++)
+        for (i = 0; i < 4; i++)
             volumn[i] = new int[2];
 
         for (i = 0; i < 2; i++)
@@ -44,14 +44,14 @@ public class SettingScript : CommonJob
             volumnSpr[i] = Resources.Load<Sprite>("Main/SettingSprite/volumn_" + i);
             categorySpr[i] = Resources.Load<Sprite>("Main/SettingSprite/Category_" + i);
         }
-           
+
 
         for (i = 0; i < 4; i++)
         {
-            if(i==0)
+            if (i == 0)
                 stageSpr[i] = Resources.Load<Sprite>("Main/SettingSprite/S_C_Main");
             else
-                stageSpr[i] = Resources.Load<Sprite>("Main/SettingSprite/S_C_Mini"+i);
+                stageSpr[i] = Resources.Load<Sprite>("Main/SettingSprite/S_C_Mini" + i);
         }
 
         stageIndex = 0;
@@ -72,7 +72,7 @@ public class SettingScript : CommonJob
         for (i = 0; i < 4; i++)
         {
             volumn[i][0] = tempvolumn[i] / 10; // 배경음악 볼륨
-            volumn[i][1] = tempvolumn[i]%10; // 효과음 볼륨
+            volumn[i][1] = tempvolumn[i] % 10; // 효과음 볼륨
         }
 
         settingBase.SetActive(true);
@@ -98,7 +98,7 @@ public class SettingScript : CommonJob
     //스테이지는 뭔지
     public void changeStage(string dir)
     {
-         if(dir == "Up" && stageIndex != 3)
+        if (dir == "Up" && stageIndex != 3)
             stageIndex++;
         else if (dir == "Down" && stageIndex != 0)
             stageIndex--;
@@ -119,7 +119,11 @@ public class SettingScript : CommonJob
             else
                 volumn[stageIndex][categoryIndex]++;
         }
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> 5fdc51e5c6e114bc03895b6f2bd4ffa78b18783d
 
         else if (dir == "Down" && volumn[stageIndex][categoryIndex] != 0)
         {

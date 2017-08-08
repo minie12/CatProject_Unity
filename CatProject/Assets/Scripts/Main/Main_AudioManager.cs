@@ -14,36 +14,59 @@ public class Main_AudioManager : MonoBehaviour
     int nowScene;
 
     float bgmVol;
-    float effectVol;
+    public float effectVol;
+    public Vector3 effectVector;
 
     AudioSource audioPlay;
 
     //Main
     AudioClip MainBGM;
 
+    //mini1
+    AudioClip Mini1BGM;
+    public AudioClip cat_hit;
+    public AudioClip fever_laser;
+    public AudioClip mouse_get;
+
     //Mini2
     AudioClip Mini2BGM;
-    AudioClip furdisappear;
-
+    public AudioClip furdisappear;
+    public AudioClip cat_feelingGood;
+    public AudioClip cat_feelingBad;
 
     public void Awake()
     {
-        
-
         DontDestroyOnLoad(this);
 
         if (FindObjectsOfType(GetType()).Length > 1)
         {
             Destroy(gameObject);
         }
+    }
 
+    // Use this for initialization
+    void Start()
+    {
         audioPlay = gameObject.GetComponent<AudioSource>();
         DataManager = GameObject.Find("DataManager");
         Debug.Log("Awake called");
 
+        //bgm
         MainBGM = Resources.Load<AudioClip>("Sounds/Main/Main_BGM");
+        Mini1BGM = Resources.Load<AudioClip>("Sounds/Mini1/Mini1_BGM");
         Mini2BGM = Resources.Load<AudioClip>("Sounds/Mini2/Mini2_BGM");
+
+        //mini1 effect
+        cat_hit = Resources.Load<AudioClip>("Sounds/Mini1/Mini1_hit");
+        fever_laser = Resources.Load<AudioClip>("Sounds/Mini1/Mini1_laser");
+        mouse_get = Resources.Load<AudioClip>("Sounds/Mini1/Mini1_rat");
+
+        //mini2 effect
         furdisappear = Resources.Load<AudioClip>("Sounds/Mini2/fur_disappear");
+        cat_feelingBad = Resources.Load<AudioClip>("Sounds/Mini2/Cat_feelingBad");
+        cat_feelingGood = Resources.Load<AudioClip>("Sounds/Mini2/Cat_feelingGood");
+
+
 
         //audioPlay.clip = MainBGM;
         Debug.Log(SceneManager.GetActiveScene().name);
@@ -55,7 +78,7 @@ public class Main_AudioManager : MonoBehaviour
                 nowScene = 0;
                 break;
             case "Mini_1":
-                //audioPlay.clip = Mini1BGM;
+                audioPlay.clip = Mini1BGM;
                 nowScene = 1;
                 break;
             case "Mini_2":
@@ -69,16 +92,6 @@ public class Main_AudioManager : MonoBehaviour
         }
 
         audioPlay.Play();
-
-
-
-
-
-    }
-
-    // Use this for initialization
-    void Start()
-    {
         // setting();
         for (int i = 0; i < 4; i++)
             volumn[i] = new int[2];
@@ -94,7 +107,7 @@ public class Main_AudioManager : MonoBehaviour
                 nowScene = 0;
                 break;
             case "Mini_1":
-                //audioPlay.clip = Mini1BGM;
+                audioPlay.clip = Mini1BGM;
                 nowScene = 1;
                 break;
             case "Mini_2":
@@ -111,7 +124,6 @@ public class Main_AudioManager : MonoBehaviour
         audioPlay.Play();
         /*
         Debug.Log("audiomanager");
-
         changeVolumn();
         audioPlay.Play();
         */
@@ -133,7 +145,11 @@ public class Main_AudioManager : MonoBehaviour
         bgmVol = volumn[nowScene][0]; // --> 5,6,7,8,9 vol%5+1
         effectVol = volumn[nowScene][1];
 
+<<<<<<< HEAD
         if (bgmVol !=0)
+=======
+        if (bgmVol != 0)
+>>>>>>> 5fdc51e5c6e114bc03895b6f2bd4ffa78b18783d
             bgmVol = ((bgmVol % 5) + 1) / 5;
 
         if (effectVol != 0)
@@ -141,6 +157,12 @@ public class Main_AudioManager : MonoBehaviour
 
         audioPlay.volume = bgmVol;
 
+<<<<<<< HEAD
         Debug.Log(bgmVol+" is bgmVol and effectVol is "+effectVol);
+=======
+        effectVector = new Vector3(0, 0, -(0 + effectVol * 10));
+
+        Debug.Log(bgmVol + " is bgmVol and effectVol is " + effectVol);
+>>>>>>> 5fdc51e5c6e114bc03895b6f2bd4ffa78b18783d
     }
 }

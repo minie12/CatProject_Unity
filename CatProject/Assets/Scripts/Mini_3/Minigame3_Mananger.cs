@@ -7,7 +7,7 @@ public class Minigame3_Mananger : MonoBehaviour {
 
     GameObject AudioManager;
 
-    int speacialscore;
+    public int speacialscore;
     public int normalscore;
 
     float playTime;
@@ -15,10 +15,14 @@ public class Minigame3_Mananger : MonoBehaviour {
 
     Text NormalScoreText;
     Text SpecialScoreText;
+    Text FeverText;
+    Text FinalScoreText;
 
     GameObject Game;
     GameObject FeverTime;
     GameObject GameOver;
+
+    GameObject GameOverScore;
 
     GameObject catmanagerObj;
     GameObject speacialScoreObj;
@@ -36,8 +40,15 @@ public class Minigame3_Mananger : MonoBehaviour {
 
         AudioManager = GameObject.Find("AudioManager");
 
+        GameOverScore = GameObject.Find("GameOverImg");
+        FinalScoreText = GameObject.Find("FinalScore").GetComponent<Text>();
+        FinalScoreText.text = "";
+
         NormalScoreText = GameObject.Find("NormalScore").GetComponent<Text>();
         SpecialScoreText = GameObject.Find("SpecialScore").GetComponent<Text>();
+        FeverText = GameObject.Find("FeverText").GetComponent<Text>();
+
+        FeverText.text = "";
 
         Game = GameObject.Find("Game");
         FeverTime = GameObject.Find("FeverTime");
@@ -66,6 +77,8 @@ public class Minigame3_Mananger : MonoBehaviour {
 
         Game.SetActive(false);
         FeverTime.SetActive(true);
+        FeverText.text = "0 HIT!";
+
         for(int i = 0; i < 3; i++)
         {
             FeverCat[i].GetComponent<Fever_ShakingTail>().fever_tail();
@@ -78,6 +91,7 @@ public class Minigame3_Mananger : MonoBehaviour {
         speacialscore += speacialScoreObj.GetComponent<FeverTimeScript>().touchnum;
         speacialScoreObj.GetComponent<FeverTimeScript>().touchnum = 0;
         showSpeacialscore();
+        FeverText.text = "";
         FeverTime.SetActive(false);
 
         Game.SetActive(true);
@@ -88,6 +102,7 @@ public class Minigame3_Mananger : MonoBehaviour {
     public void callGameover()
     {
         GameOver.SetActive(true);
+        GameOverScore.GetComponent<AppearScore>().setFinalScore();
         Game.SetActive(false);
     }
 

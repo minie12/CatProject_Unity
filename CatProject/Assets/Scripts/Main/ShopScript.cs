@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class ShopScript : CommonJob
@@ -13,6 +14,8 @@ public class ShopScript : CommonJob
     GameObject SelectObj;
     GameObject InfoObj;
 
+    Text MoneyText;
+
     Sprite[] catSpr = new Sprite[8];
     Sprite[] furnitureSpr = new Sprite[8];
 
@@ -20,6 +23,7 @@ public class ShopScript : CommonJob
     Sprite[] furnitureInfoSpr = new Sprite[8];
 
     string sprdir = "Main/ShopAndCollection/";
+
 
     int i;
 
@@ -47,6 +51,9 @@ public class ShopScript : CommonJob
     public override void Start()
     {
         base.Start();
+
+        MoneyText = GameObject.Find("MoneyText").GetComponent<Text>();
+        MoneyText.text = "";
 
         backButton = GameObject.Find("Button_back");
         Button[0] = GameObject.Find("Button_cat");
@@ -98,6 +105,8 @@ public class ShopScript : CommonJob
         Button[0].SetActive(true);
         Button[1].SetActive(true);
         backButton.SetActive(true);
+
+        MoneyText.text = money.ToString();
     }
 
     public override void finish()
@@ -110,6 +119,9 @@ public class ShopScript : CommonJob
         InfoObj.SetActive(false);
         SelectObj.SetActive(false);
         Shop_Background.SetActive(false);
+
+        MoneyText.text = "";
+
         save();
         MainManager.GetComponent<Main_Manager>().backtoMain();
     }
