@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ControlGameData : MonoBehaviour
 {
-
     int[] playnum = new int[3]; // 각 미니게임의 플레이 횟수 계산
     int[] buycat = new int[8];//총 8개의 고양이. 각 가구의 구매여부 및 배치 여부 판가름 --> -1/0/1
     int[] furniture = new int[8]; // 각 가구의 구매여부 및 디벨롭 여부 판가름 --> -1/012/345
@@ -69,7 +68,7 @@ public class ControlGameData : MonoBehaviour
         }
     }
 
-    void Load()
+    public void Load()
     {
         string[] f_playnum = PlayerPrefs.GetString("Playnum", "0/0/0").Split('/');
         string[] f_buycat = PlayerPrefs.GetString("Buycat", "-1/-1/-1/-1/-1/-1/-1/-1").Split('/');
@@ -89,6 +88,7 @@ public class ControlGameData : MonoBehaviour
         {
             //Debug.Log(puzzle.Length);
             puzzle[i] = int.Parse(f_puzzle[i]);
+            Debug.Log(puzzle[i]);
         }
 
 

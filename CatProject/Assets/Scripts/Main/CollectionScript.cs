@@ -125,6 +125,7 @@ public class CollectionScript : CommonJob
 
         InfoObj.SetActive(false);
         StoryParent.SetActive(false);
+        PuzzleParent.SetActive(false);
         GoodsParent.SetActive(false);
         BaseObj.SetActive(false);
     }
@@ -138,17 +139,18 @@ public class CollectionScript : CommonJob
         buycat = DataManager.GetComponent<ControlGameData>().getBuycat();
         puzzle = DataManager.GetComponent<ControlGameData>().getPuzzle();
 
+        
         //총 6개의 퍼즐에 대해 해당 퍼즐의 조각들을 
         for (i = 0; i < 6; i++)
         {
+            int tempPuzzle = puzzle[i];
             for(int j = 0; j < 8; j++)
             {
-                realpuzzle[i][j] = puzzle[i] % 2;
-                puzzle[i] /= 2;
+                realpuzzle[i][j] = tempPuzzle % 2;
+                tempPuzzle /= 2;
             }
-            //Debug.Log("i is" + i + "and buycat[i] is " + buycat[i]);
         }
-
+        
 
         //기본적으로 고양이를 켜고 시작하는 것으로.
         SettingCategory(0);
@@ -161,6 +163,7 @@ public class CollectionScript : CommonJob
         save();
         InfoObj.SetActive(false);
         StoryParent.SetActive(false);
+        PuzzleParent.SetActive(false);
         GoodsParent.SetActive(false);
         BaseObj.SetActive(false);
         MainManager.GetComponent<Main_Manager>().backtoMain();
@@ -199,6 +202,7 @@ public class CollectionScript : CommonJob
         else if (index == 2)
         {
             GoodsParent.SetActive(false);
+            PuzzleParent.SetActive(false);
             StoryParent.SetActive(true);
         }
         else if(index == 3)
@@ -251,10 +255,10 @@ public class CollectionScript : CommonJob
 
     void showPuzzle(int index)
     {
-        Debug.Log("called");
         PuzzleBaseObj.GetComponent<SpriteRenderer>().sprite = puzzlebaseSpr[index];
         for (i = 0; i < 8; i++)
         {
+            //Debug.Log(realpuzzle[index][i]);
             if(realpuzzle[index][i] == 0)
             {
                 Puzzle[i].GetComponent<SpriteRenderer>().sprite = null;
@@ -270,7 +274,7 @@ public class CollectionScript : CommonJob
     {
         string sprname = PuzzleBaseObj.GetComponent<SpriteRenderer>().sprite.name;
         int nowIndex = int.Parse(sprname.Substring(sprname.Length - 1));
-        Debug.Log(nowIndex);
+        //Debug.Log(nowIndex);
         if (dir == "Left")
         {
             if (nowIndex != 0)

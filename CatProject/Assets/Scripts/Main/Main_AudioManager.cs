@@ -21,6 +21,8 @@ public class Main_AudioManager : MonoBehaviour
 
     //Main
     AudioClip MainBGM;
+    public AudioClip Shop_buy;
+    public AudioClip Shop_cannotbuy;
 
     //mini1
     AudioClip Mini1BGM;
@@ -55,6 +57,10 @@ public class Main_AudioManager : MonoBehaviour
         MainBGM = Resources.Load<AudioClip>("Sounds/Main/Main_BGM");
         Mini1BGM = Resources.Load<AudioClip>("Sounds/Mini1/Mini1_BGM");
         Mini2BGM = Resources.Load<AudioClip>("Sounds/Mini2/Mini2_BGM");
+
+        //main effect
+        Shop_buy = Resources.Load<AudioClip>("Sounds/Main/Shop_Buy");
+        Shop_cannotbuy = Resources.Load<AudioClip>("Sounds/Main/Shop_CannotBuy");
 
         //mini1 effect
         cat_hit = Resources.Load<AudioClip>("Sounds/Mini1/Mini1_hit");
@@ -139,7 +145,7 @@ public class Main_AudioManager : MonoBehaviour
         {
             volumn[i][0] = tempvolumn[i] / 10; // 배경음악 볼륨
             volumn[i][1] = tempvolumn[i] % 10; // 효과음 볼륨
-            Debug.Log(tempvolumn[i] + " " + volumn[i][0]);
+            //Debug.Log(tempvolumn[i] + " " + volumn[i][0]);
         }
 
         bgmVol = volumn[nowScene][0]; // --> 5,6,7,8,9 vol%5+1
@@ -155,6 +161,6 @@ public class Main_AudioManager : MonoBehaviour
 
         effectVector = new Vector3(0, 0, -(0 + effectVol * 10));
 
-        Debug.Log(bgmVol + " is bgmVol and effectVol is " + effectVol);
+        //Debug.Log(bgmVol + " is bgmVol and effectVol is " + effectVol);
     }
 }

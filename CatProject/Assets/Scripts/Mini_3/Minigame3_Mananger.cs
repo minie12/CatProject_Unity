@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Minigame3_Mananger : MonoBehaviour {
 
     GameObject AudioManager;
+    GameObject DataManager;
 
     public int speacialscore;
     public int normalscore;
@@ -33,6 +34,9 @@ public class Minigame3_Mananger : MonoBehaviour {
     {
         AudioManager = GameObject.Find("AudioManager");
         AudioManager.GetComponent<Main_AudioManager>().setting();
+
+        DataManager = GameObject.Find("DataManager");
+        DataManager.GetComponent<ControlGameData>().Load();
     }
 
     // Use this for initialization

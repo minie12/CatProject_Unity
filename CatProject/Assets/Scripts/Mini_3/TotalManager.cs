@@ -51,6 +51,7 @@ public class TotalManager : MonoBehaviour
                 if (gameOverTime < 0)
                 {
                     MiniGame3_Manager.GetComponent<Minigame3_Mananger>().callGameover();
+                    startcor = false;
                 }
             }
 

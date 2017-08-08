@@ -44,7 +44,7 @@ public class Main_Manager : MonoBehaviour
     {
         turnOffCollider();
         nowactiveIndex = objindex;
-        Debug.Log("nowactiveindex is "+nowactiveIndex);
+        //Debug.Log("nowactiveindex is "+nowactiveIndex);
         realFurObj[objindex].SetActive(true);
         realFurObj[objindex].GetComponent<CommonJob>().initial();
         
