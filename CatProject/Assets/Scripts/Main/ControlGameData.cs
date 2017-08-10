@@ -6,7 +6,7 @@ public class ControlGameData : MonoBehaviour
 {
     int[] playnum = new int[3]; // 각 미니게임의 플레이 횟수 계산
     int[] buycat = new int[8];//총 8개의 고양이. 각 가구의 구매여부 및 배치 여부 판가름 --> -1/0/1
-    int[] furniture = new int[8]; // 각 가구의 구매여부 및 디벨롭 여부 판가름 --> -1/012/345
+    int[] furniture = new int[8]; // 각 가구의 구매여부 및 설치 여부 판가름 --> -1/01
     int[] puzzle = new int[6]; //퍼즐 및 퍼즐의 모은 퍼즐조각 여부 저장하는 배열(012, 8가지에 대해서 이진수 저장)
     int money;
     int[] volumn = new int[4];// a/10 --> 브금, a%10 --> 효과음, 메인/1/2/3, 0 56789 !!!!
@@ -25,7 +25,8 @@ public class ControlGameData : MonoBehaviour
     }
 
     //파일에서 받아와서 수행한다.
-    void Start()
+
+    public void Start()
     {
         //PlayerPrefs.DeleteAll();
         //Debug.Log("controlgamedata !");

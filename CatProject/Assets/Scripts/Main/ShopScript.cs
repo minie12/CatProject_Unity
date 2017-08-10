@@ -15,6 +15,7 @@ public class ShopScript : CommonJob
     GameObject Shop_Background;
     GameObject SelectObj;
     GameObject InfoObj;
+    GameObject LockObj;
 
     AudioClip canBuy;
     AudioClip cannotBuy;
@@ -24,6 +25,9 @@ public class ShopScript : CommonJob
     Text MoneyText;
 
     Sprite sealSpr;
+    Sprite lockedSpr;
+
+    Sprite unlockwaySpr;
 
     Sprite[] catSpr = new Sprite[8];
     Sprite[] furnitureSpr = new Sprite[8];
@@ -86,6 +90,7 @@ public class ShopScript : CommonJob
         Arrow[1] = GameObject.Find("Arrow_Right");
 
         InfoObj = GameObject.Find("Info_Obj");
+        LockObj = GameObject.Find("LockedObj");
 
         //goods object를 찾아서 넣어주고
         //고양이 / 가구 sprite를 찾아서 넣어준다
@@ -104,6 +109,8 @@ public class ShopScript : CommonJob
         }
 
         sealSpr = Resources.Load<Sprite>("Main/ShopSprite/seal_bought");
+        lockedSpr = Resources.Load<Sprite>("Main/ShopSprite/seal_locked");
+        unlockwaySpr = Resources.Load<Sprite>("Main/ShopSprite/Message_unlockcondition");
         //Debug.Log(sealSpr.name);
 
         Shop_Background = GameObject.Find("Shop_Main"); // 
@@ -112,10 +119,12 @@ public class ShopScript : CommonJob
         want_cat = false;
         want_furniture = false;
 
+        
         backButton.SetActive(false);
         Button[0].SetActive(false);
         Button[1].SetActive(false);
         InfoObj.SetActive(false);
+        LockObj.SetActive(false);
         SelectObj.SetActive(false);
         Shop_Background.SetActive(false);
         //Debug.Log("hi");
@@ -139,21 +148,22 @@ public class ShopScript : CommonJob
 
         MoneyText.text = money.ToString();
     }
-
+    
+    //해당 작업을 끝내기.
     public override void finish()
     {
-        //해당 작업을 끝내기.
-        
         Button[0].SetActive(false);
         Button[1].SetActive(false);
         backButton.SetActive(false);
         InfoObj.SetActive(false);
+        LockObj.SetActive(false);
         SelectObj.SetActive(false);
         Shop_Background.SetActive(false);
 
         MoneyText.text = "";
 
         save();
+        PlacementObj.GetComponent<PlacementScript>().Placement();
         MainManager.GetComponent<Main_Manager>().backtoMain();
     }
 
@@ -227,12 +237,43 @@ public class ShopScript : CommonJob
             for (i = 0; i < 4; i++, index++)
             {
                 Goods[i].GetComponent<SpriteRenderer>().sprite = furnitureSpr[index];
-                if (furniture[index] != -1)
-                    seal_Buy[i].GetComponent<SpriteRenderer>().sprite = sealSpr;
+                if(index >= 4)//unlockcondition 체크해주기.
+                {
+                    if(judgeLocked() == false)//록되어있으면
+                    {
+                        seal_Buy[i].GetComponent<SpriteRenderer>().sprite = lockedSpr;
+                    }
+                    else if(judgeLocked() == true) //언록되어있으면
+                    {
+                        if (furniture[index] != -1)
+                            seal_Buy[i].GetComponent<SpriteRenderer>().sprite = sealSpr;
+                        else
+                            seal_Buy[i].GetComponent<SpriteRenderer>().sprite = null;
+                    }
+                }
                 else
-                    seal_Buy[i].GetComponent<SpriteRenderer>().sprite = null;
+                {
+                    if (furniture[index] != -1)
+                        seal_Buy[i].GetComponent<SpriteRenderer>().sprite = sealSpr;
+                    else
+                        seal_Buy[i].GetComponent<SpriteRenderer>().sprite = null;
+                }
             }
         }
+    }
+
+    //가구 요구조건 다 만족시켰는지 확인하기
+   bool judgeLocked()
+    {
+        bool unlockcondition = true; // 일단 언록되어있다고 가정되고
+        for (int j=0; j < 4; j++)
+        {
+            if (furniture[j] == -1)
+                unlockcondition = false;//하나라도 앞 네개 중 구매 안 한 것 있으면 언록시키기
+
+        }
+
+        return unlockcondition;
     }
 
     //해당 오브젝트의 설명을 띄워줌
@@ -252,8 +293,18 @@ public class ShopScript : CommonJob
         }
         else if(want_furniture == true && furniture[sprindex] == -1)
         {
-            InfoObj.SetActive(true);
-            InfoObj.GetComponent<SpriteRenderer>().sprite = furnitureInfoSpr[sprindex];
+            
+            if (sprindex >= 4 && judgeLocked() == false)
+            {
+                LockObj.SetActive(true);
+                InfoObj.GetComponent<SpriteRenderer>().sprite = unlockwaySpr;
+               
+            }
+            else
+            {
+                InfoObj.SetActive(true);
+                InfoObj.GetComponent<SpriteRenderer>().sprite = furnitureInfoSpr[sprindex];
+            }
             turnOffCollider();
         }
     }
@@ -263,6 +314,7 @@ public class ShopScript : CommonJob
     {
         //해당 오브젝트 꺼주기
         InfoObj.SetActive(false);
+        LockObj.SetActive(false);
         turnOnCollider();
     }
 
@@ -281,12 +333,13 @@ public class ShopScript : CommonJob
             if (money >= catCost[sprindex])
             {
                 money -= catCost[sprindex];
-                buycat[sprindex] = 0; // 0 : 설치x
+                buycat[sprindex] = 1; // 기본적으로 설치시켜줌
                 if (effectvolume != 0)
                     AudioSource.PlayClipAtPoint(canBuy, volVector);
 
                 ShowMoney();
-                //*******여기에 나중에 구매완료 표시 시켜주기
+                ShowObjSeal(sprindex);
+
             }
             else
             {
@@ -300,10 +353,11 @@ public class ShopScript : CommonJob
             {
                 //구매 진행 및 업그레이드 가격 갱신
                 money -= furnitureCost[sprindex];
-                furniture[sprindex]++;
+                furniture[sprindex] = 1; //기본적으로 설치한 후 시작
                 if (effectvolume != 0)
                     AudioSource.PlayClipAtPoint(canBuy, volVector);
                 ShowMoney();
+                ShowObjSeal(sprindex);
             }
             else
             {
@@ -311,9 +365,23 @@ public class ShopScript : CommonJob
                     AudioSource.PlayClipAtPoint(cannotBuy, volVector);
             }
 
+            judgeLocked();
+
         }
 
         offObjinfo();
+    }
+
+    //몇번째 고양이를 산 건지 인덱스로 넘겨준다.
+    void ShowObjSeal(int index)
+    {
+        Debug.Log(index);
+        for (i = 0; i < 4; i++)
+        {
+            if(index%4 == i)   
+                seal_Buy[i].GetComponent<SpriteRenderer>().sprite = sealSpr;
+            //Debug.Log(i + ", " + index);
+        }
     }
 
     void ShowMoney()

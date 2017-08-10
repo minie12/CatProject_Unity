@@ -18,7 +18,7 @@ public class AppearScore : MonoBehaviour {
 	
 	public void setFinalScore()
     {
-        Debug.Log(GameManager.name);
+        Start();
         finalScore =  GameManager.GetComponent<Minigame3_Mananger>().normalscore + GameManager.GetComponent<Minigame3_Mananger>().speacialscore * 7;
         ScoreText.text = "Score :" + finalScore.ToString();
     }

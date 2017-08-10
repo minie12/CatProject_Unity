@@ -16,6 +16,8 @@ public class CatManager : MonoBehaviour
     public int nowCat = 1;
     public List<GameObject> CatList = new List<GameObject>();
 
+    List<Vector3> CatPos = new List<Vector3>();
+
     // Use this for initialization
     void Start()
     {
@@ -26,11 +28,19 @@ public class CatManager : MonoBehaviour
         GameObject inst_cat = GameObject.Find("Cat");
         CatList.Add(inst_cat);
 
+        CatPos.Add(new Vector3(-0.8f, 1.5f, 0));
+        CatPos.Add(new Vector3(3.2f, 2.1f, 0));
+        CatPos.Add(new Vector3(7f, 2.3f, 0));
+        CatPos.Add(new Vector3(3.8f, -1.6f, 0));
+        CatPos.Add(new Vector3(7.5f, -0.8f, 0));
+        CatPos.Add(new Vector3(14.5f, 0.85f, 0));
+        CatPos.Add(new Vector3(11f, 0.45f, 0));
+
         for (int i = 0; i < catsize; i++)
         {
             GameObject obj_cat = (GameObject)Instantiate(inst_cat);
-            GameObject spr_cat = obj_cat.transform.GetChild(0).gameObject;
-            setPos(spr_cat);
+            //GameObject spr_cat = obj_cat.transform.GetChild(0).gameObject;
+            setPos(obj_cat);
             obj_cat.transform.parent = gameObject.transform;
             CatList.Add(obj_cat);
             obj_cat.SetActive(false);
@@ -78,9 +88,11 @@ public class CatManager : MonoBehaviour
 
     void setPos(GameObject obj)
     {
-        float xpos = Random.Range(-7, 7);
-        float ypos = Random.Range(-2.5f, -1);
-        obj.transform.position = new Vector3(xpos, ypos, 1);
+        int index = Random.Range(0, CatPos.Count);
+        obj.transform.position = CatPos[index];
+        
+        Debug.Log(CatPos[index]);
+        CatPos.RemoveAt(index);
     }
 
 }

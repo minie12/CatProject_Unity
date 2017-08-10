@@ -105,7 +105,6 @@ public class PuzzleManager : MonoBehaviour
             {
                 int pIndex = Random.Range(0, puzzleList.Count);
                 tempPuzzle[puzzleList[pIndex]] = 1;
-                Debug.Log("playnum, get puzzle at " + puzzleList.IndexOf(pIndex));
             }
 
             int returnval = 0;

@@ -128,6 +128,8 @@ public class CollectionScript : CommonJob
         PuzzleParent.SetActive(false);
         GoodsParent.SetActive(false);
         BaseObj.SetActive(false);
+
+        Debug.Log(realpuzzle.Length);
     }
 
     public override void initial()
@@ -166,6 +168,7 @@ public class CollectionScript : CommonJob
         PuzzleParent.SetActive(false);
         GoodsParent.SetActive(false);
         BaseObj.SetActive(false);
+        PlacementObj.GetComponent<PlacementScript>().Placement();
         MainManager.GetComponent<Main_Manager>().backtoMain();
     }
 
@@ -243,7 +246,6 @@ public class CollectionScript : CommonJob
                 break;
             default:
                 break;
-
         }
 
 
@@ -290,13 +292,14 @@ public class CollectionScript : CommonJob
     public void showInfo(int num)//해당 오브젝트에서 자신의 spritenum 잘라서 보내기{
     {
         turnOffCollider("Goods");
-        Debug.Log(activecategory[num]);
+        //Debug.Log(activecategory[num]);
 
         InfoObj.SetActive(true);
         if(activecategory[0] == true)
         {
             Debug.Log("고양이!");
-            Debug.Log(InfoObj.name);
+            Debug.Log(buycat[num]);
+            Debug.Log(placementSpr[buycat[num]].name);
             
             //고양이
             InfoObj.GetComponent<SpriteRenderer>().sprite = catInfoSpr[num];
@@ -306,7 +309,7 @@ public class CollectionScript : CommonJob
         {
             //가구
             InfoObj.GetComponent<SpriteRenderer>().sprite = furnitureInfoSpr[num];
-            InfoButton_Placement.GetComponent<SpriteRenderer>().sprite = placementSpr[furniture[num]/3];
+            InfoButton_Placement.GetComponent<SpriteRenderer>().sprite = placementSpr[furniture[num]];
         }
     }
 
@@ -320,11 +323,23 @@ public class CollectionScript : CommonJob
   해당 오브젝트의 index num을 전달해주니까 가구인지/고양이인지 체크해서 배치*/
     public void placeObj(int index)
     {
-
+        if(activecategory[0] == true)
+        {
+            //고양이
+            buycat[index] = (buycat[index] + 1) % 2;
+            InfoButton_Placement.GetComponent<SpriteRenderer>().sprite = placementSpr[buycat[index]];
+        }
+        else if(activecategory[1] == true)
+        {
+            //가구
+            furniture[index] = (furniture[index] + 1) % 2;
+            InfoButton_Placement.GetComponent<SpriteRenderer>().sprite = placementSpr[furniture[index]];
+        }
     }
 
     public void showStory(int num)//해당 오브젝트에서 자신의 스테이지num 잘라서 보내기
     {
+        turnOffCollider("Story");
         Debug.Log(playnum[num]);
         if (playnum[num] != 0)
             IntroObj.GetComponent<ShowingIntro>().callingIntro(gameObject, num);
@@ -371,8 +386,7 @@ public class CollectionScript : CommonJob
 
         switch (category)
         {
-            case "Cat":
-            case "Furniture":
+            case "Goods":
                 for (i = 0; i < Goods.Length; i++)
                 {
                     Goods[i].GetComponent<BoxCollider2D>().enabled = true;
