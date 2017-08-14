@@ -36,6 +36,12 @@ public class Main_AudioManager : MonoBehaviour
     public AudioClip cat_feelingGood;
     public AudioClip cat_feelingBad;
 
+    //Mini3
+    AudioClip Mini3BGM;
+    public AudioClip PresentClicking;
+    public AudioClip PutBoxDown;
+    public AudioClip CatCrying;
+
     public void Awake()
     {
         DontDestroyOnLoad(this);
@@ -57,6 +63,7 @@ public class Main_AudioManager : MonoBehaviour
         MainBGM = Resources.Load<AudioClip>("Sounds/Main/Main_BGM");
         Mini1BGM = Resources.Load<AudioClip>("Sounds/Mini1/Mini1_BGM");
         Mini2BGM = Resources.Load<AudioClip>("Sounds/Mini2/Mini2_BGM");
+        Mini3BGM = Resources.Load<AudioClip>("Sounds/Mini3/Mini3_BGM");
 
         //main effect
         Shop_buy = Resources.Load<AudioClip>("Sounds/Main/Shop_Buy");
@@ -71,6 +78,11 @@ public class Main_AudioManager : MonoBehaviour
         furdisappear = Resources.Load<AudioClip>("Sounds/Mini2/fur_disappear");
         cat_feelingBad = Resources.Load<AudioClip>("Sounds/Mini2/Cat_feelingBad");
         cat_feelingGood = Resources.Load<AudioClip>("Sounds/Mini2/Cat_feelingGood");
+
+        //mini3 effect
+        PresentClicking = Resources.Load<AudioClip>("Sounds/Mini3/PresentClicking");
+        PutBoxDown = Resources.Load<AudioClip>("Sounds/Mini3/PutBoxDown"); ;
+        CatCrying = cat_feelingGood;
 
 
 
@@ -92,7 +104,7 @@ public class Main_AudioManager : MonoBehaviour
                 nowScene = 2;
                 break;
             case "Mini_3":
-                //audioPlay.clip = Mini3BGM;
+                audioPlay.clip = Mini3BGM;
                 nowScene = 3;
                 break;
         }
@@ -121,7 +133,7 @@ public class Main_AudioManager : MonoBehaviour
                 nowScene = 2;
                 break;
             case "Mini_3":
-                //audioPlay.clip = Mini3BGM;
+                audioPlay.clip = Mini3BGM;
                 nowScene = 3;
                 break;
         }

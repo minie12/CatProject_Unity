@@ -14,7 +14,6 @@ public class TimeScore : MonoBehaviour {
         Debug.Log("start in timescore");
         temp = 0;
         time = 0;
-        StartCoroutine("CountScore");
 	}
 	
 	public IEnumerator CountScore()

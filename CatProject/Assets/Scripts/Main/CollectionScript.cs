@@ -129,7 +129,7 @@ public class CollectionScript : CommonJob
         GoodsParent.SetActive(false);
         BaseObj.SetActive(false);
 
-        Debug.Log(realpuzzle.Length);
+        //Debug.Log(realpuzzle.Length);
     }
 
     public override void initial()

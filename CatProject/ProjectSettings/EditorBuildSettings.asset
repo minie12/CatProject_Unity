@@ -14,3 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Mini_2.unity
     guid: 6b7d47e4ccbfc5c40a1d13b6c7c83faa
+  - enabled: 1
+    path: Assets/Scenes/Mini_3.unity
+    guid: 7f75d5239a55632449e670177c74a637

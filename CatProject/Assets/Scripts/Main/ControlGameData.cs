@@ -10,6 +10,7 @@ public class ControlGameData : MonoBehaviour
     int[] puzzle = new int[6]; //퍼즐 및 퍼즐의 모은 퍼즐조각 여부 저장하는 배열(012, 8가지에 대해서 이진수 저장)
     int money;
     int[] volumn = new int[4];// a/10 --> 브금, a%10 --> 효과음, 메인/1/2/3, 0 56789 !!!!
+    int[] bestScore = new int[3];//
 
     int i;
     string str;
@@ -42,6 +43,7 @@ public class ControlGameData : MonoBehaviour
         PlayerPrefs.SetString("Puzzle", makeString(puzzle));
         PlayerPrefs.SetInt("Money", money);
         PlayerPrefs.SetString("Volumn", makeString(volumn));
+        PlayerPrefs.SetString("BestScore", makeString(bestScore));
     }
 
     public void Save(string savingsection)
@@ -66,6 +68,9 @@ public class ControlGameData : MonoBehaviour
             case "volumn":
                 PlayerPrefs.SetString("Volumn", makeString(volumn));
                 break;
+            case "bestscore":
+                PlayerPrefs.SetString("BestScore", makeString(bestScore));
+                break;
         }
     }
 
@@ -77,11 +82,12 @@ public class ControlGameData : MonoBehaviour
         string[] f_puzzle = PlayerPrefs.GetString("Puzzle", "0/0/0/0/0/0").Split('/');
         int f_money = PlayerPrefs.GetInt("Money", 0);
         string[] f_volumn = PlayerPrefs.GetString("Volumn", "99/99/99/99").Split('/');
+        string[] f_bestscore = PlayerPrefs.GetString("BestScore", "0/0/0/0").Split('/');
 
         for (i = 0; i < playnum.Length; i++)
         {
             playnum[i] = int.Parse(f_playnum[i]);
-
+            bestScore[i] = int.Parse(f_bestscore[i]);
             //Debug.Log(i+"th playnum is " + playnum[i] + " and puzzle is " + puzzle[i]);
         }
 
@@ -89,7 +95,7 @@ public class ControlGameData : MonoBehaviour
         {
             //Debug.Log(puzzle.Length);
             puzzle[i] = int.Parse(f_puzzle[i]);
-            Debug.Log(puzzle[i]);
+            //Debug.Log(puzzle[i]);
         }
 
 
@@ -102,7 +108,7 @@ public class ControlGameData : MonoBehaviour
         for (i = 0; i < volumn.Length; i++)
         {
             volumn[i] = int.Parse(f_volumn[i]);
-            Debug.Log("ith volumn is " + volumn[i]);
+            //Debug.Log("ith volumn is " + volumn[i]);
         }
 
         money = f_money;
@@ -154,6 +160,11 @@ public class ControlGameData : MonoBehaviour
         volumn = arr;
     }
 
+    public void setBestScore(int[] arr)
+    {
+        bestScore = arr;
+    }
+
     public int[] getPlaynum()
     {
         return playnum;
@@ -182,5 +193,10 @@ public class ControlGameData : MonoBehaviour
     public int[] getVolumn()
     {
         return volumn;
+    }
+
+    public int[] getBestScore()
+    {
+        return bestScore;
     }
 }

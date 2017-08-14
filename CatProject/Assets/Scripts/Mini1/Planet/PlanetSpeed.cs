@@ -8,18 +8,18 @@ public class PlanetSpeed : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        speed = 0.19f;
+        speed = 0.24f;
         StartCoroutine("SpeedUp");
 	}
 
     public IEnumerator SpeedUp()
     {
 
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(10);
 
-        if (speed > 1.5f)
+        if (speed > 1.8f)
         {
-            speed = 1.6f;
+            speed = 2.0f;
             StopCoroutine("SpeedUp");
         }
         speed += 0.05f;

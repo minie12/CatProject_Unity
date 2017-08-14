@@ -91,7 +91,6 @@ f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Collec_returnTouch_Category
 3f640b16da9c8c4edae9f3e2af18c2db Assembly-CSharp.dll:.MiniGameScript
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.FeverMovePlayer
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Scenes
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 cac917711d0e84d412d48737b6fc9ae7 UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
 706b890efe0a474d76b40e459ddb3e76 UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset
@@ -124,7 +123,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Mini_BackToMain
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.FeverManager
 9bf0b1e8921423d23f289c4daa8e7a4f Assembly-CSharp.dll:.ColliderCheck
-cfeadf0d1140dddd7e058dc058b11eff Assembly-CSharp.dll:.Main_AudioManager
+b8d831528112ac2d18e495091b69d8be Assembly-CSharp.dll:.Main_AudioManager
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.returnTouch
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Fever_ShakingTail
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.MoveMonster
@@ -140,14 +139,14 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.VR.WSA.Spa
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Shop_returnTouch_infoQuit
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.GameOverManager
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Collec_returnTouch_infoPlacement
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.PlayerMove
+dc4dfa891a745a2a92122430b86bf728 Assembly-CSharp.dll:.PlayerMove
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Setting_returnTouch_goBack
 cf14aff2c076d5b41074e64274fa4bb1 Assembly-CSharp.dll:.ActManager
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Shop_returnTouch_Category
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.FeverMoveMonster
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Collec_returnTouch_Goods
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.FeverMovePlanet
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.mini1_TotalManager
+a788a4bcce61574c74cf68097d2d86ae Assembly-CSharp.dll:.mini1_TotalManager
 3f640b16da9c8c4edae9f3e2af18c2db Assembly-CSharp.dll:.CollectionScript
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
@@ -199,3 +198,9 @@ cffd8c3ba041eccd712047a60b6e9b6f Assembly-CSharp.dll:.DemandManager
 3f640b16da9c8c4edae9f3e2af18c2db Assembly-CSharp.dll:.ShopScript
 c0f970bbe7404e61b6212bba9e01262d Assembly-CSharp.dll:.MouseScore
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.CoroutineManager
+cbafa40e5382f87061f6e2e8cb7ee2ee Assembly-CSharp.dll:.UIManager
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.TotalManager_3
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.MovingBox
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.SpawnBox
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.FeverTime
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Mini3_BackToMain

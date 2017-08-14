@@ -17,6 +17,7 @@ public class PlanetCreate : MonoBehaviour
     GameObject p3 ;
 
     int temp;
+    float sum;
     private int rdnum;
     private float seconds;
 
@@ -27,7 +28,8 @@ public class PlanetCreate : MonoBehaviour
         top = new Vector3(18f, 2.5f, 0);
         bot = new Vector3(18f, -2.5f, 0);
 
-        seconds = 2.3f;
+        sum = 0;
+        seconds = 1.8f;
 
         p1 = GameObject.Find("Planet_1");
         p2 = GameObject.Find("Planet_4");
@@ -71,7 +73,6 @@ public class PlanetCreate : MonoBehaviour
     {
         
             Debug.Log("PlanetOn called and secondes is " + seconds);
-            yield return new WaitForSeconds(seconds);
 
             rdnum = Random.Range(0, 9);
        
@@ -82,14 +83,23 @@ public class PlanetCreate : MonoBehaviour
         temp = rdnum;
 
             planets[rdnum].SetActive(true);
-       
 
-            if (seconds > 1.5f)
+        if (sum <= 15)
+        {
+            seconds = 1.45f;
+        }
+        else if (sum <= 60)
+        { 
+            if (seconds > 1f)
                 seconds -= 0.08f;
-            else if (seconds > 1.0f)
-                seconds -= 0.2f;
             else
-                seconds = 0.9f;
+                seconds = 0.75f;
+        }
+        else
+            seconds = 0.4f;
+
+        yield return new WaitForSeconds(seconds);
+        sum += seconds;
 
         StartCoroutine("planetON");
     }
