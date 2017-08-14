@@ -245,6 +245,7 @@ public class ShopScript : CommonJob
                     }
                     else if(judgeLocked() == true) //언록되어있으면
                     {
+                        MainManager.GetComponent<ChangeCameraPos>().turnOnObj();
                         if (furniture[index] != -1)
                             seal_Buy[i].GetComponent<SpriteRenderer>().sprite = sealSpr;
                         else

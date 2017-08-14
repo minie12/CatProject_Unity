@@ -29,7 +29,7 @@ public class MapMove : MonoBehaviour
         speed = 0.05f;
         lastTileNum = 0;
 
-        tileCenterVec = new Vector3(4.5f, 0, 10f);
+        tileCenterVec = new Vector3(4.5f, 0, 10);
         CreateTiles();
     }
   

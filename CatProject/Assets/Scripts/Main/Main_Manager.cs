@@ -22,10 +22,10 @@ public class Main_Manager : MonoBehaviour
         AudioManager = GameObject.Find("AudioManager");
         //Debug.Log("start at mainMainManager called");
         //오브젝트 찾아서 넣어주기
-        fursprObj[0] = GameObject.Find("Shop_Sprite");
-        fursprObj[1] = GameObject.Find("Collection_Sprite");
-        fursprObj[2] = GameObject.Find("MiniGame_Sprite");
-        fursprObj[3] = GameObject.Find("Setting_Sprite");
+        //fursprObj[0] = GameObject.Find("Shop_Sprite");
+        //fursprObj[1] = GameObject.Find("Collection_Sprite");
+        //fursprObj[2] = GameObject.Find("MiniGame_Sprite");
+        //fursprObj[3] = GameObject.Find("Setting_Sprite");
 
         realFurObj[0] = GameObject.Find("Real_Shop");
         realFurObj[1] = GameObject.Find("Real_Collection");
@@ -63,21 +63,21 @@ public class Main_Manager : MonoBehaviour
 
     //각각의 오브젝트의 콜라이더를 켜 준다
     void turnOnCollider()
-    {
+    {/*
         for (i = 0; i < 4; i++)
         {
             fursprObj[i].GetComponent<BoxCollider2D>().enabled = true;
-        }
+        }*/
     }
 
     //각각의 오브젝트의 콜라이더를 꺼 준다
     void turnOffCollider()
-    {
+    {/*
         for (i = 0; i < 4; i++)
         {
             fursprObj[i].GetComponent<BoxCollider2D>().enabled = false;
         }
-    }
+    */}
 
     void objsetactiveFalse(GameObject[] obj)
     {

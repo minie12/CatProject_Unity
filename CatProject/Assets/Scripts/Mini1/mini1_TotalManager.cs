@@ -17,6 +17,7 @@ public class mini1_TotalManager : MonoBehaviour {
     GameObject TouchPlayer;
 
     GameObject FeverScore;
+    GameObject fever_text;
 
     Sprite[] playerS;
 
@@ -46,10 +47,12 @@ public class mini1_TotalManager : MonoBehaviour {
         FeverManager = GameObject.Find("FeverManager");
         Player = GameObject.Find("Player");
         FeverScore = GameObject.Find("FeverScore");
+        fever_text = GameObject.Find("fever_text");
 
         FeverPlayer = Player.transform.Find("FeverPlayer").gameObject;
         TouchPlayer = GameObject.Find("TouchPlayer");
 
+        fever_text.SetActive(false);
         GAMEOVER.SetActive(false);
         FEVER.SetActive(false);
         FeverPlayer.SetActive(false);
@@ -67,17 +70,22 @@ public class mini1_TotalManager : MonoBehaviour {
     {
         time++;
 
+        if(time == fevertime - 1)
+        {
+            fever_text.SetActive(true);
+        }
+
         if (time == fevertime) //피버타임 준비
         {   // 행성 바깥으로 이동 & 플레이어 중간으로 이동(터치막기)
-
-            Player.GetComponent<PlayerMove>().check = 1;
+            fever_text.SetActive(false);
+            TouchPlayer.GetComponent<PlayerMove>().check = 1;
 
             FeverPlayer.SetActive(true);
             GameManager.GetComponent<PlanetCreate>().Fever();
             GameManager.GetComponent<ReadyFever>().ready();
             GameManager.GetComponent<MouseCreate>().MouseOFF();
 
-            //Player.SetActive(false);
+            TouchPlayer.SetActive(false);
         }
 
 
@@ -109,8 +117,9 @@ public class mini1_TotalManager : MonoBehaviour {
         }
         if (time >= fevertime + 11)
         {
-            //TouchPlayer.SetActive(true);
-            Player.GetComponent<PlayerMove>().check = 0;
+            TouchPlayer.SetActive(true);
+            TouchPlayer.GetComponent<PlayerMove>().check = 0;
+            TouchPlayer.transform.position = new Vector3(0, 0, -1);
 
             gameObject.GetComponent<TotalScore>().FScore();
 

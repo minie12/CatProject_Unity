@@ -10,28 +10,23 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         Player = GameObject.Find("Player");
-        check = 0;
     }
-    private void OnMouseDown()
-    {
-        Debug.Log("onmousedown");
-    }
+
+    
 
     void OnMouseDrag()
     {
-        Debug.Log("onmousedrag");
+        Debug.Log("onmousedown");
         if (check == 0)
         {
             Vector2 mouseDragPosition = new Vector2(550, Input.mousePosition.y);
             Vector2 worldObjectPosition = Camera.main.ScreenToWorldPoint(mouseDragPosition);
-            Player.transform.position = worldObjectPosition;
+           
+                Player.transform.position = worldObjectPosition;
+            this.transform.position = worldObjectPosition;
+            
         }
         else { }
               
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
     }
 }

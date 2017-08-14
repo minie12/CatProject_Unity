@@ -138,7 +138,7 @@ public class Minigame3_Mananger : MonoBehaviour {
     {
         yield return new WaitForSeconds(playTime);
         FeverSign.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         FeverSign.SetActive(false);
         callFeverTime();
         yield return new WaitForSeconds(feverTime);

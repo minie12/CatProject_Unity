@@ -6,6 +6,8 @@ using UnityEngine;
 public class FurManager : MonoBehaviour
 {
 
+	Sprite furspr;
+
     int fursize = 14;
     public float waitTime = 1;
 
@@ -17,6 +19,7 @@ public class FurManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		furspr = Resources.Load<Sprite> ("Pic_3/fur");
         GameObject inst_fur = gameObject.transform.Find("Cat_furs").gameObject;
         GameManager = GameObject.Find("GameManager");
 
@@ -40,8 +43,9 @@ public class FurManager : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         if (fur_q.Count != 0)
         {
-            GameObject fur = fur_q.Dequeue();
+			GameObject fur = fur_q.Dequeue ();
             fur.SetActive(true);
+			fur.GetComponent<SpriteRenderer> ().sprite = furspr;
             fur.GetComponent<GetClick_fur>().settingPos();
             GameManager.GetComponent<TotalManager>().TotalFurNum++;
             GameManager.GetComponent<TotalManager>().appearFurText();

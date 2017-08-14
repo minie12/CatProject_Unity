@@ -53,3 +53,27 @@ TagManager:
   - name: scene
     uniqueID: 503760219
     locked: 0
+  - name: Furniture
+    uniqueID: 558192485
+    locked: 0
+  - name: Cat
+    uniqueID: 786928531
+    locked: 0
+  - name: Menu_Select
+    uniqueID: 2576202869
+    locked: 0
+  - name: System_bg
+    uniqueID: 804086801
+    locked: 0
+  - name: System_Layer1
+    uniqueID: 19425985
+    locked: 0
+  - name: System_Layer2
+    uniqueID: 864484177
+    locked: 0
+  - name: System_Layer3
+    uniqueID: 1264529621
+    locked: 0
+  - name: System_Layer4
+    uniqueID: 2641635035
+    locked: 0

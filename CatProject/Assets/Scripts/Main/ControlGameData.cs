@@ -32,10 +32,12 @@ public class ControlGameData : MonoBehaviour
         //PlayerPrefs.DeleteAll();
         //Debug.Log("controlgamedata !");
         Load();
+
+		money += 10000;
     }
 
     //어플리케이션을 끌 때
-    void saveforFinish()
+    public void saveforFinish()
     {
         PlayerPrefs.SetString("Playnum", makeString(playnum));
         PlayerPrefs.SetString("Buycat", makeString(buycat));

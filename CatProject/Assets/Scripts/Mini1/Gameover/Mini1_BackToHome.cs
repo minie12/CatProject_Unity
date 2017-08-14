@@ -25,6 +25,7 @@ public class Mini1_BackToHome : MonoBehaviour
         //스코어 세팅
         money += TotalManager.GetComponent<TotalScore>().totalS;
         DataManager.GetComponent<ControlGameData>().setMoney(money);
+        DataManager.GetComponent<PuzzleManager>().setting_Puzzle(TotalManager.GetComponent<TotalScore>().totalS);
         //퍼즐 체크해서 저장
         if (gameObject.name == "Button_home")
         {

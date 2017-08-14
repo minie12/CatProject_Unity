@@ -5,6 +5,8 @@ using UnityEngine;
 //털이 움직이고 + 클릭을 감지하면 상위클래스의 큐에 들어갈 수 있게 함수를 호출함
 public class GetClick_fur : MonoBehaviour
 {
+	
+	Sprite clickedfur;
     GameObject parentObj;
     GameObject AudioManager;
 
@@ -25,6 +27,7 @@ public class GetClick_fur : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		clickedfur = Resources.Load<Sprite> ("Pic_3/fur_touch");
         parentObj = gameObject.GetComponent<Transform>().parent.gameObject;
         AudioManager = GameObject.Find("AudioManager");
 
@@ -50,13 +53,8 @@ public class GetClick_fur : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (effectvolume != 0)
-        {
-            AudioSource.PlayClipAtPoint(furdisappear, volVector);
-
-        }
-        parentObj.GetComponent<FurManager>().GetObj(gameObject);
-
+        
+		StartCoroutine (disappearfur ());
 
     }
 
@@ -69,12 +67,16 @@ public class GetClick_fur : MonoBehaviour
         canMoving = true;
     }
 
-    /*IEnumerator disappearfur()
+    IEnumerator disappearfur()
     {
+		
+		if (effectvolume != 0)
+		{
+			AudioSource.PlayClipAtPoint(furdisappear, volVector);
 
-        AudioSource.PlayClipAtPoint(furdisappear, volVector);
-        yei
-        
-
-    }*/
+		}
+		gameObject.GetComponent<SpriteRenderer> ().sprite = clickedfur;
+		yield return new WaitForSeconds(0.15f);
+		parentObj.GetComponent<FurManager>().GetObj(gameObject);
+    }
 }
