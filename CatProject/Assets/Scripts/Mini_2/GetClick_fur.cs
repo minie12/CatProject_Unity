@@ -53,9 +53,7 @@ public class GetClick_fur : MonoBehaviour
 
     private void OnMouseDown()
     {
-        
 		StartCoroutine (disappearfur ());
-
     }
 
     public void settingPos()

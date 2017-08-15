@@ -16,8 +16,8 @@ public class ChangeCameraPos : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        Arrow[0] = GameObject.Find("Arrow_goright");
-        Arrow[1] = GameObject.Find("Arrow_goleft");
+        Arrow[0] = GameObject.Find("Arrow_right");
+        Arrow[1] = GameObject.Find("Arrow_left");
         Camera = GameObject.Find("MainCamera");
         //CameraArrow = GameObject.Find("CameraArrow");
         //ArrowUI = GameObject.Find("CameraArrow").GetComponent<Button>();
@@ -27,26 +27,31 @@ public class ChangeCameraPos : MonoBehaviour {
 	}
 
     public void turnOnObj()
-    {
+    { 
         //CameraArrow.SetActive(true);
         Arrow[0].SetActive(true);
         Arrow[1].SetActive(true);
 
     }
+    public void turnOffObj()
+    {
+        Arrow[0].SetActive(false);
+        Arrow[1].SetActive(false);
+    }
 	
 	public void ChangePos()
     {
-        Debug.Log("called");
+        //Debug.Log("called");
         if (Camera.transform.localPosition.x < 10)
         {
             //CameraArrow.GetComponent<Transform>().Rotate(new Vector3(0, 180, 0));
-			Camera.transform.Translate(-20, 0, 0);
+			Camera.transform.Translate(+20, 0, 0);
 
         }
         else
         {
             //CameraArrow.GetComponent<Transform>().Rotate(new Vector3(0, 180, 0));
-			Camera.transform.Translate(+20, 0, 0);
+			Camera.transform.Translate(-20, 0, 0);
         }
         
     }
@@ -59,12 +64,27 @@ public class ChangeCameraPos : MonoBehaviour {
         {
             if (furniture[j] == -1)
                 unlockcondition = false;//하나라도 앞 네개 중 구매 안 한 것 있으면 언록시키기
-
+            //Debug.Log(unlockcondition);
         }
-
-        if(unlockcondition == true)
+        //Debug.Log(unlockcondition);
+        if (unlockcondition == true)
         {
+            //Debug.Log("True!");
             turnOnObj();
         }
+        else
+            turnOffObj();
+    }
+
+    public bool returnLocked()
+    {
+        furniture = DataManager.GetComponent<ControlGameData>().getFurniture();
+        bool unlockcondition = true; // 일단 언록되어있다고 가정되고
+        for (int j = 0; j < 4; j++)
+        {
+            if (furniture[j] == -1)
+                unlockcondition = false;//하나라도 앞 네개 중 구매 안 한 것 있으면 언록시키기
+        }
+        return unlockcondition;
     }
 }

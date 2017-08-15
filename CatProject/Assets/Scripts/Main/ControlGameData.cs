@@ -23,6 +23,7 @@ public class ControlGameData : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        Load();
     }
 
     //파일에서 받아와서 수행한다.
@@ -31,9 +32,10 @@ public class ControlGameData : MonoBehaviour
     {
         //PlayerPrefs.DeleteAll();
         //Debug.Log("controlgamedata !");
-        Load();
+        
 
-		money += 10000;
+
+		//money += 100000;
     }
 
     //어플리케이션을 끌 때

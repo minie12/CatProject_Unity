@@ -57,7 +57,7 @@ public class Main_AudioManager : MonoBehaviour
     {
         audioPlay = gameObject.GetComponent<AudioSource>();
         DataManager = GameObject.Find("DataManager");
-        Debug.Log("Awake called");
+        //Debug.Log("Awake called");
 
         //bgm
         MainBGM = Resources.Load<AudioClip>("Sounds/Main/Main_BGM");
@@ -87,7 +87,7 @@ public class Main_AudioManager : MonoBehaviour
 
 
         //audioPlay.clip = MainBGM;
-        Debug.Log(SceneManager.GetActiveScene().name);
+        //Debug.Log(SceneManager.GetActiveScene().name);
 
         switch (SceneManager.GetActiveScene().name)
         {

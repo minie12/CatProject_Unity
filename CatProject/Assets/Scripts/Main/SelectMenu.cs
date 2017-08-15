@@ -9,6 +9,7 @@ public class SelectMenu : MonoBehaviour
     //아니면 각자를 켜고+선택지는 끄고
     //돌아가기 버튼이면 콜라이더 다 켜고 + 선택지 끄고
 
+    GameObject MenuObj;
     GameObject mainManager;
     GameObject DataManager;
     GameObject SelectObj;
@@ -29,6 +30,7 @@ public class SelectMenu : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        MenuObj = GameObject.Find("Menu");
         mainManager = GameObject.Find("MainManager");
         DataManager = GameObject.Find("DataManager");
 
@@ -75,6 +77,8 @@ public class SelectMenu : MonoBehaviour
             //furnitureSpr[i][1] = Resources.Load<Sprite>(tempdir + "_selected");
         }
         */
+
+        MenuObj.SetActive(true);
     }
 
     //내가 터치한 게 어떤 애인지 체크
@@ -109,15 +113,18 @@ public class SelectMenu : MonoBehaviour
         {
             SelectObj.SetActive(true);
             GooutSelect.SetActive(true);
+            MenuObj.GetComponent<BoxCollider2D>().enabled = false;
         }
         else if (selectedIndex == 5)
         {
             SelectObj.SetActive(false);
             GooutSelect.SetActive(false);
+            MenuObj.GetComponent<BoxCollider2D>().enabled = true;
         }
 
-        else if(selectedIndex == -1)
+        else if(selectedIndex == -1) //게임 종료
         {
+            MenuObj.GetComponent<BoxCollider2D>().enabled = true;
             DataManager.GetComponent<ControlGameData>().saveforFinish();
             Application.Quit();
         }
@@ -126,6 +133,8 @@ public class SelectMenu : MonoBehaviour
             SelectObj.SetActive(false);
             GooutSelect.SetActive(false);
             mainManager.GetComponent<Main_Manager>().doyourJob(selectedIndex);
+            MenuObj.GetComponent<BoxCollider2D>().enabled = true;
+            MenuObj.SetActive(false);
         }
             
 

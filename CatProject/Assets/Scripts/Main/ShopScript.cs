@@ -65,14 +65,14 @@ public class ShopScript : CommonJob
     {
         base.Start();
 
-        catCost[0] = 2000;  furnitureCost[0] = 2000;
-        catCost[1] = 3000;  furnitureCost[1] = 3000;
-        catCost[2] = 4500;  furnitureCost[2] = 4000;
-        catCost[3] = 6500;  furnitureCost[3] = 5000;
-        catCost[4] = 8000;  furnitureCost[4] = 7000;
-        catCost[5] = 9000;  furnitureCost[5] = 8000;
-        catCost[6] = 10000;  furnitureCost[6] = 10000;
-        catCost[7] = 12000;  furnitureCost[7] = 6500;
+        catCost[0] = 6000;  furnitureCost[0] = 7000;
+        catCost[1] = 8000;  furnitureCost[1] = 8000;
+        catCost[2] = 10000;  furnitureCost[2] = 9000;
+        catCost[3] = 12000;  furnitureCost[3] = 10000;
+        catCost[4] = 14000;  furnitureCost[4] = 12000;
+        catCost[5] = 16000;  furnitureCost[5] = 13000;
+        catCost[6] = 18000;  furnitureCost[6] = 15000;
+        catCost[7] = 20000;  furnitureCost[7] = 16000;
 
         AudioManager = GameObject.Find("AudioManager");
         canBuy = AudioManager.GetComponent<Main_AudioManager>().Shop_buy;

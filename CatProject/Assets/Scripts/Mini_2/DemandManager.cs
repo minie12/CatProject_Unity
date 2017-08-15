@@ -21,12 +21,17 @@ public class DemandManager : MonoBehaviour
 
     bool trysatisfy = false;
 
+    bool nowDownScale;
+    bool nowUpScale;
+
     public Sprite[] demandSprite = new Sprite[3];
     public Sprite[] feelSprite = new Sprite[4];
     Sprite[][] catfeeling = new Sprite[4][];
 
     Sprite cat_WrongAct;
     Sprite demand_WrongAct;
+
+    GameObject[] DarkDemand = new GameObject[2];
 
 
     public GameObject demandObject;
@@ -50,6 +55,7 @@ public class DemandManager : MonoBehaviour
         effectVector = AudioManager.GetComponent<Main_AudioManager>().effectVector;
         effectvolume = AudioManager.GetComponent<Main_AudioManager>().effectVol;
 
+        
 
         demandSprite[0] = Resources.Load<Sprite>("Pic_3/want_brush");
         demandSprite[1] = Resources.Load<Sprite>("Pic_3/want_can");
@@ -84,6 +90,7 @@ public class DemandManager : MonoBehaviour
             catfeeling[i][1] = Resources.Load<Sprite>(nowfiledir + "2");
 
         }
+        
 
         cat_WrongAct = Resources.Load<Sprite>(filedir + "wrongact");
         demand_WrongAct = Resources.Load<Sprite>("Pic_3/Wrong_demand");
@@ -92,6 +99,9 @@ public class DemandManager : MonoBehaviour
         catsprObject = gameObject.transform.Find("CatSprite").gameObject;
         feelObject = gameObject.transform.Find("CatSprite").gameObject.transform.Find("Cat_feel").gameObject;
 
+        DarkDemand[0] = demandObject.transform.Find("Pivot_Darkdown").gameObject;//deGameObject.Find;
+        DarkDemand[1] = demandObject.transform.Find("Pivot_Darkup").gameObject;
+
         actManager = GameObject.Find("Acts");
 
         demandObject.GetComponent<SpriteRenderer>().sprite = null;
@@ -99,6 +109,28 @@ public class DemandManager : MonoBehaviour
         StartCoroutine("shakingTail");
 
         StartCoroutine(appearDemand());
+    }
+
+    private void FixedUpdate()
+    {
+        if(nowDownScale == true)
+        {
+            DarkDemand[0].transform.localScale += new Vector3(0,0.7f * Time.deltaTime,0);
+            if(DarkDemand[0].transform.localScale.y>=1)
+            {
+                nowUpScale = true;
+                nowDownScale = false;
+            }
+        }
+        else if(nowUpScale == true)
+        {
+            DarkDemand[1].transform.localScale += new Vector3(0, 0.3f * Time.deltaTime, 0);
+            if (DarkDemand[1].transform.localScale.y >= 1)
+            {
+                nowUpScale = false;
+                nowDownScale = false;
+            }
+        }
     }
 
     public void isRightAct()
@@ -122,10 +154,10 @@ public class DemandManager : MonoBehaviour
                 if (effectvolume != 0)
                     AudioSource.PlayClipAtPoint(feelingBad, effectVector);
             }
-
+            DarkDemandSetting();
             trysatisfy = true;
             indexnum = -1;
-            
+
 
         }
         else
@@ -186,10 +218,14 @@ public class DemandManager : MonoBehaviour
     public IEnumerator appearDemand()
     {
         trysatisfy = false;
+        DarkDemandSetting();
         yield return new WaitForSeconds(waitTime);
         indexnum = (int)Random.Range(0, 3);
         demandObject.GetComponent<SpriteRenderer>().sprite = demandSprite[indexnum];
+        nowDownScale = true;
+        Debug.Log("In " + gameObject.name + ", it's instance id is"+gameObject.GetInstanceID()+ "nowdownscale is " + nowDownScale);
         yield return new WaitForSeconds(demandTime);
+        DarkDemandSetting();
         indexnum = -1;
         if (trysatisfy != true) // 아예 클릭조차 못 했을 때
         {
@@ -200,6 +236,14 @@ public class DemandManager : MonoBehaviour
         StartCoroutine(appearDemand());
     }
 
+    void DarkDemandSetting()
+    {
+        nowDownScale = false;
+        nowUpScale = false;
+        DarkDemand[0].transform.localScale = new Vector3(1,0,1);
+        DarkDemand[1].transform.localScale = new Vector3(1, 0, 1);
+    }
+
     //잘못된 요구사항 충족
     IEnumerator WrongAct()
     {
@@ -207,6 +251,7 @@ public class DemandManager : MonoBehaviour
         demandObject.GetComponent<SpriteRenderer>().sprite = demand_WrongAct;
         catsprObject.GetComponent<SpriteRenderer>().sprite = cat_WrongAct;
         yield return new WaitForSeconds(0.5f);
+        DarkDemandSetting();
         demandObject.GetComponent<SpriteRenderer>().sprite = null;
         StartCoroutine("shakingTail");
 

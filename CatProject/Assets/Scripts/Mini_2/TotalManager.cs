@@ -10,6 +10,8 @@ public class TotalManager : MonoBehaviour
     float gameOverTime;
     float setgameoverTimer;
 
+    Scrollbar DustBar;
+    GameObject Handle;
     Text FurText;
     Text GameOverText;
 
@@ -17,7 +19,11 @@ public class TotalManager : MonoBehaviour
 
     GameObject MiniGame3_Manager;
 
-    
+    Color green;
+    Color yellow;
+    Color orange;
+    Color red;
+
 
     // Use this for initialization
     void Start()
@@ -30,6 +36,13 @@ public class TotalManager : MonoBehaviour
 
         FurText = GameObject.Find("FurText").GetComponent<Text>();
         GameOverText = GameObject.Find("GameOverTimer").GetComponent<Text>();
+
+        DustBar = GameObject.Find("DustBar").GetComponent<Scrollbar>();
+        Handle = DustBar.transform.Find("SlidingArea").gameObject.transform.Find("Handle").gameObject;
+        green = new Color(158f/255f, 229f/255f, 64f/255f,255/255);
+        yellow = new Color(240f/255f, 228f/255f, 72f/255f, 255/255);
+        orange = new Color(249f/255f, 146f/255f, 66f/255f, 255/255);
+        red = new Color(236f/255f, 104f/255f, 104f/255f, 255/255);
 
         MiniGame3_Manager = GameObject.Find("MainCamera");
 
@@ -70,6 +83,36 @@ public class TotalManager : MonoBehaviour
     public void appearFurText()
     {
         FurText.text = TotalFurNum.ToString();
+        switch (TotalFurNum/3)
+        {
+            case 0:
+                Handle.GetComponent<Image>().color = green;
+                //Handle.GetComponent<Image>().color = Color.green ;
+                break;
+            case 1:
+            case 2:
+                Handle.GetComponent<Image>().color = yellow;
+                //Handle.GetComponent<Image>().color = Color.yellow;
+                break;
+            case 3:
+                Handle.GetComponent<Image>().color = orange;
+                //Handle.GetComponent<Image>().color = Color.blue;
+                break;
+            default:
+                Handle.GetComponent<Image>().color = red;
+                //Handle.GetComponent<Image>().color = Color.red;
+                break;
+
+        }
+        Debug.Log(Handle.GetComponent<Image>().color);
+        float barsize;
+        if (TotalFurNum >= 12)
+            barsize = 1;
+        else
+        {
+            barsize = (float)TotalFurNum / 12f;
+        }
+        DustBar.GetComponent<Scrollbar>().size = barsize;
     }
 
     public IEnumerator countSeconds()

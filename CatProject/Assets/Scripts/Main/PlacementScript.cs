@@ -41,10 +41,7 @@ public class PlacementScript : MonoBehaviour {
     void Start() {
         DataManager = GameObject.Find("DataManager");
 
-        furniturePos = new List<Vector3>();
-        freePos_lock = new List<Vector3>();
-        freePos_unlock = new List<Vector3>();
-        catPlacement = new List<Vector3>();
+        
 
         for (i = 0; i < 8; i++)
         {
@@ -56,6 +53,28 @@ public class PlacementScript : MonoBehaviour {
                 catSprite[i][j] = Resources.Load<Sprite>("Main/CatSprite/Cat_" + i + "/Cat_" + i + "_" + j);
             }
         }
+
+        SettingPos();
+
+        furniture_alloc[0] = 1;
+        furniture_alloc[1] = 2;
+        furniture_alloc[2] = 1;
+        furniture_alloc[3] = 1;
+        furniture_alloc[4] = 1;
+        furniture_alloc[5] = 2;
+        furniture_alloc[6] = 4;
+        furniture_alloc[7] = 2;
+
+        DataManager.GetComponent<ControlGameData>().Start();
+        Placement();
+    }
+
+    void SettingPos()
+    {
+        furniturePos = new List<Vector3>();
+        freePos_lock = new List<Vector3>();
+        freePos_unlock = new List<Vector3>();
+        catPlacement = new List<Vector3>();
 
         //furniturePos,freePos_lock과 freePos_unlock은 여기서 세팅
         furniturePos.Add(new Vector3(2, -0.6f, 0)); //0
@@ -74,7 +93,7 @@ public class PlacementScript : MonoBehaviour {
         furniturePos.Add(new Vector3(23f, -3.8f, 0));//13
 
         freePos_unlock.Add(new Vector3(8.35f, -0.35f, 0));
-        freePos_unlock.Add(new Vector3(-2.8f, -3.01f, 0));
+        freePos_unlock.Add(new Vector3(-0.5f, -3.01f, 0));
         freePos_unlock.Add(new Vector3(1.8f, -4f, 0));
         freePos_unlock.Add(new Vector3(-6.15f, 0f, 0));
         freePos_unlock.Add(new Vector3(12.3f, -4.2f, 0));
@@ -83,25 +102,13 @@ public class PlacementScript : MonoBehaviour {
         freePos_unlock.Add(new Vector3(26.5f, -0.3f, 0));
 
         freePos_lock.Add(new Vector3(8.35f, -0.35f, 0));
-        freePos_lock.Add(new Vector3(-2.8f, -3.01f, 0));
+        freePos_lock.Add(new Vector3(-0.5f, -3.01f, 0));
         freePos_lock.Add(new Vector3(1.8f, -4f, 0));
         freePos_lock.Add(new Vector3(4.85f, -4f, 0));
         freePos_lock.Add(new Vector3(-3.45f, 0f, 0));
         freePos_lock.Add(new Vector3(-8f, -3.5f, 0));
         freePos_lock.Add(new Vector3(-6.15f, 0f, 0));
         freePos_lock.Add(new Vector3(4f, 0f, 0));
-
-        furniture_alloc[0] = 1;
-        furniture_alloc[1] = 2;
-        furniture_alloc[2] = 1;
-        furniture_alloc[3] = 1;
-        furniture_alloc[4] = 1;
-        furniture_alloc[5] = 2;
-        furniture_alloc[6] = 4;
-        furniture_alloc[7] = 2;
-
-        DataManager.GetComponent<ControlGameData>().Start();
-        Placement();
     }
 
     void getData()
@@ -113,6 +120,7 @@ public class PlacementScript : MonoBehaviour {
 
     public void Placement()
     {
+        SettingPos();
         getData(); //데이터를 다시 읽어옴
         judgeLocked();
         allocation = 0;
@@ -137,12 +145,12 @@ public class PlacementScript : MonoBehaviour {
 			else
 				nowIndex[i] = nowIndex[i-1] + furniture_alloc[i];
 
-			if(i!=0)
-				Debug.Log ("i is " + i + "and nowindex is :" + nowIndex [i] + ", and nowIndex[i-1] is " + nowIndex [i - 1]);
+			//if(i!=0)
+			//	Debug.Log ("i is " + i + "and nowindex is :" + nowIndex [i] + ", and nowIndex[i-1] is " + nowIndex [i - 1]);
 
             if(furniture[i] == 1)
             {
-                //Debug.Log("furniture" + furniture[i] + "i " + i);
+                //Debug.Log("furniture i" + furniture[i] + "i " + i);
                 allocation += furniture_alloc[i];
                 furnitureObj[i].SetActive(true);
 
@@ -150,7 +158,7 @@ public class PlacementScript : MonoBehaviour {
                 {
 					for (int j = nowIndex [i - 1]; j < nowIndex [i]; j++) {
 						catPlacement.Add(furniturePos[j]);
-						Debug.Log ("i is " + j + "and furniturePos is +" + furniturePos [j]);
+						//Debug.Log ("i is " + j + "and furniturePos is +" + furniturePos [j]);
 					}
                         
                 }
@@ -184,7 +192,7 @@ public class PlacementScript : MonoBehaviour {
             //고양이가 배치 설정 된 고양이일 경우에만
             if (buycat[i] == 1)
             {
-                Debug.Log("CatPlacementcount is"+ catPlacement.Count);
+                //Debug.Log("CatPlacementcount is"+ catPlacement.Count);
                 int posIndex = Random.Range(0, catPlacement.Count);
 				//catObj[i].transform.localposition = catPlacement[posIndex];
 				catObj[i].transform.localPosition = catPlacement[posIndex];

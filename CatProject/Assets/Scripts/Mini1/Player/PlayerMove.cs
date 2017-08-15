@@ -16,7 +16,7 @@ public class PlayerMove : MonoBehaviour
 
     void OnMouseDrag()
     {
-        Debug.Log("onmousedown");
+        //Debug.Log("onmousedown");
         if (check == 0)
         {
             Vector2 mouseDragPosition = new Vector2(550, Input.mousePosition.y);

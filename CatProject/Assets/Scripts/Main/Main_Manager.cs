@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class Main_Manager : MonoBehaviour
 {
-
+    GameObject MenuObj;
     GameObject AudioManager;
     GameObject DataManager;
-
-    GameObject[] fursprObj = new GameObject[4];
+    
+    //GameObject[] fursprObj = new GameObject[4];
     GameObject[] realFurObj = new GameObject[4];
 
     int i;
@@ -18,7 +18,7 @@ public class Main_Manager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        MenuObj = GameObject.Find("Menu");
         AudioManager = GameObject.Find("AudioManager");
         //Debug.Log("start at mainMainManager called");
         //오브젝트 찾아서 넣어주기
@@ -49,12 +49,13 @@ public class Main_Manager : MonoBehaviour
         //Debug.Log("nowactiveindex is "+nowactiveIndex);
         realFurObj[objindex].SetActive(true);
         realFurObj[objindex].GetComponent<CommonJob>().initial();
-        
+
     }
 
     //켜져있던 오브젝트를 끄고, 콜라이더를 다 켜준다.
     public void backtoMain()
     {
+        MenuObj.SetActive(true);
         turnOnCollider();
         Debug.Log("nowactiveindex is " + nowactiveIndex);
         realFurObj[nowactiveIndex].SetActive(false);
@@ -68,6 +69,12 @@ public class Main_Manager : MonoBehaviour
         {
             fursprObj[i].GetComponent<BoxCollider2D>().enabled = true;
         }*/
+        if (gameObject.GetComponent<ChangeCameraPos>().returnLocked() == true)
+        {
+
+            gameObject.GetComponent<ChangeCameraPos>().turnOnObj();
+        }
+        
     }
 
     //각각의 오브젝트의 콜라이더를 꺼 준다
@@ -77,7 +84,13 @@ public class Main_Manager : MonoBehaviour
         {
             fursprObj[i].GetComponent<BoxCollider2D>().enabled = false;
         }
-    */}
+    */
+        if (gameObject.GetComponent<ChangeCameraPos>().returnLocked() == true)
+        {
+
+            gameObject.GetComponent<ChangeCameraPos>().turnOffObj();
+        }
+    }
 
     void objsetactiveFalse(GameObject[] obj)
     {

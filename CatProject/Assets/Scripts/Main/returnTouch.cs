@@ -13,6 +13,7 @@ public class returnTouch : MonoBehaviour {
     void OnMouseDown()
     {
         mainObj.GetComponent<SelectMenu>().judgeSelect(gameObject);
+        
     }
     
 }

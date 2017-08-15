@@ -21,7 +21,7 @@ public class CollectionScript : CommonJob
     GameObject[] PuzzleArrow = new GameObject[2];
 
     GameObject InfoObj;
-    GameObject InfoButton_Exit;
+    //GameObject InfoButton_Exit;
     GameObject InfoButton_Placement;
 
     Sprite[] BaseSpr = new Sprite[4];
@@ -112,7 +112,7 @@ public class CollectionScript : CommonJob
 
 
         InfoObj = GameObject.Find("Collection_Info");
-        InfoButton_Exit = GameObject.Find("Exit_Button");
+        //InfoButton_Exit = GameObject.Find("Exit_Button");
         InfoButton_Placement = GameObject.Find("Placement_Button");
 
         placementSpr[0] = Resources.Load<Sprite>("Main/CollectionSprite/Collection_info_placement");
@@ -276,7 +276,7 @@ public class CollectionScript : CommonJob
     {
         string sprname = PuzzleBaseObj.GetComponent<SpriteRenderer>().sprite.name;
         int nowIndex = int.Parse(sprname.Substring(sprname.Length - 1));
-        //Debug.Log(nowIndex);
+        Debug.Log(dir);
         if (dir == "Left")
         {
             if (nowIndex != 0)
@@ -343,6 +343,8 @@ public class CollectionScript : CommonJob
         Debug.Log(playnum[num]);
         if (playnum[num] != 0)
             IntroObj.GetComponent<ShowingIntro>().callingIntro(gameObject, num);
+        else
+            turnOnCollider("Story");
     }
 
     public void finishStory()
