@@ -65,13 +65,15 @@ public class PuzzleManager : MonoBehaviour
         myplaynum = totalplaynum[sceneIndex / 2];
         Debug.Log("myPlaynum is " + myplaynum);
 
-        getPuzzle_Playnum();
+        if(myscore>300)
+            getPuzzle_Playnum();
         getPuzzle_Score(myscore);
 
+        /*
         for (i = 0; i < 6; i++)
         {
             Debug.Log("i val is " + datapuzzle[i]);
-        }
+        }*/
 
 
         gameObject.GetComponent<ControlGameData>().setPuzzle(datapuzzle);
@@ -79,6 +81,7 @@ public class PuzzleManager : MonoBehaviour
 
     }
 
+    //플레이횟수 따른 퍼즐획득
     void getPuzzle_Playnum()
     {
         System.Array.Clear(tempPuzzle, 0, tempPuzzle.Length);
@@ -122,6 +125,7 @@ public class PuzzleManager : MonoBehaviour
         
     }
 
+    //점수에 따른 퍼즐획득
     void getPuzzle_Score(int myscore)
     {
         System.Array.Clear(tempPuzzle, 0, tempPuzzle.Length);

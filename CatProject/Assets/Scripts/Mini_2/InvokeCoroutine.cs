@@ -17,10 +17,13 @@ public class InvokeCoroutine : MonoBehaviour {
     {
         StartCoroutine(GameManager.GetComponent<TotalManager>().countSeconds());
         StartCoroutine(CatManager.GetComponent<CatManager>().appearCat());
+        if (GameManager.GetComponent<TotalManager>().gameBonus != 0)
+            StartCoroutine(GameManager.GetComponent<TotalManager>().GameBonus());
 
         for (int i=0;i< CatManager.GetComponent<CatManager>().nowCat; i++)
         {
             GameObject tempcat = CatManager.GetComponent<CatManager>().CatList[i];
+            
             if(tempcat.activeInHierarchy == true)
             {
                 StartCoroutine(tempcat.GetComponent<FurManager>().appearFur());

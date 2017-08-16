@@ -18,8 +18,10 @@ public class MovingBox : MonoBehaviour
     //sprites
     Sprite boxSpr;
     Sprite catSpr;
+    Sprite catFallSpr;
     Sprite[] toySpr = new Sprite[3];
     Sprite[] fakeSpr = new Sprite[3];
+    Sprite[] fakeFallSpr = new Sprite[3];
     Sprite presentSpr;
     Sprite mySprite; // used to determine which sprite the object is
 
@@ -55,11 +57,14 @@ public class MovingBox : MonoBehaviour
         {
             toySpr[i] = Resources.Load<Sprite>("Sprites/Item/Object_toy_" + (i + 1));
             fakeSpr[i] = Resources.Load<Sprite>("Sprites/Item/Object_fake_" + (i + 1));
+            fakeFallSpr[i] = Resources.Load<Sprite>("Sprites/Item/Object_fake_" + (i + 1) + "_drop");
             catWalking[i] = Resources.Load<Sprite>("Sprites/Cat_white_" + (i + 1));
         }
         toySpr[2] = Resources.Load<Sprite>("Sprites/Item/Object_toy_" + 3);
         fakeSpr[2] = Resources.Load<Sprite>("Sprites/Item/Object_fake_" + 3);
+        fakeFallSpr[2] = Resources.Load<Sprite>("Sprites/Item/Object_fake_" + 3 + "_drop");
         catSpr = Resources.Load<Sprite>("Sprites/Item/Object_cat_white");
+        catFallSpr = Resources.Load<Sprite>("Sprites/Item/Object_cat_white_drop");
         presentSpr = Resources.Load<Sprite>("Sprites/fever_score");
         boxSpr = Resources.Load<Sprite>("Sprites/Item/Object_box");
         dustSpr = Resources.Load<Sprite>("Sprites/Dust");
@@ -83,12 +88,12 @@ public class MovingBox : MonoBehaviour
 
         if (isUp == true)
         {
-            endPos = new Vector3(5.1f, 3.9f, 0);
-            gameObject.transform.position = Vector2.MoveTowards(startPos, endPos, (18 + speed) * Time.deltaTime);
+            endPos = new Vector3(7, 4.25f, 0);
+            gameObject.transform.position = Vector2.MoveTowards(startPos, endPos, (25 + speed) * Time.deltaTime);
 
             if (objPosition_x > 5)
             {
-                dust.transform.position = endPos;
+                dust.transform.position = new Vector3(5.5f, 3.8f, 0);
                 StartCoroutine("DustEffect");
                 isUp = false;
             }
@@ -97,11 +102,11 @@ public class MovingBox : MonoBehaviour
         else if (isDown == true)
         {
             endPos = new Vector3(5.1f, -1.45f, 0);
-            gameObject.transform.position = Vector2.MoveTowards(startPos, endPos, (18 + speed) * Time.deltaTime);
+            gameObject.transform.position = Vector2.MoveTowards(startPos, endPos, (25 + speed) * Time.deltaTime);
 
             if (objPosition_x > 5)
             {
-                dust.transform.position = endPos;
+                dust.transform.position = new Vector3(5.5f, -2.1f, 0);
                 StartCoroutine("DustEffect");
                 isDown = false;
             }
@@ -120,13 +125,14 @@ public class MovingBox : MonoBehaviour
         }
     }
 
+    //dust on when the box is placed on the shelf/belt
     IEnumerator DustEffect()
     {
         dust.GetComponent<SpriteRenderer>().sprite = dustSpr;
         //PutBoxDown@@@@
         if (effectvolume != 0)
             AudioSource.PlayClipAtPoint(PutBoxDown, volVector);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
         dust.GetComponent<SpriteRenderer>().sprite = null;
     }
 
@@ -158,133 +164,146 @@ public class MovingBox : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.45f);
             walkindex = (walkindex + 1) % 2;
             gameObject.GetComponent<SpriteRenderer>().sprite = catWalking[walkindex];
+            yield return new WaitForSeconds(0.45f);
         }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.name == "Spawning") //spawning new box
+        switch (other.gameObject.name)
         {
-            if (mySprite == boxSpr)
-            {
-                GameObject.Find("Warehouse").GetComponent<SpawnBox>().CallBox();
-            }
-        }
+            case "Spawning":
+                if (mySprite == boxSpr)
+                {
+                    GameObject.Find("Warehouse").GetComponent<SpawnBox>().CallBox();
+                }
+                break;
 
-        if (other.gameObject.name == "BoxTo") //turning box to item
-        {
-            if (mySprite == boxSpr)
-            {
-                ChooseSprite();
-            }
-        }
+            case "BoxTo":
+                if (mySprite == boxSpr)
+                {
+                    ChooseSprite();
+                }
+                break;
 
-        if (other.gameObject.name == "ToyTo") //turning box to cat
-        {
-            if (timer > 20)
-            {
+            case "ToyTo":
+                if (timer > 30)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (mySprite == toySpr[i])
+                        {
+                            int fake_num = Random.Range(0, 3);//0.33 chance of toy changing to fake
+
+                            if (fake_num == 0) //sprite == fake
+                            {
+                                gameObject.GetComponent<SpriteRenderer>().sprite = fakeSpr[i];
+                                //CatCrying@@@@
+                                if (effectvolume != 0)
+                                    AudioSource.PlayClipAtPoint(CatCrying, volVector);
+                            }
+                        }
+                    }
+                }
+                break;
+
+            case "Falling":
+                if (mySprite == catSpr)
+                {
+                    gameObject.GetComponent<SpriteRenderer>().sprite = catFallSpr;
+                }
+                for (int i = 0; i < 3; i++)
+                {
+                    if (mySprite == fakeSpr[i])
+                    {
+                        gameObject.GetComponent<SpriteRenderer>().sprite = fakeFallSpr[i];
+                        break;
+                    }
+                }
+                break;
+
+            case "Fail":
+                if (mySprite == catFallSpr)
+                {
+                    GameObject.Find("Main Camera").GetComponent<TotalManager_3>().CatEnd();
+                }
+                for (int i = 0; i < 3; i++)
+                {
+                    if (mySprite == fakeFallSpr[i])
+                    {
+                        GameObject.Find("Main Camera").GetComponent<TotalManager_3>().CatEnd();
+                        break;
+                    }
+
+                    if (mySprite == toySpr[i])
+                    {
+                        GameObject.Find("Main Camera").GetComponent<TotalManager_3>().ToyEnd();
+                        break;
+                    }
+                }
+                break;
+
+            case "CatWalk":
+                if (mySprite == catSpr)
+                {
+                    StartCoroutine("WalkingCat");
+                }
+                for (int i = 0; i < 3; i++)
+                {
+                    if (mySprite == fakeSpr[i])
+                    {
+                        StartCoroutine("WalkingCat");
+                        break;
+                    }
+
+                    if (mySprite == toySpr[i])
+                    {
+                        GameObject.Find("Main Camera").GetComponent<TotalManager_3>().ToyEnd();
+                    }
+                }
+                break;
+
+            case "Upward":
+                for (int i = 0; i < 3; i++)
+                {
+                    if (mySprite == catWalking[i % 2])
+                    {
+                        this.transform.gameObject.SetActive(false);
+                        StopCoroutine("WalkingCat");
+                        GameObject.Find("Warehouse").GetComponent<SpawnBox>().OrganizeBox(gameObject);
+                        break;
+                    }
+                }
+                break;
+
+            case "Downward":
                 for (int i = 0; i < 3; i++)
                 {
                     if (mySprite == toySpr[i])
                     {
-                        int fake_num = Random.Range(0, 3);//0.33 chance of toy changing to fake
-
-                        if (fake_num == 0) //sprite == fake
-                        {
-                            this.GetComponent<SpriteRenderer>().sprite = fakeSpr[i];
-                            //CatCrying@@@@
-                            if (effectvolume != 0)
-                                AudioSource.PlayClipAtPoint(CatCrying, volVector);
-                        }
+                        this.transform.gameObject.SetActive(false);
+                        GameObject.Find("Warehouse").GetComponent<SpawnBox>().OrganizeBox(gameObject);
+                        break;
                     }
                 }
-            }
-        }
+                break;
 
-        if (other.gameObject.name == "Fail") //when object falls
-        {
-            if (mySprite == catSpr)
-            {
-                GameObject.Find("Main Camera").GetComponent<TotalManager_3>().CatEnd();
-            }
-
-            for (int i = 0; i < 3; i++)
-            {
-                if (mySprite == fakeSpr[i])
+            case "OnBelt":
+                if (mySprite == catFallSpr)
                 {
                     GameObject.Find("Main Camera").GetComponent<TotalManager_3>().CatEnd();
-                    break;
                 }
-
-                if (mySprite == toySpr[i])
+                for (int i = 0; i < 3; i++)
                 {
-                    GameObject.Find("Main Camera").GetComponent<TotalManager_3>().ToyEnd();
-                    break;
+                    if (mySprite == fakeFallSpr[i])
+                    {
+                        GameObject.Find("Main Camera").GetComponent<TotalManager_3>().CatEnd();
+                        break;
+                    }
                 }
-            }
-        }
-
-        if (other.gameObject.name == "CatWalk") //cat walking by itself
-        {
-            if (mySprite == catSpr)
-            {
-                StartCoroutine("WalkingCat");
-            }
-
-            for (int i = 0; i < 3; i++)
-            {
-                if (mySprite == fakeSpr[i])
-                {
-                    StartCoroutine("WalkingCat");
-                    break;
-                }
-            }
-        }
-
-        if (other.gameObject.name == "Upward") //when object reach the end of shelf
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                if (mySprite == toySpr[i])
-                {
-                    GameObject.Find("Main Camera").GetComponent<TotalManager_3>().ToyEnd();
-                    break;
-                }
-
-                if (mySprite == catWalking[i % 2])
-                {
-                    this.transform.gameObject.SetActive(false);
-                    StopCoroutine("WalkingCat");
-                    GameObject.Find("Warehouse").GetComponent<SpawnBox>().OrganizeBox(gameObject);
-                    break;
-                }
-            }
-        }
-
-        if (other.gameObject.name == "Downward") //when object reach the end of conveyor belt
-        {
-            if (mySprite == catSpr)
-            {
-                GameObject.Find("Main Camera").GetComponent<TotalManager_3>().CatEnd();
-            }
-            for (int i = 0; i < 3; i++)
-            {
-                if (mySprite == toySpr[i])
-                {
-                    this.transform.gameObject.SetActive(false);
-                    GameObject.Find("Warehouse").GetComponent<SpawnBox>().OrganizeBox(gameObject);
-                    break;
-                }
-
-                if (mySprite == fakeSpr[i])
-                {
-                    GameObject.Find("Main Camera").GetComponent<TotalManager_3>().CatEnd();
-                    break;
-                }
-            }
+                break;
         }
     }
 
@@ -304,7 +323,7 @@ public class MovingBox : MonoBehaviour
         else
         {
             //range that object can be moved
-            if (gameObject.GetComponent<Transform>().position.x > -3.55f && gameObject.GetComponent<Transform>().position.x < 0.8f)
+            if (gameObject.GetComponent<Transform>().position.x > -3.25f && gameObject.GetComponent<Transform>().position.x < 0.8f)
             {
                 ableDrag = true;
                 mousePosOn = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);   //get position of the mouse

@@ -340,7 +340,7 @@ public class CollectionScript : CommonJob
     public void showStory(int num)//해당 오브젝트에서 자신의 스테이지num 잘라서 보내기
     {
         turnOffCollider("Story");
-        Debug.Log(playnum[num]);
+        Debug.Log(num);
         if (playnum[num] != 0)
             IntroObj.GetComponent<ShowingIntro>().callingIntro(gameObject, num);
         else

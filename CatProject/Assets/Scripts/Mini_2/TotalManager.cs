@@ -24,6 +24,7 @@ public class TotalManager : MonoBehaviour
     Color orange;
     Color red;
 
+    public  int gameBonus;
 
     // Use this for initialization
     void Start()
@@ -51,6 +52,9 @@ public class TotalManager : MonoBehaviour
 
         appearFurText();
         StartCoroutine("countSeconds");
+
+        gameBonus = 0;
+           
     }
 
     // Update is called once per frame
@@ -104,7 +108,7 @@ public class TotalManager : MonoBehaviour
                 break;
 
         }
-        Debug.Log(Handle.GetComponent<Image>().color);
+        //Debug.Log(Handle.GetComponent<Image>().color);
         float barsize;
         if (TotalFurNum >= 12)
             barsize = 1;
@@ -113,6 +117,17 @@ public class TotalManager : MonoBehaviour
             barsize = (float)TotalFurNum / 12f;
         }
         DustBar.GetComponent<Scrollbar>().size = barsize;
+    }
+
+    public IEnumerator GameBonus()
+    {
+        Debug.Log("hI!!!!");
+        yield return new WaitForSeconds(15f);
+        Debug.Log("wAIT IS OVER");
+        MiniGame3_Manager.GetComponent<Minigame3_Mananger>().normalscore += 30;
+        MiniGame3_Manager.GetComponent<Minigame3_Mananger>().showNormalscore();
+
+        StartCoroutine("GameBonus");
     }
 
     public IEnumerator countSeconds()

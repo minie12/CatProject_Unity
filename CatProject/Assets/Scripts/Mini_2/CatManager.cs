@@ -105,7 +105,7 @@ public class CatManager : MonoBehaviour
         int index = Random.Range(0, CatPos.Count);
         obj.transform.position = CatPos[index];
         
-        Debug.Log(CatPos[index]);
+        //Debug.Log(CatPos[index]);
         CatPos.RemoveAt(index);
     }
 

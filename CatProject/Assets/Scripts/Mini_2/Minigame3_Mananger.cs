@@ -11,6 +11,7 @@ public class Minigame3_Mananger : MonoBehaviour {
 
     public int speacialscore;
     public int normalscore;
+    public float finalScore;
 
     float playTime;
     float feverTime;
@@ -30,11 +31,23 @@ public class Minigame3_Mananger : MonoBehaviour {
     GameObject catmanagerObj;
     GameObject speacialScoreObj;
 
+    GameObject GameManager;
+
     GameObject[] FeverCat = new GameObject[3];
+
+    float[] appliedEffect;
+
+    float bonusAfterGame;
+    int feverPlayTime;
+    int gamePlayTime;
+    public int bonusWhileGame;
+    int bonusAfterFever;
+    int jackpot;
+
 
     private void Awake()
     {
-        Debug.Log("minigame3manager");
+        //Debug.Log("minigame3manager");
         AudioManager = GameObject.Find("AudioManager");
         AudioManager.GetComponent<Main_AudioManager>().setting();
 
@@ -45,14 +58,39 @@ public class Minigame3_Mananger : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
+        appliedEffect = DataManager.GetComponent<GetCatEffect>().SettingCatEffect();
+
+        bonusAfterGame = 1 + appliedEffect[0] + appliedEffect[6];
+        feverPlayTime = 0 + (int)appliedEffect[4];
+        gamePlayTime = 0 + (int)appliedEffect[1];
+        bonusWhileGame = (int)appliedEffect[2];
+        bonusAfterFever = (int)appliedEffect[3];
+        jackpot = (int)appliedEffect[5];
+
+        Debug.Log("bonusaftergame is " + bonusAfterGame);
+        Debug.Log("feverPlaytime is" + feverPlayTime);
+        Debug.Log("gameplaytime is " + gamePlayTime);
+        Debug.Log("bonuswhilegame is " + bonusWhileGame);
+        Debug.Log("bonusafterfever is " + bonusAfterFever);
+        Debug.Log("jackpot is " + jackpot);
+        //appliedEffect[0] 
+
+        GameManager = GameObject.Find("GameManager");
+        if (bonusWhileGame != 0)
+        {
+            GameManager.GetComponent<TotalManager>().gameBonus = bonusWhileGame;
+            StartCoroutine(GameManager.GetComponent<TotalManager>().GameBonus());
+        }
+            
+
         FeverSign = GameObject.Find("Fever_Sign");
         FeverSign.SetActive(false);
 
         speacialscore = 0;
         normalscore = 0;
 
-        playTime = 30;
-        feverTime = 5;
+        playTime = 30 + gamePlayTime;
+        feverTime = 5 + feverPlayTime;
 
         GameOverScore = GameObject.Find("GameOverImg");
         FinalScoreText = GameObject.Find("FinalScore").GetComponent<Text>();
@@ -106,6 +144,8 @@ public class Minigame3_Mananger : MonoBehaviour {
     {
         speacialscore += speacialScoreObj.GetComponent<FeverTimeScript>().touchnum;
         speacialScoreObj.GetComponent<FeverTimeScript>().touchnum = 0;
+        normalscore += bonusAfterFever;
+        showNormalscore();
         showSpeacialscore();
         FeverText.text = "";
         FeverTime.SetActive(false);
@@ -118,6 +158,7 @@ public class Minigame3_Mananger : MonoBehaviour {
     public void callGameover()
     {
         GameOver.SetActive(true);
+        calculFinalScore();
         GameOverScore.GetComponent<AppearScore>().setFinalScore();
         Game.SetActive(false);
         FeverTime.SetActive(false);
@@ -132,6 +173,14 @@ public class Minigame3_Mananger : MonoBehaviour {
     public void showSpeacialscore()
     {
         SpecialScoreText.text = speacialscore.ToString();
+    }
+
+    public void calculFinalScore()
+    {
+        finalScore = (normalscore + speacialscore * 7) * bonusAfterGame;
+        int i = Random.Range(0, 100);
+        if (i < 5)
+            finalScore *= jackpot;
     }
 
     IEnumerator Fever()

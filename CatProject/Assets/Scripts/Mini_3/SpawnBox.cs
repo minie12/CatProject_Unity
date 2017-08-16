@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnBox : MonoBehaviour
 {
@@ -10,10 +11,12 @@ public class SpawnBox : MonoBehaviour
     public Queue<GameObject> outItem = new Queue<GameObject>();
     int boxCount;
 
-    Vector3 spawnPlace = new Vector3(-11.5f, 0.42f, 1); //where the object is spawned (on top of the conveyor belt)
+    Vector3 spawnPlace = new Vector3(-11.5f, -0.2f, 1); //where the object is spawned (on top of the conveyor belt)
 
+    GameObject dragFlag;
     GameObject feverTimeFrame;
     GameObject dust;
+
 
     Sprite boxSpr;
     
@@ -24,6 +27,7 @@ public class SpawnBox : MonoBehaviour
 
         feverTimeFrame = GameObject.Find("FeverTimeFrame");
         dust = GameObject.Find("DustUp");
+        dragFlag = GameObject.Find("Drag_sign");
 
         inItem.Enqueue(box);
 
@@ -70,11 +74,14 @@ public class SpawnBox : MonoBehaviour
         if (boxCount == 9)
         {
             dust.SetActive(false);
+            dragFlag.SetActive(false);
             feverTimeFrame.SetActive(true);
             Debug.Log("Done");
             yield return new WaitForSeconds(1.5f);
-            feverTimeFrame.SetActive(false);
+            
+            feverTimeFrame.SetActive(false);            
             GameObject.Find("Main Camera").GetComponent<TotalManager_3>().IsFever();
+
             StopCoroutine("CheckBoxNum");
         }
 

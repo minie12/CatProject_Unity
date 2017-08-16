@@ -53,14 +53,26 @@ TagManager:
   - name: scene
     uniqueID: 503760219
     locked: 0
+  - name: GameOver
+    uniqueID: 3153375953
+    locked: 0
   - name: Furniture
     uniqueID: 558192485
     locked: 0
   - name: Cat
     uniqueID: 786928531
     locked: 0
+  - name: Furniture_uppercat
+    uniqueID: 2958314087
+    locked: 0
   - name: Menu_Select
     uniqueID: 2576202869
+    locked: 0
+  - name: Menu_Select4
+    uniqueID: 2737196411
+    locked: 0
+  - name: Menu_SelectExit
+    uniqueID: 862495727
     locked: 0
   - name: System_bg
     uniqueID: 804086801
@@ -76,4 +88,7 @@ TagManager:
     locked: 0
   - name: System_Layer4
     uniqueID: 2641635035
+    locked: 0
+  - name: System_Layer5
+    uniqueID: 1150053011
     locked: 0

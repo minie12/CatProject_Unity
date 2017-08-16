@@ -65,7 +65,7 @@ public class PlacementScript : MonoBehaviour {
         furniture_alloc[6] = 4;
         furniture_alloc[7] = 2;
 
-        DataManager.GetComponent<ControlGameData>().Start();
+        DataManager.GetComponent<ControlGameData>().Load();
         Placement();
     }
 
@@ -78,13 +78,13 @@ public class PlacementScript : MonoBehaviour {
 
         //furniturePos,freePos_lock과 freePos_unlock은 여기서 세팅
         furniturePos.Add(new Vector3(2, -0.6f, 0)); //0
-        furniturePos.Add(new Vector3(6.24f, -1.7f, 0));//1
+        furniturePos.Add(new Vector3(6.09f, -1.63f, 0));//1
         furniturePos.Add(new Vector3(9.1f, -4.7f, 0));//2
         furniturePos.Add(new Vector3(-3.6f, -4.1f, 0));//3
         furniturePos.Add(new Vector3(8.3f, -0.6f, 0));//4
         furniturePos.Add(new Vector3(22.8f, -0.4f, 0));//5
-        furniturePos.Add(new Vector3(29.75f, -1.38f, 0));//6
-        furniturePos.Add(new Vector3(26.95f, -2.35f, 0));//7
+        furniturePos.Add(new Vector3(28.66f, -1.38f, 0));//6
+        furniturePos.Add(new Vector3(25.86f, -2.35f, 0));//7
         furniturePos.Add(new Vector3(15f, 2.3f, 0));//8
         furniturePos.Add(new Vector3(17.9f, 4.7f, 0));//9
         furniturePos.Add(new Vector3(18.35f, 2.4f, 0));//10

@@ -45,13 +45,13 @@ public class ChangeCameraPos : MonoBehaviour {
         if (Camera.transform.localPosition.x < 10)
         {
             //CameraArrow.GetComponent<Transform>().Rotate(new Vector3(0, 180, 0));
-			Camera.transform.Translate(+20, 0, 0);
+			Camera.transform.Translate(+20.5f, 0, 0);
 
         }
         else
         {
             //CameraArrow.GetComponent<Transform>().Rotate(new Vector3(0, 180, 0));
-			Camera.transform.Translate(-20, 0, 0);
+			Camera.transform.Translate(-20.5f, 0, 0);
         }
         
     }

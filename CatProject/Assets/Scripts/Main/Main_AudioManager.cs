@@ -35,6 +35,7 @@ public class Main_AudioManager : MonoBehaviour
     public AudioClip furdisappear;
     public AudioClip cat_feelingGood;
     public AudioClip cat_feelingBad;
+    public AudioClip fever_toySwing;
 
     //Mini3
     AudioClip Mini3BGM;
@@ -78,6 +79,7 @@ public class Main_AudioManager : MonoBehaviour
         furdisappear = Resources.Load<AudioClip>("Sounds/Mini2/fur_disappear");
         cat_feelingBad = Resources.Load<AudioClip>("Sounds/Mini2/Cat_feelingBad");
         cat_feelingGood = Resources.Load<AudioClip>("Sounds/Mini2/Cat_feelingGood");
+        fever_toySwing = Resources.Load<AudioClip>("Sounds/Mini2/Fever_ToySwing");
 
         //mini3 effect
         PresentClicking = Resources.Load<AudioClip>("Sounds/Mini3/PresentClicking");

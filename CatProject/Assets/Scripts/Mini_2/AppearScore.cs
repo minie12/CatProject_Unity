@@ -14,8 +14,10 @@ public class AppearScore : MonoBehaviour {
     int[] bestScorearr;
     int bestScore;
 
-	// Use this for initialization
-	void Start () {
+    int money;
+
+    // Use this for initialization
+    void Start () {
         GameManager = GameObject.Find("MainCamera");
         DataManager = GameObject.Find("DataManager");
 
@@ -31,7 +33,10 @@ public class AppearScore : MonoBehaviour {
         bestScore = bestScorearr[1];
         //Debug.Log(bestScore);
 
-        finalScore =  GameManager.GetComponent<Minigame3_Mananger>().normalscore + GameManager.GetComponent<Minigame3_Mananger>().speacialscore * 7;
+        finalScore = (int)GameManager.GetComponent<Minigame3_Mananger>().finalScore;
+
+        money = DataManager.GetComponent<ControlGameData>().getMoney();
+        money += finalScore;
 
         //best score의 경우는 여기서 save 진행.
         if (bestScore < finalScore)
@@ -42,6 +47,11 @@ public class AppearScore : MonoBehaviour {
             DataManager.GetComponent<ControlGameData>().setBestScore(bestScorearr);
             DataManager.GetComponent<ControlGameData>().Save("bestscore");
         }
+
+        DataManager.GetComponent<ControlGameData>().setMoney(money);
+        DataManager.GetComponent<PuzzleManager>().setting_Puzzle(finalScore);
+        DataManager.GetComponent<ControlGameData>().Save("money");
+        DataManager.GetComponent<ControlGameData>().Save("puzzle");
 
         BestScoreText.text = "Best Score : " + bestScore.ToString();
         ScoreText.text = "Score :" + finalScore.ToString();

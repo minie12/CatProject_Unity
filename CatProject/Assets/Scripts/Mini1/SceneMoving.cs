@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneMoving : MonoBehaviour {
-    GameObject DataManager;
+    //GameObject DataManager;
 
     // Use this for initialization
     public void Awake()
@@ -16,20 +16,20 @@ public class SceneMoving : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        DataManager = GameObject.Find("DataManager");
+        //DataManager = GameObject.Find("DataManager");
     }
 
     public void PlayAgain(string SceneName)
     {
-        DataManager.GetComponent<ControlGameData>().Save("money");
-        DataManager.GetComponent<ControlGameData>().Save("puzzle");
+        //DataManager.GetComponent<ControlGameData>().Save("money");
+        //DataManager.GetComponent<ControlGameData>().Save("puzzle");
         SceneManager.LoadScene(SceneName);
     }
 
     public void BacktoHome()
     {
-       DataManager.GetComponent<ControlGameData>().Save("money");
-       DataManager.GetComponent<ControlGameData>().Save("puzzle");
+       //DataManager.GetComponent<ControlGameData>().Save("money");
+       //DataManager.GetComponent<ControlGameData>().Save("puzzle");
         SceneManager.LoadScene("Main");
     }
 }
