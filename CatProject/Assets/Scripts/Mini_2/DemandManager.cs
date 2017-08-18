@@ -218,6 +218,7 @@ public class DemandManager : MonoBehaviour
     public IEnumerator appearDemand()
     {
         trysatisfy = false;
+        demandObject.GetComponent<SpriteRenderer>().sprite = null;
         DarkDemandSetting();
         yield return new WaitForSeconds(waitTime);
         indexnum = (int)Random.Range(0, 3);

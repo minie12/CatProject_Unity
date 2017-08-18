@@ -161,6 +161,7 @@ public class CollectionScript : CommonJob
 
     public override void finish()
     {
+        base.finish();
         //해당 작업을 끝내기.
         save();
         InfoObj.SetActive(false);

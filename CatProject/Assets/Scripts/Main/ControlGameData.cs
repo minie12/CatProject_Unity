@@ -87,7 +87,7 @@ void Start()
         string[] f_buycat = PlayerPrefs.GetString("Buycat", "-1/-1/-1/-1/-1/-1/-1/-1").Split('/');
         string[] f_furniture = PlayerPrefs.GetString("Furniture", "-1/-1/-1/-1/-1/-1/-1/-1").Split('/');
         string[] f_puzzle = PlayerPrefs.GetString("Puzzle", "0/0/0/0/0/0").Split('/');
-        int f_money = PlayerPrefs.GetInt("Money", 5000);
+        int f_money = PlayerPrefs.GetInt("Money", 10000);
         string[] f_volumn = PlayerPrefs.GetString("Volumn", "99/99/99/99").Split('/');
         string[] f_bestscore = PlayerPrefs.GetString("BestScore", "0/0/0/0").Split('/');
 

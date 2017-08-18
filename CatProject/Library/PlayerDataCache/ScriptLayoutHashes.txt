@@ -20,7 +20,7 @@ c24a21b131bfa67be1162db2cba4b52b UnityEngine.Timeline.dll:UnityEngine.Timeline.T
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Setting_returnTouch_Index
 609ed19fde687e3cd249e701417ed3c5 Assembly-CSharp.dll:.GetClick_Act
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.SceneMoving
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.PlacementScript
+cd4bc977b482dc512d11fe3f02cb9660 Assembly-CSharp.dll:.PlacementScript
 a35dc9cca2faebc5f5f1aeb9e8e47bbe UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
 49cd62a578efc0a599b810a2b66cd49c UnityEngine.UI.dll:UnityEngine.UI.Button

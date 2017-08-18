@@ -25,6 +25,7 @@ public class CommonJob : MonoBehaviour {
     public virtual void finish()
     {
         //해당 작업을 끝내기.
+        PlacementObj.GetComponent<PlacementScript>().OnCatCollider();
     }
 
     public virtual void save()

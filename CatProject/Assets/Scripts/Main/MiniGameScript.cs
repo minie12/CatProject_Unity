@@ -44,6 +44,7 @@ public class MiniGameScript : CommonJob
 
     public void playGame(int clickindex)
     {
+        
         if (playnum[clickindex] == 0)
         {
             selectObj.SetActive(false);
@@ -75,6 +76,7 @@ public class MiniGameScript : CommonJob
 
     public override void finish()
     {
+        base.finish();
         MainManager.GetComponent<Main_Manager>().backtoMain();
     }
 

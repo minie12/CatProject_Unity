@@ -8,7 +8,7 @@ public class PlacementScript : MonoBehaviour {
     GameObject DataManager;
 
     GameObject[] furnitureObj = new GameObject[8];
-    GameObject[] catObj = new GameObject[8];
+    public GameObject[] catObj = new GameObject[8];
 
     int[] furniture = new int[8];
     int[] buycat = new int[8];
@@ -66,6 +66,7 @@ public class PlacementScript : MonoBehaviour {
         furniture_alloc[7] = 2;
 
         DataManager.GetComponent<ControlGameData>().Load();
+        OnCatCollider();
         Placement();
     }
 
@@ -227,5 +228,20 @@ public class PlacementScript : MonoBehaviour {
         return unlockcondition;
     }
 
+    public void OffCatCollider()
+    {
+        for (int i = 0; i < catObj.Length; i++)
+        {
+            catObj[i].GetComponent<BoxCollider2D>().enabled = false;
+        }
+    }
+
+    public void OnCatCollider()
+    {
+        for (int i = 0; i < catObj.Length; i++)
+        {
+            catObj[i].GetComponent<BoxCollider2D>().enabled = true;
+        }
+    }
 
 }

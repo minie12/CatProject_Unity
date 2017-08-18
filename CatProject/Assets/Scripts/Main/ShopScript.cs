@@ -152,6 +152,8 @@ public class ShopScript : CommonJob
     //해당 작업을 끝내기.
     public override void finish()
     {
+        base.finish();
+
         Button[0].SetActive(false);
         Button[1].SetActive(false);
         backButton.SetActive(false);

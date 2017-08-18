@@ -147,6 +147,8 @@ public class SettingScript : CommonJob
 
     public override void finish()
     {
+        base.finish();
+
         //해당 작업을 끝내기.
         settingBase.SetActive(false);
         save();

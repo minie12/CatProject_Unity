@@ -15,6 +15,8 @@ public class SelectMenu : MonoBehaviour
     GameObject SelectObj;
     GameObject GooutSelect;
 
+    GameObject PlaceObj;
+
     //real_Object
     //GameObject[] furnitureObj = new GameObject[4];
     //GameObject[] furnitureText = new GameObject[4];
@@ -78,12 +80,15 @@ public class SelectMenu : MonoBehaviour
         }
         */
 
+        PlaceObj = GameObject.Find("Placement");
+
         MenuObj.SetActive(true);
     }
 
     //내가 터치한 게 어떤 애인지 체크
     public void judgeSelect(GameObject selectedObj)
     {
+
         switch (selectedObj.name)
         {
             case "Menu_goout":
@@ -111,12 +116,14 @@ public class SelectMenu : MonoBehaviour
 
         if (selectedIndex == 4)
         {
+            PlaceObj.GetComponent<PlacementScript>().OffCatCollider();
             SelectObj.SetActive(true);
             GooutSelect.SetActive(true);
             MenuObj.GetComponent<BoxCollider2D>().enabled = false;
         }
         else if (selectedIndex == 5)
         {
+            PlaceObj.GetComponent<PlacementScript>().OnCatCollider();
             SelectObj.SetActive(false);
             GooutSelect.SetActive(false);
             MenuObj.GetComponent<BoxCollider2D>().enabled = true;
@@ -124,12 +131,14 @@ public class SelectMenu : MonoBehaviour
 
         else if(selectedIndex == -1) //게임 종료
         {
+            PlaceObj.GetComponent<PlacementScript>().OnCatCollider();
             MenuObj.GetComponent<BoxCollider2D>().enabled = true;
             DataManager.GetComponent<ControlGameData>().saveforFinish();
             Application.Quit();
         }
         else
         {
+            PlaceObj.GetComponent<PlacementScript>().OffCatCollider();
             SelectObj.SetActive(false);
             GooutSelect.SetActive(false);
             mainManager.GetComponent<Main_Manager>().doyourJob(selectedIndex);
