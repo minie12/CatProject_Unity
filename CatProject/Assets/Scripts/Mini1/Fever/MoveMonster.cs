@@ -9,7 +9,7 @@ public class MoveMonster : MonoBehaviour {
 
     void Start()
     {
-        speed = 0.09f;
+        speed = 0.1f;
     }
 
 	public IEnumerator Move()

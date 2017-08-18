@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 //BGM 플레이해주는것.
 public class Main_AudioManager : MonoBehaviour
 {
-
+    GameObject Listener;
     GameObject DataManager;
 
     int[][] volumn = new int[4][];
@@ -23,6 +23,7 @@ public class Main_AudioManager : MonoBehaviour
     AudioClip MainBGM;
     public AudioClip Shop_buy;
     public AudioClip Shop_cannotbuy;
+    public AudioClip[] Cat_Meow = new AudioClip[3];
 
     //mini1
     AudioClip Mini1BGM;
@@ -56,6 +57,8 @@ public class Main_AudioManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        
+        
         audioPlay = gameObject.GetComponent<AudioSource>();
         DataManager = GameObject.Find("DataManager");
         //Debug.Log("Awake called");
@@ -69,6 +72,10 @@ public class Main_AudioManager : MonoBehaviour
         //main effect
         Shop_buy = Resources.Load<AudioClip>("Sounds/Main/Shop_Buy");
         Shop_cannotbuy = Resources.Load<AudioClip>("Sounds/Main/Shop_CannotBuy");
+        Cat_Meow[0] = Resources.Load<AudioClip>("Sounds/Main/Cat_meow_0");
+        Cat_Meow[1] = Resources.Load<AudioClip>("Sounds/Main/Cat_meow_1");
+        Cat_Meow[2] = Resources.Load<AudioClip>("Sounds/Main/Cat_meow_2");
+        Debug.Log(Cat_Meow.Length);
 
         //mini1 effect
         cat_hit = Resources.Load<AudioClip>("Sounds/Mini1/Mini1_hit");
@@ -94,18 +101,22 @@ public class Main_AudioManager : MonoBehaviour
         switch (SceneManager.GetActiveScene().name)
         {
             case "Main":
+                Listener = GameObject.Find("MainCamera");
                 audioPlay.clip = MainBGM;
                 nowScene = 0;
                 break;
             case "Mini_1":
+                Listener = GameObject.Find("Main Camera");
                 audioPlay.clip = Mini1BGM;
                 nowScene = 1;
                 break;
             case "Mini_2":
+                Listener = GameObject.Find("MainCamera");
                 audioPlay.clip = Mini2BGM;
                 nowScene = 2;
                 break;
             case "Mini_3":
+                Listener = GameObject.Find("Main Camera");
                 audioPlay.clip = Mini3BGM;
                 nowScene = 3;
                 break;
@@ -115,7 +126,7 @@ public class Main_AudioManager : MonoBehaviour
         // setting();
         for (int i = 0; i < 4; i++)
             volumn[i] = new int[2];
-        //setting();
+        changeVolumn();
     }
 
     public void setting()
@@ -123,18 +134,22 @@ public class Main_AudioManager : MonoBehaviour
         switch (SceneManager.GetActiveScene().name)
         {
             case "Main":
+                Listener = GameObject.Find("MainCamera");
                 audioPlay.clip = MainBGM;
                 nowScene = 0;
                 break;
             case "Mini_1":
+                Listener = GameObject.Find("Main Camera");
                 audioPlay.clip = Mini1BGM;
                 nowScene = 1;
                 break;
             case "Mini_2":
+                Listener = GameObject.Find("MainCamera");
                 audioPlay.clip = Mini2BGM;
                 nowScene = 2;
                 break;
             case "Mini_3":
+                Listener = GameObject.Find("Main Camera");
                 audioPlay.clip = Mini3BGM;
                 nowScene = 3;
                 break;
@@ -153,6 +168,7 @@ public class Main_AudioManager : MonoBehaviour
     {
         int[] tempvolumn;
 
+        //DataManager.GetComponent<ControlGameData>().Load();
         tempvolumn = DataManager.GetComponent<ControlGameData>().getVolumn();
 
         for (int i = 0; i < 4; i++)
@@ -173,7 +189,7 @@ public class Main_AudioManager : MonoBehaviour
 
         audioPlay.volume = bgmVol;
 
-        effectVector = new Vector3(0, 0, -(0 + effectVol * 10));
+        effectVector = new Vector3(Listener.transform.position.x, 0, -(0 + effectVol * 10));
 
         //Debug.Log(bgmVol + " is bgmVol and effectVol is " + effectVol);
     }

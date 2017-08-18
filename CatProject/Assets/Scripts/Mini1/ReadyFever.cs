@@ -10,10 +10,6 @@ public class ReadyFever : MonoBehaviour
     GameObject Player;
     GameObject FeverPlayer;
 
-    public Text countdown;
-
-    int time = 3;
-
     Vector3 pos_t = new Vector3(0, 2, 0);
     Vector3 pos_b = new Vector3(0, -2, 0);
 
@@ -25,19 +21,8 @@ public class ReadyFever : MonoBehaviour
         FeverPlayer = Player.transform.Find("FeverPlayer").gameObject;
     }
 
-    public IEnumerator Count()
-    {
-
-        countdown.text = time.ToString();
-        time--;
-        yield return new WaitForSeconds(1);
-        StartCoroutine("Count");
-    }
-
     public void ready()
     {
-
-        StartCoroutine(Count());
 
         GameManager.GetComponent<TimeScore>().StopScore();
         GameManager.GetComponent<MapMove>().enabled = false;
@@ -59,9 +44,4 @@ public class ReadyFever : MonoBehaviour
 
     }
 
-    public void ReCountDown()
-    {
-        time = 3;
-        countdown.text = "";
-    }
 }

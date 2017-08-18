@@ -20,7 +20,7 @@ public class FeverMoveMonster : MonoBehaviour {
             if (gameObject.transform.position.x >= 17)
             {
                 pos = gameObject.transform.position;
-                pos.x = 17;
+                pos.x = 18;
                 gameObject.transform.position = pos;
                 StopCoroutine("Backmove");
             }

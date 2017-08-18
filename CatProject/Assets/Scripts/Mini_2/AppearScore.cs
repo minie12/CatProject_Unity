@@ -10,16 +10,27 @@ public class AppearScore : MonoBehaviour {
     GameObject GameManager;
     GameObject DataManager;
 
+    GameObject PuzzleSign;
+
     public int finalScore;
     int[] bestScorearr;
     int bestScore;
 
+    bool newPuzzle;
+
     int money;
+
+    private void Awake()
+    {
+        PuzzleSign = GameObject.Find("Puzzle");
+        PuzzleSign.SetActive(false);
+    }
 
     // Use this for initialization
     void Start () {
         GameManager = GameObject.Find("MainCamera");
         DataManager = GameObject.Find("DataManager");
+        
 
         BestScoreText = GameObject.Find("BestScore").GetComponent<Text>();
         ScoreText = GameObject.Find("FinalScore").GetComponent<Text>();
@@ -28,6 +39,8 @@ public class AppearScore : MonoBehaviour {
 	public void setFinalScore()
     {
         Start();
+
+        newPuzzle = false;
 
         bestScorearr = DataManager.GetComponent<ControlGameData>().getBestScore();
         bestScore = bestScorearr[1];
@@ -49,7 +62,11 @@ public class AppearScore : MonoBehaviour {
         }
 
         DataManager.GetComponent<ControlGameData>().setMoney(money);
-        DataManager.GetComponent<PuzzleManager>().setting_Puzzle(finalScore);
+        newPuzzle = DataManager.GetComponent<PuzzleManager>().setting_Puzzle(finalScore);
+
+        if (newPuzzle == true)
+            PuzzleSign.SetActive(true);
+        
         DataManager.GetComponent<ControlGameData>().Save("money");
         DataManager.GetComponent<ControlGameData>().Save("puzzle");
 

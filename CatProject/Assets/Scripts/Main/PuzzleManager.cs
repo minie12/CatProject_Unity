@@ -23,6 +23,8 @@ public class PuzzleManager : MonoBehaviour
     int[] mypuzzle = new int[2];
     int[] tempPuzzle = new int[8];
 
+    bool[] getPuzzle = new bool[2];
+
     List<int> puzzleList;
 
     // Use this for initialization
@@ -34,12 +36,15 @@ public class PuzzleManager : MonoBehaviour
         for (i = 1; i < 8; i++)
         {
             ScorePuzzle[i] = ScorePuzzle[i - 1] + 10;
-           // PlaynumPuzzle[i] = PlaynumPuzzle[i - 1] + 10; ;
+            // PlaynumPuzzle[i] = PlaynumPuzzle[i - 1] + 10; ;
         }
     }
 
-    public void setting_Puzzle(int myscore)
+    public bool setting_Puzzle(int myscore)
     {
+        getPuzzle[0] = false;
+        getPuzzle[1] = false;
+
         switch (SceneManager.GetActiveScene().name)
         {
             case "Main":
@@ -65,9 +70,13 @@ public class PuzzleManager : MonoBehaviour
         myplaynum = totalplaynum[sceneIndex / 2];
         Debug.Log("myPlaynum is " + myplaynum);
 
-        if(myscore>300)
-            getPuzzle_Playnum();
-        getPuzzle_Score(myscore);
+        if (myscore > 300)
+        {
+            getPuzzle[0] = getPuzzle_Playnum();
+
+        }
+        getPuzzle[1] = getPuzzle_Score(myscore);
+
 
         /*
         for (i = 0; i < 6; i++)
@@ -79,10 +88,17 @@ public class PuzzleManager : MonoBehaviour
         gameObject.GetComponent<ControlGameData>().setPuzzle(datapuzzle);
         gameObject.GetComponent<ControlGameData>().Save("puzzle");
 
+        if (getPuzzle[0] == true || getPuzzle[1] == true)
+            return true;
+        else
+            return false;
+
+
+
     }
 
     //플레이횟수 따른 퍼즐획득
-    void getPuzzle_Playnum()
+    bool getPuzzle_Playnum()
     {
         System.Array.Clear(tempPuzzle, 0, tempPuzzle.Length);
         puzzleList = new List<int>();
@@ -121,12 +137,16 @@ public class PuzzleManager : MonoBehaviour
             }
 
             datapuzzle[sceneIndex] = returnval;
+
+            return true;
         }
-        
+
+        return false;
+
     }
 
     //점수에 따른 퍼즐획득
-    void getPuzzle_Score(int myscore)
+    bool getPuzzle_Score(int myscore)
     {
         System.Array.Clear(tempPuzzle, 0, tempPuzzle.Length);
         puzzleList = new List<int>();
@@ -148,31 +168,38 @@ public class PuzzleManager : MonoBehaviour
 
         Debug.Log(havingPuzzle);
 
-        //퍼즐을 얻었다!
+        //퍼즐을 얻을 수 있다
         if (havingPuzzle != 8)
         {
+            //얻을 수 있는 상황이라면
             if (myscore > ScorePuzzle[havingPuzzle])
             {
                 int pIndex = Random.Range(0, puzzleList.Count);
-                Debug.Log(pIndex);
-                Debug.Log("get puzzle at " + puzzleList.IndexOf(pIndex));
+                //Debug.Log(pIndex);
+                //Debug.Log("get puzzle at " + puzzleList.IndexOf(pIndex));
                 tempPuzzle[puzzleList[pIndex]] = 1;
+
+
+                int returnval = 0;
+                int exp = 1;
+
+                for (i = 0; i < 8; i++)
+                {
+                    returnval = tempPuzzle[i] * exp + returnval;
+                    exp *= 2;
+                    //Debug.Log(returnval);
+                }
+
+                //Debug.Log(returnval);
+
+                datapuzzle[sceneIndex + 1] = returnval;
+
+                return true;
+
             }
-
-            int returnval = 0;
-            int exp = 1;
-
-            for (i = 0; i < 8; i++)
-            {
-                returnval = tempPuzzle[i] * exp + returnval;
-                exp *= 2;
-                Debug.Log(returnval);
-            }
-
-            Debug.Log(returnval);
-
-            datapuzzle[sceneIndex + 1] = returnval;
+            
         }
+        return false;
     }
-       
+
 }

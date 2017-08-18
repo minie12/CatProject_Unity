@@ -19,9 +19,9 @@ public class TotalManager_3 : MonoBehaviour
 
     //고양이 부가효과
     GameObject DataManager;
-    float[] appliedEffect;
+    double[] appliedEffect;
 
-    public float bonusAfterGame;
+    public double bonusAfterGame;
     public int feverPlayTime;
     public int gamePlayTime;
     public int bonusWhileGame;

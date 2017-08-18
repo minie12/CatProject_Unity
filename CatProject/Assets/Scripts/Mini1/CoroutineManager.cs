@@ -18,7 +18,7 @@ public class CoroutineManager : MonoBehaviour {
         StartCoroutine(GameManager.GetComponent<TimeScore>().CountScore());
         StartCoroutine(GameManager.GetComponent<PlanetCreate>().planetON());
         StartCoroutine(GameManager.GetComponent<MouseCreate>().MouseON());
-        GameManager.GetComponent<ReadyFever>().ReCountDown();
+        //GameManager.GetComponent<ReadyFever>().ReCountDown();
         StartCoroutine(GameManager.GetComponent<PlanetSpeed>().SpeedUp());
     }
 

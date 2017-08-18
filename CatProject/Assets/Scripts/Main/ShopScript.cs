@@ -65,7 +65,7 @@ public class ShopScript : CommonJob
     {
         base.Start();
 
-        catCost[0] = 6000;  furnitureCost[0] = 7000;
+        catCost[0] = 2000;  furnitureCost[0] = 2000;
         catCost[1] = 8000;  furnitureCost[1] = 8000;
         catCost[2] = 10000;  furnitureCost[2] = 9000;
         catCost[3] = 12000;  furnitureCost[3] = 10000;

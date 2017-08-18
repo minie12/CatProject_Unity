@@ -87,7 +87,7 @@ c63db43c730fa2cbb8ca07de15898cb6 UnityEngine.UI.dll:UnityEngine.UI.Toggle
 f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 86d36c43c53541d667100dc90b89cfba UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 1b8c02d0aa82fbf036a2b9b2d713eec3 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
-13e6f2f9cf2f5cbacae11080f8ba3f0b Assembly-CSharp.dll:.ReadyFever
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ReadyFever
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.MiniGame_returnTouch
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Collec_returnTouch_Category
 3f640b16da9c8c4edae9f3e2af18c2db Assembly-CSharp.dll:.MiniGameScript
@@ -124,7 +124,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Mini_BackToMain
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.FeverManager
 9bf0b1e8921423d23f289c4daa8e7a4f Assembly-CSharp.dll:.ColliderCheck
-d1672a60e8b43dab008b5d40578cb707 Assembly-CSharp.dll:.Main_AudioManager
+5dcf701ef2e724a01009bd69b11dfec3 Assembly-CSharp.dll:.Main_AudioManager
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.returnTouch
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Fever_ShakingTail
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.MoveMonster
@@ -150,9 +150,10 @@ cf14aff2c076d5b41074e64274fa4bb1 Assembly-CSharp.dll:.ActManager
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Mini3_BackToMain
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Collec_returnTouch_Goods
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.FeverMovePlanet
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Cat_interact
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.MovingBox
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ChangeCameraPos
-a788a4bcce61574c74cf68097d2d86ae Assembly-CSharp.dll:.mini1_TotalManager
+2ea2c315d4551a7acb69f41c6c9d5abf Assembly-CSharp.dll:.mini1_TotalManager
 68d35a4a4a3be1bcede92ad93d9df4dd Assembly-CSharp.dll:.UIManager
 3f640b16da9c8c4edae9f3e2af18c2db Assembly-CSharp.dll:.CollectionScript
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
@@ -171,7 +172,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
 3f640b16da9c8c4edae9f3e2af18c2db Assembly-CSharp.dll:.SettingScript
 c7c1b42f50d8e40dc01e2c285680897b Assembly-CSharp.dll:.AppearScore
-e86dc19c8e5250c4846e85a6224667a0 Assembly-CSharp.dll:.TotalManager_3
+900d6ec9bf243a342422873839bb960f Assembly-CSharp.dll:.TotalManager_3
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ControlGameData
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
 5f2ad81aa8994e8fbe25d1e57afe6773 UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.PlaymodeTestsController
@@ -197,11 +198,12 @@ dc76347c0dabbc800936e817f208199a Assembly-CSharp.dll:.FeverCheckPlanet
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Collec_returnTouch_Story
 7eedc77d3e934ada1837f1f0514bbf47 Assembly-CSharp.dll:.TotalScore
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.PlanetCreate
-68dc0472ab5ccfc6cef11f2ce86419bd Assembly-CSharp.dll:.Minigame3_Mananger
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.returnTouch_Cat
+02113ec090e64d37ec6a3995aa415901 Assembly-CSharp.dll:.Minigame3_Mananger
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Collec_returnTouch_ExitButton
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Shop_returnTouch_Goods
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.MouseMove
-3d15641f5d37becbbda7e11cb111d131 Assembly-CSharp.dll:.GetCatEffect
+9a4e43c909a66acf21432c13de74fb9f Assembly-CSharp.dll:.GetCatEffect
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.GetClick_fur
 cffd8c3ba041eccd712047a60b6e9b6f Assembly-CSharp.dll:.DemandManager
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Setting_returnTouch_volumn

@@ -33,6 +33,8 @@ public class UIManager : MonoBehaviour
     int[] bestScorearr;
     int bestScore;
 
+    int money;
+
     public int totalScore;
 
     // Use this for initialization
@@ -127,8 +129,10 @@ public class UIManager : MonoBehaviour
     //calculating the total score after the game ends
     public void CalcTotal()
     {
-        float bonusAfterGame = TotalManager.GetComponent<TotalManager_3>().bonusAfterGame;
+        double bonusAfterGame = TotalManager.GetComponent<TotalManager_3>().bonusAfterGame;
         totalScore = (int)((presentNum * 7 + seconds) * bonusAfterGame);
+
+        money = DataManager.GetComponent<ControlGameData>().getMoney();
 
         //JACKPOT -- 5% possibility of having money twice when the game ends
         int i = Random.Range(0, 100);
@@ -137,6 +141,12 @@ public class UIManager : MonoBehaviour
             int jackpot = TotalManager.GetComponent<TotalManager_3>().jackpot;
             totalScore *= jackpot;
         }
+        
+        money += totalScore;
+        DataManager.GetComponent<ControlGameData>().setMoney(money);
+        DataManager.GetComponent<PuzzleManager>().setting_Puzzle(totalScore);
+        DataManager.GetComponent<ControlGameData>().Save("money");
+        DataManager.GetComponent<ControlGameData>().Save("puzzle");
 
         totalText.text = "Total Score: " + totalScore.ToString();       
 
@@ -153,6 +163,8 @@ public class UIManager : MonoBehaviour
         }
 
         BestScoreText.text = "Best Score: " + bestScore.ToString();
+
+        
     }
 
     //updating score every 0.1sec

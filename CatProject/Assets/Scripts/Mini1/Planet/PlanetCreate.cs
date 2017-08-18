@@ -24,9 +24,9 @@ public class PlanetCreate : MonoBehaviour
 
     void Start()
     {
-        mid = new Vector3(18f, 0.65f, 0);
-        top = new Vector3(18f, 2.5f, 0);
-        bot = new Vector3(18f, -2.5f, 0);
+        mid = new Vector3(18f, 0.1f, 0);
+        top = new Vector3(18f, 3f, 0);
+        bot = new Vector3(18f, -3f, 0);
 
         sum = 0;
         seconds = 1.8f;
@@ -71,8 +71,9 @@ public class PlanetCreate : MonoBehaviour
 
     public IEnumerator planetON()//랜덤으로 행성 하나 켜기
     {
-        
-            Debug.Log("PlanetOn called and secondes is " + seconds);
+        yield return new WaitForSeconds(seconds);
+
+         //   Debug.Log("PlanetOn called and secondes is " + seconds);
 
             rdnum = Random.Range(0, 9);
        
@@ -96,9 +97,9 @@ public class PlanetCreate : MonoBehaviour
                 seconds = 0.75f;
         }
         else
-            seconds = 0.4f;
+            seconds = 0.5f;
 
-        yield return new WaitForSeconds(seconds);
+        
         sum += seconds;
 
         StartCoroutine("planetON");

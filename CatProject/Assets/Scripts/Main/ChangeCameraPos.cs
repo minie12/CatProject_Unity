@@ -8,6 +8,7 @@ public class ChangeCameraPos : MonoBehaviour {
     GameObject[] Arrow = new GameObject[2];
     GameObject Camera;
     GameObject DataManager;
+    //GameObject AudioManager;
     //GameObject CameraArrow;
 
     Button ArrowUI;

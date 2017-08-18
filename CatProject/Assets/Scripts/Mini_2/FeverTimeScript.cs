@@ -9,6 +9,9 @@ public class FeverTimeScript : MonoBehaviour
     GameObject toy;
     Text FeverText;
 
+    Vector3 DownScale;
+    Vector3 UpScale;
+
     GameObject AudioManager;
     AudioClip fever_toySwing;
     Vector3 volVector;
@@ -18,6 +21,9 @@ public class FeverTimeScript : MonoBehaviour
     {
         toy = GameObject.Find("FeverTime").transform.Find("Item").gameObject;
         FeverText = GameObject.Find("FeverText").GetComponent<Text>();
+
+        DownScale = new Vector3(0.7f, 0.7f, 1);
+        UpScale = new Vector3(1, 1, 1);
 
         AudioManager = GameObject.Find("AudioManager");
         volVector = AudioManager.GetComponent<Main_AudioManager>().effectVector;
@@ -35,6 +41,12 @@ public class FeverTimeScript : MonoBehaviour
         toy.transform.eulerAngles += new Vector3(0, 180, 0);
         touchnum++;
 
+        FeverText.transform.localScale = DownScale;
         FeverText.text = touchnum.ToString() + " HIT!";
+    }
+
+    private void OnMouseUp()
+    {
+        FeverText.transform.localScale = UpScale;
     }
 }

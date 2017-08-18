@@ -23,21 +23,23 @@ public class ControlGameData : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        Load();
+        //Load();
+        
+
     }
 
     //파일에서 받아와서 수행한다.
 
-        /*
-    void Start()
-    {
-        //PlayerPrefs.DeleteAll();
-        //Debug.Log("controlgamedata !");
+    ///*
+void Start()
+{
+   //PlayerPrefs.DeleteAll();
+    //Debug.Log("controlgamedata !");
 
-        //Load();
+    Load();
 
-        //money += 10000000;
-    }*/
+    //money = 100000;
+}//*/
 
     //어플리케이션을 끌 때
     public void saveforFinish()
@@ -85,7 +87,7 @@ public class ControlGameData : MonoBehaviour
         string[] f_buycat = PlayerPrefs.GetString("Buycat", "-1/-1/-1/-1/-1/-1/-1/-1").Split('/');
         string[] f_furniture = PlayerPrefs.GetString("Furniture", "-1/-1/-1/-1/-1/-1/-1/-1").Split('/');
         string[] f_puzzle = PlayerPrefs.GetString("Puzzle", "0/0/0/0/0/0").Split('/');
-        int f_money = PlayerPrefs.GetInt("Money", 0);
+        int f_money = PlayerPrefs.GetInt("Money", 5000);
         string[] f_volumn = PlayerPrefs.GetString("Volumn", "99/99/99/99").Split('/');
         string[] f_bestscore = PlayerPrefs.GetString("BestScore", "0/0/0/0").Split('/');
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class mini1_TotalManager : MonoBehaviour {
 
@@ -19,10 +20,22 @@ public class mini1_TotalManager : MonoBehaviour {
     GameObject FeverScore;
     GameObject fever_text;
 
+    Text Go;
+
     Sprite[] playerS;
 
+    GameObject DataManager;
+    double[] appliedEffect;
+
+    int feverPlayTime;
+    int gamePlayTime;
+    public int bonusWhileGame;
+
+
+
     int time;
-    public int fevertime;
+    public int gametime;
+    int fevertime;
 
     int flag;
 
@@ -35,8 +48,7 @@ public class mini1_TotalManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        time = 0;
-        fevertime = 30;
+       
 
         playerS = new Sprite[2];
 
@@ -52,6 +64,20 @@ public class mini1_TotalManager : MonoBehaviour {
         FeverPlayer = Player.transform.Find("FeverPlayer").gameObject;
         TouchPlayer = GameObject.Find("TouchPlayer");
 
+        DataManager = GameObject.Find("DataManager");
+        appliedEffect = DataManager.GetComponent<GetCatEffect>().SettingCatEffect();
+
+        //Debug.Log("appliedEffect[0]" + appliedEffect[0]);
+        //Debug.Log("appliedEffect[6]" + appliedEffect[6]);
+
+
+        feverPlayTime = 0 + (int)appliedEffect[4];//
+        gamePlayTime = 0 + (int)appliedEffect[1];//
+        bonusWhileGame = (int)appliedEffect[2]; //끗
+
+        Go = GameObject.Find("count").GetComponent<Text>();
+        Go.text = "G O !";
+
         fever_text.SetActive(false);
         GAMEOVER.SetActive(false);
         FEVER.SetActive(false);
@@ -62,6 +88,13 @@ public class mini1_TotalManager : MonoBehaviour {
             playerS[i] = Resources.Load<Sprite>("UFO_" + i);
         }
 
+        time = 0;
+        gametime = 30 +gamePlayTime;
+        fevertime = 5 + feverPlayTime;
+
+        Debug.Log("gamePlaytime is " + gamePlayTime);
+        Debug.Log("feverPlaytime is " + feverPlayTime);
+
         StartCoroutine(GameManager.GetComponent<TimeScore>().CountScore());
         StartCoroutine("CheckTime");
     }
@@ -70,14 +103,27 @@ public class mini1_TotalManager : MonoBehaviour {
     {
         time++;
 
-        if(time == fevertime - 1)
+        if(time == 2)
         {
-            fever_text.SetActive(true);
+            Go.text = "";
         }
 
-        if (time == fevertime) //피버타임 준비
+        if(time == 15)
+        {
+            Debug.Log("time is " + GameManager.GetComponent<TimeScore>().time + "and bonus while game is" + bonusWhileGame);
+            GameManager.GetComponent<TimeScore>().time += bonusWhileGame;
+            Debug.Log("time is " + GameManager.GetComponent<TimeScore>().time);
+            GameManager.GetComponent<TimeScore>().BScore();
+
+        }
+
+        if (time == gametime) //피버타임 준비
         {   // 행성 바깥으로 이동 & 플레이어 중간으로 이동(터치막기)
-            fever_text.SetActive(false);
+
+            Player.GetComponent<Collider2D>().enabled = false;
+
+            fever_text.SetActive(true);
+
             TouchPlayer.GetComponent<PlayerMove>().check = 1;
 
             FeverPlayer.SetActive(true);
@@ -89,8 +135,10 @@ public class mini1_TotalManager : MonoBehaviour {
         }
 
 
-        if (fevertime + 4 > time && time >= fevertime + 3) //피버타임 시작
+        if (gametime + 3 > time && time >= gametime + 2) //피버타임 시작
         {   // 피버타임 ON & 플레이어 이미지 변경 & 몬스터 랜덤 켜기
+
+            fever_text.SetActive(false);
 
             GameManager.GetComponent<PlanetCreate>().PlanetOff();
 
@@ -105,7 +153,7 @@ public class mini1_TotalManager : MonoBehaviour {
             MAINGAME.SetActive(false);
         }
 
-        if (fevertime + 9.5 > time && time >= fevertime + 8) //피버타임 정리
+        if (gametime+fevertime+3.5 > time && time >= gametime + fevertime+2) //피버타임 정리
         {   // 피버스코어 정지 & 플레이어 이동가능 & 원래 플레이어 이미지로;
             FeverScore.GetComponent<Collider2D>().enabled = false;
             Player.GetComponent<SpriteRenderer>().sprite = playerS[0];
@@ -114,8 +162,10 @@ public class mini1_TotalManager : MonoBehaviour {
 
             FeverManager.GetComponent<FeverManager>().Monster_back();
 
+            Player.GetComponent<Collider2D>().enabled = true;
+
         }
-        if (time >= fevertime + 11)
+        if (time >= gametime + fevertime+4)
         {
             TouchPlayer.SetActive(true);
             TouchPlayer.GetComponent<PlayerMove>().check = 0;
@@ -134,8 +184,11 @@ public class mini1_TotalManager : MonoBehaviour {
 
             gameObject.GetComponent<CoroutineManager>().ReStart();
 
+            Go.text = "G O !";
+
             time = 0;
 
+           
         }
 
         yield return new WaitForSeconds(1);

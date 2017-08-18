@@ -24,6 +24,7 @@ public class PlanetSpeed : MonoBehaviour {
         }
         speed += 0.05f;
 
-        StartCoroutine("SpeedUp");
+        if(gameObject.activeInHierarchy)
+            StartCoroutine("SpeedUp");
     }
 }

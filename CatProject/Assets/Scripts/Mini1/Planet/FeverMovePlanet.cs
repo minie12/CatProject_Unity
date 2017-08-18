@@ -17,9 +17,9 @@ public class FeverMovePlanet : MonoBehaviour {
     {
         check = 0;
         speed = 0.07f;
-        mid = new Vector3(18f, 0.65f, 0);
-        top = new Vector3(18f, 2.5f, 0);
-        bot = new Vector3(18f, -2.5f, 0);
+        mid = new Vector3(18f, 0.1f, 0);
+        top = new Vector3(18f, 3f, 0);
+        bot = new Vector3(18f, -3f, 0);
     }
 
     void Check_pos()
@@ -48,7 +48,7 @@ public class FeverMovePlanet : MonoBehaviour {
                 gameObject.SetActive(false);
             }
             transform.Translate(new Vector3(0, speed, 0));
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.02f);
         }
     }
 
@@ -64,7 +64,7 @@ public class FeverMovePlanet : MonoBehaviour {
                 gameObject.SetActive(false);
             }
             transform.Translate(new Vector3(0, -speed, 0));
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.02f);
         }
     }
 }

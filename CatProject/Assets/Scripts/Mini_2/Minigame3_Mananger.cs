@@ -11,7 +11,7 @@ public class Minigame3_Mananger : MonoBehaviour {
 
     public int speacialscore;
     public int normalscore;
-    public float finalScore;
+    public double finalScore;
 
     float playTime;
     float feverTime;
@@ -35,9 +35,9 @@ public class Minigame3_Mananger : MonoBehaviour {
 
     GameObject[] FeverCat = new GameObject[3];
 
-    float[] appliedEffect;
+    double[] appliedEffect;
 
-    float bonusAfterGame;
+    double bonusAfterGame;
     int feverPlayTime;
     int gamePlayTime;
     public int bonusWhileGame;
@@ -59,6 +59,9 @@ public class Minigame3_Mananger : MonoBehaviour {
     void Start () {
 
         appliedEffect = DataManager.GetComponent<GetCatEffect>().SettingCatEffect();
+
+       //Debug.Log("appliedEffect[0]" + appliedEffect[0]);
+        //Debug.Log("appliedEffect[6]" + appliedEffect[6]);
 
         bonusAfterGame = 1 + appliedEffect[0] + appliedEffect[6];
         feverPlayTime = 0 + (int)appliedEffect[4];
@@ -177,8 +180,11 @@ public class Minigame3_Mananger : MonoBehaviour {
 
     public void calculFinalScore()
     {
+        Debug.Log("final score is " + (normalscore + speacialscore * 7) + "and bonusAfterGame is "+bonusAfterGame+", jackpot is ");
+
         finalScore = (normalscore + speacialscore * 7) * bonusAfterGame;
         int i = Random.Range(0, 100);
+        Debug.Log("jackpot possible?" + jackpot);
         if (i < 5)
             finalScore *= jackpot;
     }
