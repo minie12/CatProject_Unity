@@ -13,7 +13,7 @@ public class Cat_interact : MonoBehaviour {
     Sprite[][][] catInteractSpr = new Sprite[8][][];//고양이마다
 
     // Use this for initialization
-    void Awake () {
+    void Start () {
        for(int i = 0; i < catInteractSpr.Length; i++)
         {
             catInteractSpr[i] = new Sprite[4][];//각각 위치 네개씩
@@ -37,22 +37,24 @@ public class Cat_interact : MonoBehaviour {
             }
         }
 
-        
-        
-    }
-
-    void Setting()
-    {
         AudioManager = GameObject.Find("AudioManager");
-        AudioManager.GetComponent<Main_AudioManager>().changeVolumn();
         catmeow = AudioManager.GetComponent<Main_AudioManager>().Cat_Meow;
+
+        CatVolSetting();
+
+    }
+    
+    public void CatVolSetting()
+    {
+        AudioManager.GetComponent<Main_AudioManager>().changeVolumn();
         volVector = AudioManager.GetComponent<Main_AudioManager>().effectVector;
         effectvolume = AudioManager.GetComponent<Main_AudioManager>().effectVol;
+
+        Debug.Log("in setting, volvector is " + volVector + "and effectvolume is " + effectvolume);
     }
 
     public void getreaction_Cat(GameObject cat, int catnum, int posnum)
     {
-        Setting();
         Debug.Log(catnum + "and posnum is " + posnum);
         switch (posnum)
         {
@@ -60,6 +62,8 @@ public class Cat_interact : MonoBehaviour {
             case 8:
             case 11:
             case 12:
+                Debug.Log(effectvolume);
+                Debug.Log(volVector);
                 StartCoroutine(sprchange(cat, catnum, posnum));
                 break;
             default:
@@ -67,7 +71,8 @@ public class Cat_interact : MonoBehaviour {
                 int i = Random.Range(0, catmeow.Length);
                 Debug.Log(catmeow[i].name);
                 Debug.Log(effectvolume);
-                if(effectvolume!=0)
+                Debug.Log(volVector);
+                if (effectvolume!=0)
                     AudioSource.PlayClipAtPoint(catmeow[i], volVector);
                 break;
 

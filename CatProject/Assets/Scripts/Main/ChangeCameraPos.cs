@@ -8,6 +8,7 @@ public class ChangeCameraPos : MonoBehaviour {
     GameObject[] Arrow = new GameObject[2];
     GameObject Camera;
     GameObject DataManager;
+    GameObject CatObj;
     //GameObject AudioManager;
     //GameObject CameraArrow;
 
@@ -23,6 +24,7 @@ public class ChangeCameraPos : MonoBehaviour {
         //CameraArrow = GameObject.Find("CameraArrow");
         //ArrowUI = GameObject.Find("CameraArrow").GetComponent<Button>();
         DataManager = GameObject.Find("DataManager");
+        CatObj = GameObject.Find("Cat");
 
         judgeLocked();
 	}
@@ -47,12 +49,14 @@ public class ChangeCameraPos : MonoBehaviour {
         {
             //CameraArrow.GetComponent<Transform>().Rotate(new Vector3(0, 180, 0));
 			Camera.transform.Translate(+20.5f, 0, 0);
+            CatObj.GetComponent<Cat_interact>().CatVolSetting();
 
         }
         else
         {
             //CameraArrow.GetComponent<Transform>().Rotate(new Vector3(0, 180, 0));
-			Camera.transform.Translate(-20.5f, 0, 0);
+            Camera.transform.Translate(-20.5f, 0, 0);
+            CatObj.GetComponent<Cat_interact>().CatVolSetting();
         }
         
     }

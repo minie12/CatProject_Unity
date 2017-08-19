@@ -190,7 +190,5 @@ public class Main_AudioManager : MonoBehaviour
         audioPlay.volume = bgmVol;
 
         effectVector = new Vector3(Listener.transform.position.x, 0, -(0 + effectVol * 10));
-
-        //Debug.Log(bgmVol + " is bgmVol and effectVol is " + effectVol);
     }
 }

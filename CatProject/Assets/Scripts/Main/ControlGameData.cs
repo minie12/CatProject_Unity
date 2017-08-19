@@ -23,23 +23,23 @@ public class ControlGameData : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        //Load();
+        Load();
         
 
     }
 
     //파일에서 받아와서 수행한다.
 
-    ///*
+    
 void Start()
 {
    //PlayerPrefs.DeleteAll();
     //Debug.Log("controlgamedata !");
 
-    Load();
+    
 
-    //money = 100000;
-}//*/
+    money = 100000;
+}
 
     //어플리케이션을 끌 때
     public void saveforFinish()
